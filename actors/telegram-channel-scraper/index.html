@@ -1,0 +1,239 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Telegram Channel Scraper &amp; Keyword Search: posts, views</title><meta name="description" content="Scrape public Telegram channels, no login: keyword search, posts, views, reactions, media URLs, subscriber counts. Schedule it for new-post alerts."><link rel="canonical" href="https://brenton-keller.github.io/actors/telegram-channel-scraper/">
+<meta property="og:title" content="Telegram Channel Scraper &amp; Keyword Search: posts, views"><meta property="og:description" content="Scrape public Telegram channels, no login: keyword search, posts, views, reactions, media URLs, subscriber counts. Schedule it for new-post alerts."><meta property="og:url" content="https://brenton-keller.github.io/actors/telegram-channel-scraper/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Telegram Channel Scraper & Keyword Search: posts, views, media", "description": "Scrape public Telegram channels, no login: keyword search, posts, views, reactions, media URLs, subscriber counts. Schedule it for new-post alerts.", "url": "https://apify.com/brenton8907/telegram-channel-scraper", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web", "author": {"@type": "Person", "name": "Brenton Keller"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Pay per event on Apify; free tier available"}}</script><style>
+:root{--fg:#1a1a1a;--muted:#5a5a5a;--bg:#fff;--line:#e5e5e5;--acc:#0b57d0}
+@media(prefers-color-scheme:dark){:root{--fg:#e8e8e8;--muted:#a0a0a0;--bg:#111;--line:#333;--acc:#8ab4f8}}
+body{font:16px/1.55 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;color:var(--fg);background:var(--bg);margin:0}
+main{max-width:860px;margin:0 auto;padding:24px 20px 60px}
+nav{font-size:14px;color:var(--muted);margin-bottom:24px}nav a{color:var(--muted)}
+a{color:var(--acc)}h1{font-size:30px;line-height:1.2;margin:.2em 0}h2{margin-top:1.6em;border-bottom:1px solid var(--line);padding-bottom:.2em}
+table{border-collapse:collapse;width:100%;font-size:14px;display:block;overflow-x:auto}th,td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}
+pre{background:rgba(127,127,127,.12);padding:12px;overflow-x:auto;font-size:13px;border-radius:6px}code{font-size:.92em}
+.card{border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin:12px 0}.card h3{margin:0 0 6px}
+.muted{color:var(--muted);font-size:14px}.btn{display:inline-block;padding:8px 14px;border:1px solid var(--acc);border-radius:6px;text-decoration:none;margin:4px 6px 4px 0}
+footer{margin-top:48px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+</style></head><body><main><nav><a href="/">Home</a> / <a href="/#actors">Actors</a> / <a href="/actors/telegram-channel-scraper/">Telegram Channel Scraper &amp; Keyword Search: posts, views, media</a></nav><h1>Telegram Channel Scraper &amp; Keyword Search: posts, views, media</h1>
+<p>Scrape any public Telegram channel with no login or API key: messages with text, dates, views, reactions, media URLs, forwards, polls and link previews, plus subscriber counts. Keyword search inside channels, date windows, and a changes-only monitor for scheduled Slack/email alerts. Pay per message.</p>
+<p><a class="btn" href="https://apify.com/brenton8907/telegram-channel-scraper">Run on Apify</a> <a class="btn" href="https://apify.com/brenton8907/telegram-channel-scraper#pricing">Pricing</a> <a class="btn" href="https://apify.com/brenton8907/telegram-channel-scraper/api">API docs</a></p>
+<p class="muted">Categories: SOCIAL_MEDIA, NEWS, AGENTS. Pay per result, no subscription; Apify's free plan includes $5 of monthly usage.</p>
+<h2 id="run">Run it from the command line</h2>
+<pre><code>curl -sS -X POST &quot;https://api.apify.com/v2/acts/brenton8907~telegram-channel-scraper/run-sync-get-dataset-items?token=$APIFY_TOKEN&quot; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;channels&quot;: [&quot;durov&quot;, &quot;bloomberg&quot;], &quot;maxMessagesPerChannel&quot;: 100, &quot;includeChannelInfo&quot;: true, &quot;includeHtml&quot;: false, &quot;changesOnly&quot;: false, &quot;monitorStoreName&quot;: &quot;telegram-channel-monitor&quot;}&#x27;</code></pre>
+<h2 id="python">Run it from Python</h2>
+<pre><code>from apify_client import ApifyClient
+client = ApifyClient(&quot;YOUR_APIFY_TOKEN&quot;)
+run = client.actor(&quot;brenton8907/telegram-channel-scraper&quot;).call(run_input={
+  &quot;channels&quot;: [
+    &quot;durov&quot;,
+    &quot;bloomberg&quot;
+  ],
+  &quot;maxMessagesPerChannel&quot;: 100,
+  &quot;includeChannelInfo&quot;: true,
+  &quot;includeHtml&quot;: false,
+  &quot;changesOnly&quot;: false,
+  &quot;monitorStoreName&quot;: &quot;telegram-channel-monitor&quot;
+})
+for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(item)</code></pre>
+<h2 id="mcp">Use it as an MCP tool (Claude, Cursor, any MCP client)</h2>
+<p>The actor is listed in the <a href="https://registry.modelcontextprotocol.io/v0/servers?search=telegram-channel-scraper">official MCP registry</a> as <code>io.github.brenton-keller/telegram-channel-scraper</code> and served by Apify's hosted MCP server:</p>
+<pre><code>{
+  &quot;mcpServers&quot;: {
+    &quot;telegram-channel-scraper&quot;: {
+      &quot;url&quot;: &quot;https://mcp.apify.com/?tools=brenton8907/telegram-channel-scraper&quot;,
+      &quot;headers&quot;: {
+        &quot;Authorization&quot;: &quot;Bearer YOUR_APIFY_TOKEN&quot;
+      }
+    }
+  }
+}</code></pre>
+<h2 id="pricing">Pricing (pay per event)</h2>
+<table><tr><th>event</th><th>what</th><th>price</th><th>details</th></tr><tr><td><code>message-record</code></td><td>Message</td><td>$0.0010</td><td>One channel post: text, date, views, reactions, media URLs, forwards, replies, poll, link preview, hashtags, mentions.</td></tr><tr><td><code>channel-record</code></td><td>Channel info</td><td>$0.0020</td><td>One channel row: title, description, subscriber count, photo/video/file/link counts, avatar URL.</td></tr></table>
+<h2 id="docs">Documentation</h2>
+<p>Scrape any <strong>public Telegram channel</strong> without a login, a phone number, or API keys, and <strong>search channels by keyword</strong> using Telegram's own in-channel search. Reads Telegram's own public web preview (<code>t.me/s/&lt;channel&gt;</code>), so it needs no browser, no proxies and no session, and it does not break when the Telegram app changes. Returns the full post history as flat rows, plus one channel-info row with the subscriber count. Includes a <strong>changes-only monitor mode</strong> so a scheduled run gives you only what was posted since last time.</p>
+<p><strong>Try it free:</strong> every Apify account includes free monthly usage; 1,000 messages cost $1, so a first run costs nothing.</p>
+<h2 id="keyword-search-across-channels">Keyword search across channels</h2>
+<p>Search many channels for the terms you care about without downloading their full history. The actor uses Telegram's in-channel search (<code>t.me/s/&lt;channel&gt;?q=</code>), one request per keyword per page of 20 results, so 20 channels × 3 keywords is about 60 requests and you pay only for the posts that match.</p>
+<pre><code class="language-json">{
+  &quot;channels&quot;: [&quot;bloomberg&quot;, &quot;cryptosignals&quot;, &quot;telegram&quot;, &quot;durov&quot;],
+  &quot;keywords&quot;: [&quot;airdrop&quot;, &quot;listing&quot;, &quot;ETF&quot;],
+  &quot;maxMessagesPerChannel&quot;: 50,
+  &quot;includeChannelInfo&quot;: false
+}
+</code></pre>
+<p>Every row has <code>matched_keyword</code>, so you know which term found it. Combine with <code>sinceDate</code> to search only recent posts. Search is per channel (Telegram has no public cross-channel search); give the actor the channel list you want covered.</p>
+<h2 id="channel-monitor-schedule-it-get-new-posts-in-slack-or-email">Channel monitor: schedule it, get new posts in Slack or email</h2>
+<p>Turn any set of channels into an alert feed. Three steps, no code:</p>
+<ol>
+<li><strong>Create a task</strong> from this actor with the input below and run it once. The first run seeds the newest message ID per channel.</li>
+<li><strong>Schedule it</strong> (task → <em>Schedule</em>, or Console → Schedules): every 15 minutes, hourly or daily. A quiet channel costs one request and no result charges, so frequent polling is cheap.</li>
+<li><strong>Alerts</strong>: in the task's <em>Integrations</em> tab add <strong>Slack</strong> or <strong>Gmail</strong> on "run succeeded". The run's status message is written for this: <code>12 NEW post(s) since last run across 3/3 channel(s)</code> or <code>No new posts since last run</code>. Slack template (Handlebars):</li>
+</ol>
+<p><code>*Telegram monitor:* {{resource.statusMessage}}
+   &lt;https://console.apify.com/storage/datasets/{{resource.defaultDatasetId}}|Open the new posts&gt;</code></p>
+<p>To notify only when something is new, or to forward the post text itself, route the run through <strong>n8n / Make / Zapier</strong> (Apify triggers exist for all three) and filter on the dataset items.</p>
+<pre><code class="language-json">{
+  &quot;channels&quot;: [&quot;cryptosignals&quot;, &quot;telegram&quot;, &quot;bloomberg&quot;],
+  &quot;changesOnly&quot;: true,
+  &quot;monitorStoreName&quot;: &quot;signals-watch&quot;,
+  &quot;includeChannelInfo&quot;: false
+}
+</code></pre>
+<p>Add <code>keywords</code> to the same input to get alerts only for posts that mention your terms. Cost at scale: 20 channels posting 30 new messages a day in total = <strong>$0.03/day, under $1/month</strong>.</p>
+<h2 id="what-it-does">What it does</h2>
+<ul>
+<li>Pulls messages from one or many public channels, newest first, up to a limit you set.</li>
+<li>Every message row has: text (plain and optional HTML), date, views, reactions (emoji + counts, custom emoji IDs, paid star reactions), author signature, edited flag, forwarded-from, reply-to (with quoted text), media (photos, videos, GIFs, round videos, documents, stickers, voice, audio) with direct URLs and thumbnails, polls with options and vote counts, link previews, extracted links, hashtags and mentions.</li>
+<li>Channel info row: title, description, subscriber count, photo/video/file/link counts, avatar URL.</li>
+<li><strong>Windows:</strong> since/until date, since message ID. Paging stops as soon as the window is left, so tight windows cost a request or two.</li>
+<li><strong>Keyword search:</strong> uses Telegram's own in-channel search, one request per keyword per page, instead of downloading the whole history.</li>
+<li><strong>Monitor mode:</strong> remembers the newest message ID per channel in a named key-value store and outputs only new messages. A quiet channel costs one request and zero result charges.</li>
+<li>Channels without a public preview (private channels, groups, users, bots, invite links) are reported as error rows, never charged, and the run still succeeds for the other channels.</li>
+</ul>
+<h2 id="who-its-for">Who it's for</h2>
+<ul>
+<li>Analysts, journalists and OSINT researchers archiving or monitoring channels (news, official announcements, regional sources).</li>
+<li>Crypto and trading teams tracking signal and announcement channels, with views and reactions as engagement signals.</li>
+<li>Brand and community teams measuring reach (views, reactions, subscriber growth over repeated runs).</li>
+<li>AI agents and alerting workflows: schedule a changes-only run and act on the rows that come back.</li>
+</ul>
+<h2 id="input-examples">Input examples</h2>
+<p><strong>Latest 100 posts from two channels, with channel info (default):</strong></p>
+<pre><code class="language-json">{ &quot;channels&quot;: [&quot;durov&quot;, &quot;https://t.me/bloomberg&quot;] }
+</code></pre>
+<p><strong>Everything a channel posted in January 2026:</strong></p>
+<pre><code class="language-json">{ &quot;channels&quot;: [&quot;telegram&quot;], &quot;sinceDate&quot;: &quot;2026-01-01&quot;, &quot;untilDate&quot;: &quot;2026-01-31&quot;, &quot;maxMessagesPerChannel&quot;: 5000 }
+</code></pre>
+<p><strong>Only posts mentioning specific terms, newest 50 per term:</strong></p>
+<pre><code class="language-json">{ &quot;channels&quot;: [&quot;bloomberg&quot;], &quot;keywords&quot;: [&quot;oil&quot;, &quot;Fed&quot;], &quot;maxMessagesPerChannel&quot;: 50, &quot;includeChannelInfo&quot;: false }
+</code></pre>
+<p><strong>Monitor</strong> (see the section above): the first run with <code>changesOnly: true</code> outputs the latest <code>maxMessagesPerChannel</code> posts and seeds the store; later runs output only newer posts. Use a different <code>monitorStoreName</code> per watchlist.</p>
+<p><strong>Fetch only what is newer than a message you already have:</strong></p>
+<pre><code class="language-json">{ &quot;channels&quot;: [&quot;durov&quot;], &quot;sinceMessageId&quot;: 540 }
+</code></pre>
+<h2 id="output">Output</h2>
+<p>One row per message; with <code>includeChannelInfo</code> also one row per channel.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>channel</code>, <code>channel_title</code></td>
+<td>Channel username and display title</td>
+</tr>
+<tr>
+<td><code>message_id</code>, <code>url</code></td>
+<td>Numeric post ID (increasing) and <code>https://t.me/&lt;channel&gt;/&lt;id&gt;</code></td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>Posted time, ISO 8601 UTC</td>
+</tr>
+<tr>
+<td><code>text</code></td>
+<td>Plain text with line breaks; <code>text_html</code> when <code>includeHtml</code> is on</td>
+</tr>
+<tr>
+<td><code>author</code></td>
+<td>Author signature, when the channel shows one</td>
+</tr>
+<tr>
+<td><code>views</code></td>
+<td>View count as an integer (Telegram shows "1.2M"; we return 1200000)</td>
+</tr>
+<tr>
+<td><code>reactions</code>, <code>reactions_total</code></td>
+<td><code>[{ "emoji", "count", "custom_emoji_id"?, "paid"? }]</code> and the sum</td>
+</tr>
+<tr>
+<td><code>is_edited</code>, <code>is_service</code></td>
+<td>Edited flag; service messages (pinned, channel created, etc.)</td>
+</tr>
+<tr>
+<td><code>forwarded_from</code></td>
+<td><code>{ "name", "url", "author" }</code> or null</td>
+</tr>
+<tr>
+<td><code>reply_to</code></td>
+<td><code>{ "message_id", "url", "author", "text", "thumbnail_url" }</code> or null</td>
+</tr>
+<tr>
+<td><code>media</code>, <code>media_types</code></td>
+<td><code>[{ "type", "url", "thumbnail_url", "duration", "title", ... }]</code>; types: photo, video, gif, round_video, document, sticker, voice, audio</td>
+</tr>
+<tr>
+<td><code>link_preview</code></td>
+<td><code>{ "url", "site_name", "title", "description", "image_url" }</code> or null</td>
+</tr>
+<tr>
+<td><code>poll</code></td>
+<td><code>{ "question", "type", "options": [{ "text", "percent" }], "votes" }</code> or null</td>
+</tr>
+<tr>
+<td><code>links</code>, <code>hashtags</code>, <code>mentions</code></td>
+<td>Extracted from the text</td>
+</tr>
+<tr>
+<td><code>matched_keyword</code></td>
+<td>Only with <code>keywords</code>: which search term returned this post</td>
+</tr>
+<tr>
+<td><code>is_new</code></td>
+<td>Only in monitor mode</td>
+</tr>
+<tr>
+<td><code>scraped_at</code></td>
+<td>When the row was fetched (UTC)</td>
+</tr>
+</tbody>
+</table>
+<p>Channel row: <code>username</code>, <code>url</code>, <code>title</code>, <code>description</code>, <code>subscribers</code>, <code>photos_count</code>, <code>videos_count</code>, <code>files_count</code>, <code>links_count</code>, <code>photo_url</code>, <code>messages_scraped</code>, <code>scraped_at</code>.</p>
+<p>Media URLs point at Telegram's CDN. Video URLs carry a token and expire after some hours; download them in the same workflow if you need to keep them.</p>
+<h2 id="pricing">Pricing</h2>
+<p>Pay per result. You are charged only for rows written to the dataset; error rows are free.</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Price</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Message</td>
+<td>$1.00 per 1,000 messages</td>
+<td>Every message row</td>
+</tr>
+<tr>
+<td>Channel info</td>
+<td>$2.00 per 1,000 channels</td>
+<td>One row per channel when <code>includeChannelInfo</code> is on</td>
+</tr>
+</tbody>
+</table>
+<p>Examples: the latest 1,000 posts from a channel cost $1.00. A monitor run over 20 channels that finds 12 new posts costs $0.012. The first monitor run charges every post it seeds with, like any other run.</p>
+<p>Set <strong>Maximum total charge</strong> on the run to cap spend; the actor stops cleanly at the cap.</p>
+<h2 id="limits-and-notes">Limits and notes</h2>
+<ul>
+<li>Public channels only. The preview does not exist for private channels, groups, supergroups, users, bots or invite links (<code>t.me/+...</code>); those come back as error rows.</li>
+<li>Some channels turn the web preview off in their settings; they are reported the same way.</li>
+<li>20 posts per request. 10,000 posts is about 500 requests, roughly 5 minutes at the default pacing.</li>
+<li>Comments (discussion group replies) are not part of the channel preview and are not returned. Reply-to refers to replies inside the channel itself.</li>
+<li>Views and reaction counts are rounded the way Telegram shows them (1.2K, 45.8K, 23M).</li>
+<li>Custom emoji reactions carry <code>custom_emoji_id</code>; their glyph is not always in the HTML, so <code>emoji</code> can be null for them.</li>
+<li>Telegram serves the preview generously, but very large jobs at zero delay can get HTTP 429; the actor retries with backoff and reports rate-limit hits in the status message. Raise <code>requestDelaySeconds</code> or enable Apify Proxy if you see them.</li>
+<li>Monitor state is per <code>monitorStoreName</code>. Do not run two monitor runs against the same store at the same time.</li>
+<li>Data is Telegram's public content as displayed at t.me. Respect the channel owners' rights and local law when reusing it.</li>
+</ul>
+<h2 id="use-from-an-ai-agent-mcp">Use from an AI agent (MCP)</h2>
+<p>Every Apify actor is available as a tool through the <a href="https://mcp.apify.com">Apify MCP server</a>. Add it to Claude, Cursor, or any MCP client and call this actor by name with the JSON input above. Suggested agent pattern: keep a watchlist, run with <code>changesOnly: true</code> on a schedule, and act only on the rows returned.</p>
+<h2 id="support">Support</h2>
+<p>Open an issue on the actor page with the run ID and input. If Telegram changes its preview markup, affected fields go null rather than failing the run; report which field and we will patch it. If the actor saved you time, a review helps other people find it.</p>
+<footer>Built and published automatically from <a href="https://github.com/brenton-keller">github.com/brenton-keller</a>. Actors run on <a href="https://apify.com/brenton8907">Apify</a>; data reports come from the public Apify Store API. Updated 2026-09-09.</footer></main></body></html>

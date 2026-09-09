@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://brenton-keller.github.io/sitemap.xml

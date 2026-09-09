@@ -1,0 +1,297 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kalshi + Polymarket Prediction Markets Scraper &amp; Monitor</title><meta name="description" content="Live prices, orderbooks, trades and settled results from Kalshi and Polymarket in one dataset. Official APIs, no login. Monitor mode. Pay per result."><link rel="canonical" href="https://brenton-keller.github.io/actors/prediction-markets-data/">
+<meta property="og:title" content="Kalshi + Polymarket Prediction Markets Scraper &amp; Monitor"><meta property="og:description" content="Live prices, orderbooks, trades and settled results from Kalshi and Polymarket in one dataset. Official APIs, no login. Monitor mode. Pay per result."><meta property="og:url" content="https://brenton-keller.github.io/actors/prediction-markets-data/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Kalshi + Polymarket Prediction Markets Scraper & Monitor", "description": "Live prices, orderbooks, trades and settled results from Kalshi and Polymarket in one dataset. Official APIs, no login. Monitor mode. Pay per result.", "url": "https://apify.com/brenton8907/prediction-markets-data", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web", "author": {"@type": "Person", "name": "Brenton Keller"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Pay per event on Apify; free tier available"}}</script><style>
+:root{--fg:#1a1a1a;--muted:#5a5a5a;--bg:#fff;--line:#e5e5e5;--acc:#0b57d0}
+@media(prefers-color-scheme:dark){:root{--fg:#e8e8e8;--muted:#a0a0a0;--bg:#111;--line:#333;--acc:#8ab4f8}}
+body{font:16px/1.55 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;color:var(--fg);background:var(--bg);margin:0}
+main{max-width:860px;margin:0 auto;padding:24px 20px 60px}
+nav{font-size:14px;color:var(--muted);margin-bottom:24px}nav a{color:var(--muted)}
+a{color:var(--acc)}h1{font-size:30px;line-height:1.2;margin:.2em 0}h2{margin-top:1.6em;border-bottom:1px solid var(--line);padding-bottom:.2em}
+table{border-collapse:collapse;width:100%;font-size:14px;display:block;overflow-x:auto}th,td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}
+pre{background:rgba(127,127,127,.12);padding:12px;overflow-x:auto;font-size:13px;border-radius:6px}code{font-size:.92em}
+.card{border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin:12px 0}.card h3{margin:0 0 6px}
+.muted{color:var(--muted);font-size:14px}.btn{display:inline-block;padding:8px 14px;border:1px solid var(--acc);border-radius:6px;text-decoration:none;margin:4px 6px 4px 0}
+footer{margin-top:48px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+</style></head><body><main><nav><a href="/">Home</a> / <a href="/#actors">Actors</a> / <a href="/actors/prediction-markets-data/">Kalshi + Polymarket Prediction Markets Scraper &amp; Monitor</a></nav><h1>Kalshi + Polymarket Prediction Markets Scraper &amp; Monitor</h1>
+<p>Returns live prices, orderbooks, trades, settlement history and cross-venue spreads (Kalshi vs Polymarket pairs with executable edge) for Kalshi and Polymarket markets as one unified dataset: weather, politics, sports, crypto. Official public APIs, no login.</p>
+<p><a class="btn" href="https://apify.com/brenton8907/prediction-markets-data">Run on Apify</a> <a class="btn" href="https://apify.com/brenton8907/prediction-markets-data#pricing">Pricing</a> <a class="btn" href="https://apify.com/brenton8907/prediction-markets-data/api">API docs</a></p>
+<p class="muted">Categories: AGENTS, AUTOMATION, DEVELOPER_TOOLS. Pay per result, no subscription; Apify's free plan includes $5 of monthly usage.</p>
+<h2 id="run">Run it from the command line</h2>
+<pre><code>curl -sS -X POST &quot;https://api.apify.com/v2/acts/brenton8907~prediction-markets-data/run-sync-get-dataset-items?token=$APIFY_TOKEN&quot; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;mode&quot;: &quot;markets&quot;, &quot;sources&quot;: [&quot;kalshi&quot;, &quot;polymarket&quot;], &quot;status&quot;: &quot;open&quot;, &quot;searchQueries&quot;: [&quot;Fed&quot;, &quot;interest rate&quot;], &quot;weatherPreset&quot;: false, &quot;minVolume24h&quot;: 0}&#x27;</code></pre>
+<h2 id="python">Run it from Python</h2>
+<pre><code>from apify_client import ApifyClient
+client = ApifyClient(&quot;YOUR_APIFY_TOKEN&quot;)
+run = client.actor(&quot;brenton8907/prediction-markets-data&quot;).call(run_input={
+  &quot;mode&quot;: &quot;markets&quot;,
+  &quot;sources&quot;: [
+    &quot;kalshi&quot;,
+    &quot;polymarket&quot;
+  ],
+  &quot;status&quot;: &quot;open&quot;,
+  &quot;searchQueries&quot;: [
+    &quot;Fed&quot;,
+    &quot;interest rate&quot;
+  ],
+  &quot;weatherPreset&quot;: false,
+  &quot;minVolume24h&quot;: 0
+})
+for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(item)</code></pre>
+<h2 id="mcp">Use it as an MCP tool (Claude, Cursor, any MCP client)</h2>
+<p>The actor is listed in the <a href="https://registry.modelcontextprotocol.io/v0/servers?search=prediction-markets-data">official MCP registry</a> as <code>io.github.brenton-keller/prediction-markets-data</code> and served by Apify's hosted MCP server:</p>
+<pre><code>{
+  &quot;mcpServers&quot;: {
+    &quot;prediction-markets-data&quot;: {
+      &quot;url&quot;: &quot;https://mcp.apify.com/?tools=brenton8907/prediction-markets-data&quot;,
+      &quot;headers&quot;: {
+        &quot;Authorization&quot;: &quot;Bearer YOUR_APIFY_TOKEN&quot;
+      }
+    }
+  }
+}</code></pre>
+<h2 id="pricing">Pricing (pay per event)</h2>
+<table><tr><th>event</th><th>what</th><th>price</th><th>details</th></tr><tr><td><code>market-record</code></td><td>Market record</td><td>$0.0015</td><td>One normalized market row (price, volume, liquidity, close time, result).</td></tr><tr><td><code>enriched-market-record</code></td><td>Enriched market record</td><td>$0.0040</td><td>One market row with orderbook depth and/or recent trades attached.</td></tr><tr><td><code>spread-record</code></td><td>Cross-venue spread record</td><td>$0.0050</td><td>One matched Kalshi/Polymarket pair with both prices, the spread and the executable edge.</td></tr></table>
+<h2 id="docs">Documentation</h2>
+<p>Live prices, orderbook depth, recent trades and settlement history from <strong>Kalshi</strong> and <strong>Polymarket</strong> in one unified schema. Built on both exchanges' official public APIs (no login, no browser, no proxies), so runs are fast and do not break when a website changes. Includes a <strong>changes-only monitor mode</strong> so a scheduled run gives you a clean feed of what moved.</p>
+<p>The reliability wedge: official APIs, no scraping, no proxies, no login. Every scenario in testing (top markets, keyword search, weather brackets with orderbooks, settled history, monitor mode) completed with a 100% success rate.</p>
+<h2 id="what-it-does">What it does</h2>
+<ul>
+<li>Pulls open, settled, or all markets from Kalshi and/or Polymarket in a single run.</li>
+<li>Normalizes both venues into the same columns: <code>yes_price</code>, <code>implied_probability</code>, <code>yes_bid</code>, <code>yes_ask</code>, <code>spread</code>, <code>volume_24h</code>, <code>liquidity</code>, <code>open_interest</code>, <code>close_time</code>, <code>result</code>, and more.</li>
+<li>Targets markets by keyword, Kalshi category, series/event/market ticker, Polymarket tag, event slug, or market slug.</li>
+<li>Optional enrichment per market: top-of-book <strong>orderbook</strong> (configurable depth) and the most recent <strong>trades</strong> (configurable count).</li>
+<li><strong>Settlement history</strong>: fetch resolved markets from the last N days with their result.</li>
+<li><strong>Weather preset</strong>: Kalshi daily high/low temperature brackets, rain and hurricane series (plus Polymarket's weather tag), filterable by city.</li>
+<li><strong>Monitor mode</strong>: remembers the last-seen YES price per market in a named key-value store and outputs only markets that are new or moved at least N probability points.</li>
+</ul>
+<h2 id="cross-venue-spread-mode-kalshi-vs-polymarket">Cross-venue spread mode (Kalshi vs Polymarket)</h2>
+<p>Set <code>"mode": "spread"</code> and the actor pairs the same question on both exchanges and prices the gap. One row per pair:</p>
+<ul>
+<li><code>kalshi_yes_price</code>, <code>polymarket_yes_price</code>, <code>spread_pts</code> (Kalshi minus Polymarket, in probability points)</li>
+<li><code>arb_edge_pts</code>: the executable edge before fees, from the books: buy YES at the cheaper venue's ask and buy NO at the other venue (1 minus its YES bid); both legs together pay $1 at settlement, so edge = bid minus ask. <code>arb_direction</code> says which way (<code>yes_kalshi_no_polymarket</code> or <code>yes_polymarket_no_kalshi</code>); null when there is no positive edge</li>
+<li><code>kalshi_fee_est_pts</code> (Kalshi taker fee, 7% x P x (1-P) rounded up to the cent) and <code>net_edge_pts</code> = edge minus that fee</li>
+<li><code>match_score</code> (0-1) and <code>match_method</code> (<code>auto</code> or <code>explicit</code>), both venues' links, volumes, close times, settlement rules</li>
+</ul>
+<p>Pairing is deliberately conservative. Events are paired when their titles agree after normalisation (NYC = New York City, Sep = September, years dropped) and their dates do not conflict; markets inside a paired event are matched by bracket ("80-81", "79 or below", "80 or higher"), by 1:1 events, or by outcome label. Anything uncertain is left out. For questions the matcher cannot pair, pass them yourself:</p>
+<pre><code class="language-json">{
+  &quot;mode&quot;: &quot;spread&quot;,
+  &quot;pairs&quot;: [&quot;KXHIGHNY-26SEP08-T80=will-the-highest-temperature-in-new-york-city-be-between-80-81f-on-september-8&quot;]
+}
+</code></pre>
+<p><strong>All weather brackets for three cities, biggest gaps first:</strong></p>
+<pre><code class="language-json">{ &quot;mode&quot;: &quot;spread&quot;, &quot;weatherPreset&quot;: true, &quot;cities&quot;: [&quot;NYC&quot;, &quot;Chicago&quot;, &quot;Miami&quot;] }
+</code></pre>
+<p><strong>Spread monitor, scheduled every 15 minutes, alert when a gap moves 3+ points or a new pair appears:</strong></p>
+<pre><code class="language-json">{ &quot;mode&quot;: &quot;spread&quot;, &quot;weatherPreset&quot;: true, &quot;changesOnly&quot;: true, &quot;minPriceMovePts&quot;: 3, &quot;monitorStoreName&quot;: &quot;weather-spreads&quot; }
+</code></pre>
+<p>Add an Apify integration (Slack, email, webhook) on the actor's Integrations tab and you have an alert feed without any extra code.</p>
+<p>Read the rules before trading a gap: the two venues do not always settle on the same source. Miami daily highs, for example, can close at 99% on different brackets because Kalshi and Polymarket read different weather stations. <code>kalshi_settlement_station</code>, <code>kalshi_rules</code> and <code>polymarket_rules</code> are on every row for that check. Rows are sorted by absolute spread, then net edge; <code>minSpreadPts</code> drops small gaps; <code>minMatchScore</code> (default 60) loosens or tightens auto pairing. Spread rows are billed as spread records (see Pricing).</p>
+<h2 id="who-its-for">Who it's for</h2>
+<ul>
+<li>Traders and quant researchers comparing prices across venues: spread mode gives the matched pairs, the gap and the executable edge, ready to schedule.</li>
+<li>Weather-market traders who need every temperature bracket for a city with orderbook depth, in one call, reliably.</li>
+<li>Analysts and journalists tracking probability moves on elections, Fed decisions, earnings, sports and crypto.</li>
+<li>AI agents and alerting workflows that want a scheduled "what changed" feed instead of re-reading the whole board.</li>
+</ul>
+<h2 id="input-examples">Input examples</h2>
+<p><strong>Top 100 markets by 24h volume, both venues (default):</strong></p>
+<pre><code class="language-json">{ &quot;maxItems&quot;: 100 }
+</code></pre>
+<p><strong>NYC and Chicago weather brackets with orderbook and last 5 trades:</strong></p>
+<pre><code class="language-json">{
+  &quot;weatherPreset&quot;: true,
+  &quot;cities&quot;: [&quot;NYC&quot;, &quot;Chicago&quot;],
+  &quot;includeOrderbook&quot;: true,
+  &quot;orderbookDepth&quot;: 10,
+  &quot;includeRecentTrades&quot;: true,
+  &quot;tradesLimit&quot;: 5
+}
+</code></pre>
+<p><strong>Everything mentioning the Fed or interest rates:</strong></p>
+<pre><code class="language-json">{ &quot;searchQueries&quot;: [&quot;Fed&quot;, &quot;interest rate&quot;], &quot;maxItems&quot;: 50 }
+</code></pre>
+<p><strong>A specific Kalshi series and a specific Polymarket event:</strong></p>
+<pre><code class="language-json">{
+  &quot;kalshiSeriesTickers&quot;: [&quot;KXHIGHNY&quot;],
+  &quot;polymarketEventSlugs&quot;: [&quot;presidential-election-winner-2028&quot;]
+}
+</code></pre>
+<p><strong>Settled weather markets from the last 30 days (with results):</strong></p>
+<pre><code class="language-json">{ &quot;status&quot;: &quot;settled&quot;, &quot;weatherPreset&quot;: true, &quot;settledLookbackDays&quot;: 30 }
+</code></pre>
+<p><strong>Monitor mode: schedule every 15 minutes, only report moves of 3+ points:</strong></p>
+<pre><code class="language-json">{
+  &quot;polymarketTags&quot;: [&quot;politics&quot;],
+  &quot;kalshiCategories&quot;: [&quot;Politics&quot;, &quot;Elections&quot;],
+  &quot;changesOnly&quot;: true,
+  &quot;minPriceMovePts&quot;: 3,
+  &quot;monitorStoreName&quot;: &quot;politics-watch&quot;
+}
+</code></pre>
+<p>The first monitor run outputs every market (all are "new") and seeds the store. Later runs output only changes. Use a different <code>monitorStoreName</code> per watchlist.</p>
+<h2 id="output">Output</h2>
+<p>One row per market. Prices are fractions of a dollar (0 to 1); <code>implied_probability</code> is the same number and can be read as P(yes).</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>source</code></td>
+<td><code>kalshi</code> or <code>polymarket</code></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>Kalshi market ticker or Polymarket condition ID</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td>Link to the market's series page (Kalshi) or the market page (Polymarket)</td>
+</tr>
+<tr>
+<td><code>event_url</code></td>
+<td>Kalshi only: link to the event page holding all brackets of this market. Built from the tickers; kalshi.com blocks automated link checks, so report a dead link in Issues</td>
+</tr>
+<tr>
+<td><code>title</code>, <code>outcome_label</code></td>
+<td>Market question and the specific outcome (e.g. temperature bracket)</td>
+</tr>
+<tr>
+<td><code>event_id</code>, <code>event_title</code>, <code>series_id</code>, <code>series_title</code></td>
+<td>Grouping above the market</td>
+</tr>
+<tr>
+<td><code>category</code>, <code>tags</code></td>
+<td>Exchange category and tags</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>open</code>, <code>closed</code> (no longer trading, not yet resolved) or <code>settled</code></td>
+</tr>
+<tr>
+<td><code>market_type</code></td>
+<td>Kalshi market type, or <code>binary</code> / <code>multi</code> for Polymarket</td>
+</tr>
+<tr>
+<td><code>yes_bid</code>, <code>yes_ask</code>, <code>spread</code>, <code>last_price</code></td>
+<td>Top of book and last trade</td>
+</tr>
+<tr>
+<td><code>yes_price</code>, <code>no_price</code>, <code>implied_probability</code></td>
+<td>Mid price (or last price when no book)</td>
+</tr>
+<tr>
+<td><code>volume</code>, <code>volume_24h</code>, <code>open_interest</code>, <code>liquidity</code></td>
+<td>Activity. Kalshi volume is contracts; Polymarket volume is USD</td>
+</tr>
+<tr>
+<td><code>open_time</code>, <code>close_time</code>, <code>expiration_time</code>, <code>settled_time</code></td>
+<td>ISO 8601 timestamps</td>
+</tr>
+<tr>
+<td><code>result</code>, <code>settlement_value</code></td>
+<td><code>yes</code> / <code>no</code> (or scalar) once settled</td>
+</tr>
+<tr>
+<td><code>strike_type</code>, <code>floor_strike</code>, <code>cap_strike</code>, <code>settlement_station</code></td>
+<td>Kalshi bracket definition and the weather station used for settlement</td>
+</tr>
+<tr>
+<td><code>rules</code></td>
+<td>Settlement rules text (Kalshi) or market description (Polymarket)</td>
+</tr>
+<tr>
+<td><code>price_change_24h_pts</code></td>
+<td>Polymarket 24h move in probability points</td>
+</tr>
+<tr>
+<td><code>outcomes</code>, <code>outcome_prices</code>, <code>yes_token_id</code></td>
+<td>Polymarket outcome list, prices and CLOB token for the YES side</td>
+</tr>
+<tr>
+<td><code>orderbook</code></td>
+<td>With <code>includeOrderbook</code>: <code>{ "bids": [{"price", "size"}, ...], "asks": [{"price", "size"}, ...] }</code> on the YES side, best price first</td>
+</tr>
+<tr>
+<td><code>recent_trades</code></td>
+<td>With <code>includeRecentTrades</code>: list of <code>{ "time", "yes_price", "size", "taker_side" }</code>, newest first</td>
+</tr>
+<tr>
+<td><code>is_new</code>, <code>previous_yes_price</code>, <code>previous_seen_at</code>, <code>price_move_pts</code></td>
+<td>Monitor mode only (spread mode: <code>previous_spread_pts</code>, <code>spread_move_pts</code>)</td>
+</tr>
+<tr>
+<td><code>spread_pts</code>, <code>arb_edge_pts</code>, <code>arb_direction</code>, <code>kalshi_fee_est_pts</code>, <code>net_edge_pts</code>, <code>match_score</code>, <code>match_method</code>, <code>kalshi_*</code>, <code>polymarket_*</code></td>
+<td>Spread mode only; see the spread section</td>
+</tr>
+<tr>
+<td><code>enrichment_error</code></td>
+<td>Set if an orderbook/trades call failed; the base row is still returned</td>
+</tr>
+<tr>
+<td><code>raw</code></td>
+<td>With <code>includeRaw</code>: the untouched upstream object</td>
+</tr>
+<tr>
+<td><code>fetched_at</code></td>
+<td>When the row was fetched (UTC)</td>
+</tr>
+</tbody>
+</table>
+<p>Export as JSON, CSV, Excel or via the API like any Apify dataset.</p>
+<h2 id="pricing">Pricing</h2>
+<p>Pay per result. You are charged only for rows written to the dataset.</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Price</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Market record</td>
+<td>$1.50 per 1,000 rows</td>
+<td>Standard run</td>
+</tr>
+<tr>
+<td>Enriched market record</td>
+<td>$4.00 per 1,000 rows</td>
+<td>Run with <code>includeOrderbook</code> and/or <code>includeRecentTrades</code></td>
+</tr>
+<tr>
+<td>Cross-venue spread record</td>
+<td>$5.00 per 1,000 rows</td>
+<td><code>mode: spread</code>; one row per matched Kalshi/Polymarket pair</td>
+</tr>
+</tbody>
+</table>
+<p>Examples: a top-500 board costs $0.75. A monitor run that finds 12 moved markets costs $0.018. All NYC + Chicago weather brackets with orderbooks costs about $0.16.</p>
+<p>Rows are billed by what they contain: a row whose orderbook/trades call failed (it carries <code>enrichment_error</code>) is billed at the base rate, never the enriched rate.</p>
+<p>The first run in monitor mode charges every row, because every market is new to the store. Later runs charge only the rows that changed.</p>
+<p>Set <strong>Maximum total charge</strong> on the run to cap spend; the actor stops cleanly at the cap.</p>
+<h2 id="limits-and-notes">Limits and notes</h2>
+<ul>
+<li>Kalshi exposes tens of thousands of markets. A keyword search with no category, series or ticker filter scans the whole board (roughly 100+ requests, 20 to 30 seconds). Use <code>kalshiCategories</code>, <code>kalshiSeriesTickers</code>, or the weather preset to make runs fast.</li>
+<li><code>settledLookbackDays</code> is capped at 365. Kalshi settlement history is fetched per series; Polymarket via closed markets.</li>
+<li>Volume units differ by venue: Kalshi <code>volume</code> and <code>volume_24h</code> are contracts, Polymarket's are USD. Sorting both venues by volume in one run compares different units; filter by <code>source</code> first if that matters.</li>
+<li><code>kalshiCategories</code> values are the exact strings Kalshi uses (dropdown in the UI): Politics, Elections, Economics, Financials, Companies, Crypto, Commodities, Climate and Weather, Science and Technology, Health, World, Sports, Entertainment, Mentions, Social, Transportation, Exotics.</li>
+<li>Polymarket <code>open_interest</code> is not published by the API and is always null.</li>
+<li>Kalshi <code>result</code> is empty until settlement; <code>settlement_value</code> holds the observed value for scalar (temperature, index) markets.</li>
+<li>Enrichment makes one or two extra API calls per market. With 500+ enriched markets, expect a minute or two.</li>
+<li>The <code>url</code> for Kalshi points at the series page, which lists all its markets.</li>
+<li>Monitor state is per <code>monitorStoreName</code>. Do not run two monitor runs against the same store at the same time.</li>
+<li>Data is provided as-is from the exchanges' public APIs. Not financial advice.</li>
+</ul>
+<h2 id="use-from-an-ai-agent-mcp">Use from an AI agent (MCP)</h2>
+<p>Every Apify actor is available as a tool through the <a href="https://mcp.apify.com">Apify MCP server</a>. Add it to Claude, Cursor, or any MCP client and call this actor by name with the JSON input above. Suggested agent pattern: run once with <code>changesOnly: true</code> on a schedule, then act only on the rows returned.</p>
+<h2 id="support">Support</h2>
+<p>Open an issue on the actor page with the run ID and input. Both exchanges' APIs are versioned; if a field disappears upstream, the actor keeps the row and nulls the field rather than failing the run.</p>
+<footer>Built and published automatically from <a href="https://github.com/brenton-keller">github.com/brenton-keller</a>. Actors run on <a href="https://apify.com/brenton8907">Apify</a>; data reports come from the public Apify Store API. Updated 2026-09-09.</footer></main></body></html>

@@ -1,0 +1,259 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Google Ads Transparency Scraper &amp; API: ads by domain</title><meta name="description" content="Every Google ad an advertiser runs: creatives, formats, dates, country reach. Competitor ads monitor with new-ad alerts; batch domain checks for lead gen."><link rel="canonical" href="https://brenton-keller.github.io/actors/google-ads-transparency-center/">
+<meta property="og:title" content="Google Ads Transparency Scraper &amp; API: ads by domain"><meta property="og:description" content="Every Google ad an advertiser runs: creatives, formats, dates, country reach. Competitor ads monitor with new-ad alerts; batch domain checks for lead gen."><meta property="og:url" content="https://brenton-keller.github.io/actors/google-ads-transparency-center/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Google Ads Transparency Center Scraper & API", "description": "Every Google ad an advertiser runs: creatives, formats, dates, country reach. Competitor ads monitor with new-ad alerts; batch domain checks for lead gen.", "url": "https://apify.com/brenton8907/google-ads-transparency-center", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web", "author": {"@type": "Person", "name": "Brenton Keller"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Pay per event on Apify; free tier available"}}</script><style>
+:root{--fg:#1a1a1a;--muted:#5a5a5a;--bg:#fff;--line:#e5e5e5;--acc:#0b57d0}
+@media(prefers-color-scheme:dark){:root{--fg:#e8e8e8;--muted:#a0a0a0;--bg:#111;--line:#333;--acc:#8ab4f8}}
+body{font:16px/1.55 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;color:var(--fg);background:var(--bg);margin:0}
+main{max-width:860px;margin:0 auto;padding:24px 20px 60px}
+nav{font-size:14px;color:var(--muted);margin-bottom:24px}nav a{color:var(--muted)}
+a{color:var(--acc)}h1{font-size:30px;line-height:1.2;margin:.2em 0}h2{margin-top:1.6em;border-bottom:1px solid var(--line);padding-bottom:.2em}
+table{border-collapse:collapse;width:100%;font-size:14px;display:block;overflow-x:auto}th,td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}
+pre{background:rgba(127,127,127,.12);padding:12px;overflow-x:auto;font-size:13px;border-radius:6px}code{font-size:.92em}
+.card{border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin:12px 0}.card h3{margin:0 0 6px}
+.muted{color:var(--muted);font-size:14px}.btn{display:inline-block;padding:8px 14px;border:1px solid var(--acc);border-radius:6px;text-decoration:none;margin:4px 6px 4px 0}
+footer{margin-top:48px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+</style></head><body><main><nav><a href="/">Home</a> / <a href="/#actors">Actors</a> / <a href="/actors/google-ads-transparency-center/">Google Ads Transparency Center Scraper &amp; API</a></nav><h1>Google Ads Transparency Center Scraper &amp; API</h1>
+<p>Every Google ad an advertiser is running: creatives, formats, first/last shown, impression ranges, per-country reach. Search by domain, brand or advertiser ID. Competitor ads monitor: schedule it and get only new ads. Batch &#x27;is this domain advertising?&#x27; checks for lead enrichment. No browser.</p>
+<p><a class="btn" href="https://apify.com/brenton8907/google-ads-transparency-center">Run on Apify</a> <a class="btn" href="https://apify.com/brenton8907/google-ads-transparency-center#pricing">Pricing</a> <a class="btn" href="https://apify.com/brenton8907/google-ads-transparency-center/api">API docs</a></p>
+<p class="muted">Categories: MARKETING, LEAD_GENERATION, AGENTS. Pay per result, no subscription; Apify's free plan includes $5 of monthly usage.</p>
+<h2 id="run">Run it from the command line</h2>
+<pre><code>curl -sS -X POST &quot;https://api.apify.com/v2/acts/brenton8907~google-ads-transparency-center/run-sync-get-dataset-items?token=$APIFY_TOKEN&quot; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;domains&quot;: [&quot;nike.com&quot;], &quot;mode&quot;: &quot;ads&quot;, &quot;region&quot;: &quot;ANYWHERE&quot;, &quot;format&quot;: &quot;ALL&quot;, &quot;surface&quot;: &quot;ALL&quot;, &quot;maxAdsPerQuery&quot;: 200}&#x27;</code></pre>
+<h2 id="python">Run it from Python</h2>
+<pre><code>from apify_client import ApifyClient
+client = ApifyClient(&quot;YOUR_APIFY_TOKEN&quot;)
+run = client.actor(&quot;brenton8907/google-ads-transparency-center&quot;).call(run_input={
+  &quot;domains&quot;: [
+    &quot;nike.com&quot;
+  ],
+  &quot;mode&quot;: &quot;ads&quot;,
+  &quot;region&quot;: &quot;ANYWHERE&quot;,
+  &quot;format&quot;: &quot;ALL&quot;,
+  &quot;surface&quot;: &quot;ALL&quot;,
+  &quot;maxAdsPerQuery&quot;: 200
+})
+for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    print(item)</code></pre>
+<h2 id="mcp">Use it as an MCP tool (Claude, Cursor, any MCP client)</h2>
+<p>The actor is listed in the <a href="https://registry.modelcontextprotocol.io/v0/servers?search=google-ads-transparency-center">official MCP registry</a> as <code>io.github.brenton-keller/google-ads-transparency-center</code> and served by Apify's hosted MCP server:</p>
+<pre><code>{
+  &quot;mcpServers&quot;: {
+    &quot;google-ads-transparency-center&quot;: {
+      &quot;url&quot;: &quot;https://mcp.apify.com/?tools=brenton8907/google-ads-transparency-center&quot;,
+      &quot;headers&quot;: {
+        &quot;Authorization&quot;: &quot;Bearer YOUR_APIFY_TOKEN&quot;
+      }
+    }
+  }
+}</code></pre>
+<h2 id="pricing">Pricing (pay per event)</h2>
+<table><tr><th>event</th><th>what</th><th>price</th><th>details</th></tr><tr><td><code>ad-record</code></td><td>Ad creative</td><td>$0.0010</td><td>One ad creative row: advertiser, format, preview URL, first/last shown, days shown, impression and spend ranges, matched domain.</td></tr><tr><td><code>enriched-ad-record</code></td><td>Enriched ad creative</td><td>$0.0040</td><td>One ad creative row with full details attached: per-country impression ranges, surfaces, targeting, category. One extra request per ad.</td></tr><tr><td><code>advertiser-record</code></td><td>Advertiser check</td><td>$0.0020</td><td>One advertiser summary row (advertiser-check mode): advertiser IDs matched for a domain or brand, creative count range, verification status. One request per query.</td></tr></table>
+<h2 id="docs">Documentation</h2>
+<p>Pull every ad an advertiser is running on Google (Search, YouTube, Shopping, Maps, Play) from the
+<a href="https://adstransparency.google.com">Ads Transparency Center</a>, as clean JSON/CSV. Search by <strong>domain</strong>,
+<strong>brand name</strong>, <strong>advertiser ID</strong> or a pasted <strong>Transparency Center URL</strong>. Filter by country, format,
+platform and date. Run it on a schedule with <strong>"only new ads"</strong> to get a feed of newly launched competitor
+creatives. Use <strong>advertiser-check mode</strong> to answer <em>"is this company running Google Ads, and how many?"</em>
+for thousands of domains at a fraction of a cent each.</p>
+<p>No browser, no login. Talks to the Transparency Center's own data API directly with a browser-grade TLS
+fingerprint, paces itself under Google's rate limits and rotates proxies automatically, so runs finish
+fast and don't fail halfway.</p>
+<p><strong>Try it free:</strong> every Apify account includes free monthly usage, and 1,000 ads cost $1, so checking a competitor is free.</p>
+<h2 id="competitor-ads-monitor-schedule-it-get-an-alert-when-new-ads-appear">Competitor ads monitor: schedule it, get an alert when new ads appear</h2>
+<p>This is the highest-value way to use the actor: a daily run that returns <strong>only the ads you have not seen before</strong>, delivered to Slack or email. Three steps, no code:</p>
+<ol>
+<li><strong>Create a task</strong> from this actor with the input below (one line per competitor domain or advertiser ID). Run it once; the first run seeds the list of known ads.</li>
+<li><strong>Schedule it</strong>: in the task, open <em>Schedule</em> (or Console → Schedules) and pick daily or hourly. Each run costs only the new ads it finds; a quiet day costs a few requests and no results.</li>
+<li><strong>Alerts</strong>: in the task's <em>Integrations</em> tab add <strong>Slack</strong> or <strong>Gmail</strong> on "run succeeded". Use the run's status message as the notification text; in monitor mode it reads <code>3 NEW ad(s) since last run across 5 target(s)</code> or <code>No new ads since last run</code>. Slack message template (Handlebars):</li>
+</ol>
+<p><code>*Google Ads monitor:* {{resource.statusMessage}}
+   &lt;https://console.apify.com/storage/datasets/{{resource.defaultDatasetId}}|Open the new ads&gt;</code></p>
+<p>For "only notify when there is something new", route the run through <strong>n8n / Make / Zapier</strong> (Apify triggers exist for all three) and filter on the dataset item count.</p>
+<pre><code class="language-json">{
+  &quot;domains&quot;: [&quot;nike.com&quot;, &quot;adidas.com&quot;, &quot;onrunning.com&quot;],
+  &quot;onlyNewAds&quot;: true,
+  &quot;monitorStoreName&quot;: &quot;running-shoes-competitors&quot;,
+  &quot;includeDetails&quot;: true,
+  &quot;maxAdsPerQuery&quot;: 200
+}
+</code></pre>
+<p>Each new ad row carries <code>is_new: true</code>, the creative preview URL, format, first/last shown and (with <code>includeDetails</code>) served countries and surfaces, so the alert is actionable: what launched, where, in which format. Use one <code>monitorStoreName</code> per watchlist. Works with <code>advertiserIds</code>, <code>queries</code> (brand names) and <code>startUrls</code> too; add <code>region</code>, <code>format</code> or <code>surface</code> to narrow it (e.g. only new <strong>YouTube</strong> video ads in <strong>DE</strong>).</p>
+<p>What it costs at scale: 5 competitors × ~10 new ads/day with details = 50 × $0.004 = <strong>$0.20/day, ~$6/month</strong>; without details, $1.50/month. Compare with ad-spy subscriptions at $50–100/month.</p>
+<h2 id="what-it-does">What it does</h2>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>One row per</th>
+<th>Use it for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ads</code> (default)</td>
+<td>ad creative</td>
+<td>competitor creative research, ad libraries, longevity analysis (which ads run for months), creative monitoring</td>
+</tr>
+<tr>
+<td><code>advertisers</code></td>
+<td>matched advertiser</td>
+<td>lead enrichment / qualification: is this domain advertising on Google right now, under which account(s), roughly how many ads</td>
+</tr>
+</tbody>
+</table>
+<h2 id="who-its-for">Who it's for</h2>
+<ul>
+<li><strong>Performance marketers and agencies</strong> tracking competitors' Google ads: new-creative alerts, formats, and how long each creative survives (an ad-spy tool for Google, YouTube and Shopping ads at pay-per-result prices).</li>
+<li><strong>Sales and lead-gen teams</strong> enriching prospect lists (Clay, n8n, Make, Zapier, Google Sheets) with "runs Google Ads: yes/no + volume" as a buying signal.</li>
+<li><strong>Brand and compliance teams</strong> watching for affiliates, resellers or impersonators advertising on their domain.</li>
+<li><strong>Researchers and journalists</strong> studying advertising activity by region and platform.</li>
+<li><strong>AI agents</strong>: every field is stable and typed, and the actor is exposed as an MCP tool via Apify.</li>
+</ul>
+<h2 id="input-examples">Input examples</h2>
+<p><strong>All ads for a domain, US, last 90 days, YouTube only</strong></p>
+<pre><code class="language-json">{
+  &quot;domains&quot;: [&quot;allbirds.com&quot;],
+  &quot;region&quot;: &quot;US&quot;,
+  &quot;surface&quot;: &quot;YOUTUBE&quot;,
+  &quot;dateFrom&quot;: &quot;2026-06-01&quot;,
+  &quot;maxAdsPerQuery&quot;: 500
+}
+</code></pre>
+<p><strong>A brand by name, with full per-country details</strong></p>
+<pre><code class="language-json">{
+  &quot;queries&quot;: [&quot;Nike&quot;],
+  &quot;maxAdvertisersPerQuery&quot;: 1,
+  &quot;includeDetails&quot;: true
+}
+</code></pre>
+<p><strong>Paste Transparency Center URLs</strong></p>
+<pre><code class="language-json">{
+  &quot;startUrls&quot;: [{ &quot;url&quot;: &quot;https://adstransparency.google.com/advertiser/AR18378488041124659201?region=GB&quot; }]
+}
+</code></pre>
+<p><strong>Monitor by advertiser ID instead of domain</strong> (see the monitor section above for scheduling and alerts)</p>
+<pre><code class="language-json">{
+  &quot;advertiserIds&quot;: [&quot;AR18378488041124659201&quot;, &quot;AR16735076323512287233&quot;],
+  &quot;onlyNewAds&quot;: true,
+  &quot;monitorStoreName&quot;: &quot;footwear-competitors&quot;
+}
+</code></pre>
+<p><strong>Lead enrichment: is each domain advertising?</strong></p>
+<pre><code class="language-json">{
+  &quot;domains&quot;: [&quot;allbirds.com&quot;, &quot;warbyparker.com&quot;, &quot;some-local-plumber.com&quot;],
+  &quot;mode&quot;: &quot;advertisers&quot;,
+  &quot;region&quot;: &quot;US&quot;
+}
+</code></pre>
+<h2 id="output">Output</h2>
+<h3 id="ads-mode"><code>ads</code> mode</h3>
+<pre><code class="language-json">{
+  &quot;creative_id&quot;: &quot;CR04143963882324492289&quot;,
+  &quot;advertiser_id&quot;: &quot;AR18378488041124659201&quot;,
+  &quot;advertiser_name&quot;: &quot;Nike Retail BV&quot;,
+  &quot;format&quot;: &quot;TEXT&quot;,
+  &quot;matched_domain&quot;: &quot;nike.com&quot;,
+  &quot;first_shown&quot;: &quot;2026-07-22T04:31:55+00:00&quot;,
+  &quot;last_shown&quot;: &quot;2026-09-01T21:04:44+00:00&quot;,
+  &quot;days_shown&quot;: 43,
+  &quot;impressions&quot;: null,
+  &quot;impressions_low&quot;: null,
+  &quot;impressions_high&quot;: null,
+  &quot;preview_url&quot;: &quot;https://tpc.googlesyndication.com/archive/simgad/12774179880874022668&quot;,
+  &quot;preview&quot;: { &quot;script_url&quot;: &quot;…&quot;, &quot;iframe_url&quot;: null, &quot;html_snippet&quot;: null, &quot;image_url&quot;: &quot;…&quot; },
+  &quot;ad_url&quot;: &quot;https://adstransparency.google.com/advertiser/AR18378488041124659201/creative/CR04143963882324492289?region=anywhere&quot;,
+  &quot;advertiser_url&quot;: &quot;https://adstransparency.google.com/advertiser/AR18378488041124659201?region=anywhere&quot;,
+  &quot;query&quot;: &quot;nike.com&quot;,
+  &quot;query_kind&quot;: &quot;domain&quot;,
+  &quot;region&quot;: &quot;US&quot;,
+  &quot;matched_total&quot;: { &quot;low&quot;: 100000, &quot;high&quot;: 200000 },
+  &quot;is_new&quot;: true
+}
+</code></pre>
+<p>With <code>includeDetails: true</code> each row also gets:</p>
+<pre><code class="language-json">&quot;details&quot;: {
+  &quot;served_countries&quot;: [&quot;US&quot;, &quot;GB&quot;, &quot;DE&quot;, &quot;FR&quot;, &quot;CA&quot;],
+  &quot;country_reach&quot;: [{ &quot;country&quot;: &quot;US&quot;, &quot;first_served&quot;: &quot;2026-07-22&quot;, &quot;last_served&quot;: &quot;2026-09-01&quot;, &quot;impressions&quot;: null, &quot;surfaces&quot;: [] }],
+  &quot;eu_reach&quot;: { &quot;impressions&quot;: { &quot;low&quot;: 10000, &quot;high&quot;: 50000 }, &quot;first_served&quot;: &quot;2026-07-21&quot;, &quot;last_served&quot;: &quot;2026-09-01&quot; },
+  &quot;variations&quot;: [ { &quot;script_url&quot;: &quot;…&quot;, &quot;image_url&quot;: &quot;…&quot; } ],
+  &quot;targeting&quot;: { &quot;categories&quot;: { &quot;demographics&quot;: {&quot;included&quot;: true}, &quot;geography&quot;: {&quot;included&quot;: true} } },
+  &quot;category&quot;: { &quot;gcb_category_id&quot;: 10021, &quot;vertical&quot;: 1 },
+  &quot;customer_name&quot;: &quot;Nike Retail BV&quot;,
+  &quot;contains_synthetic_media&quot;: false
+},
+&quot;countries&quot;: [&quot;US&quot;, &quot;GB&quot;, &quot;DE&quot;, &quot;FR&quot;, &quot;CA&quot;],
+&quot;surfaces&quot;: [&quot;SEARCH&quot;, &quot;YOUTUBE&quot;]
+</code></pre>
+<p>Impression and spend ranges are only published by Google for EU-served ads and political ads; elsewhere they are <code>null</code>. Where they exist they are lifted to the top level as <code>impressions_low</code> / <code>impressions_high</code> (global) and <code>eu_impressions_low</code> / <code>eu_impressions_high</code> (EU reach from the details block), so CSV exports and the Overview table show them without digging into <code>details</code>.
+<code>matched_total</code> is Google's estimate of how many ads match the whole query (useful even when you cap <code>maxAdsPerQuery</code>).</p>
+<h3 id="advertisers-mode"><code>advertisers</code> mode</h3>
+<pre><code class="language-json">{
+  &quot;query&quot;: &quot;allbirds.com&quot;,
+  &quot;query_kind&quot;: &quot;domain&quot;,
+  &quot;region&quot;: &quot;US&quot;,
+  &quot;is_advertising&quot;: true,
+  &quot;advertiser_id&quot;: &quot;AR12345678901234567890&quot;,
+  &quot;advertiser_name&quot;: &quot;Allbirds Inc&quot;,
+  &quot;creatives_count_low&quot;: 1000,
+  &quot;creatives_count_high&quot;: 2000,
+  &quot;advertisers_on_domain&quot;: 1,
+  &quot;formats_seen&quot;: [&quot;IMAGE&quot;, &quot;TEXT&quot;, &quot;VIDEO&quot;],
+  &quot;last_shown&quot;: &quot;2026-09-02T01:46:39+00:00&quot;,
+  &quot;advertiser_url&quot;: &quot;https://adstransparency.google.com/advertiser/AR12345678901234567890?region=US&quot;
+}
+</code></pre>
+<p>Domains with no ads return one row with <code>is_advertising: false</code>, so every input gets exactly one answer.</p>
+<h3 id="advertiser-check-rows-for-a-domain">Advertiser-check rows for a domain</h3>
+<p>Each advertiser row for a domain carries <strong>its own</strong> ad count for that domain (<code>creatives_count_low</code> / <code>creatives_count_high</code>), the advertiser's billing <code>country</code>, <code>legal_name</code> and <code>unverified</code> flag from its Transparency Center profile, and the domain-wide total in <code>domain_creatives_count_low</code> / <code>domain_creatives_count_high</code>. This distinguishes the domain owner (Nike, Inc.: 7,000–8,000 ads on nike.com) from resellers and affiliates that also link to the domain (an agency with 500–600). Costs 2 extra requests per advertiser row; <code>maxAdvertisersPerQuery</code> caps it.</p>
+<h2 id="pricing">Pricing</h2>
+<p>Pay per result, no subscription:</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ad creative (<code>ads</code> mode)</td>
+<td>$1.00 per 1,000</td>
+</tr>
+<tr>
+<td>Ad creative with full details (<code>includeDetails</code>)</td>
+<td>$4.00 per 1,000</td>
+</tr>
+<tr>
+<td>Advertiser check row (<code>advertisers</code> mode)</td>
+<td>$2.00 per 1,000</td>
+</tr>
+</tbody>
+</table>
+<p>Plus normal Apify platform usage (a few cents per thousand ads; the actor runs in 256 MB and makes one request
+per 40 ads). Failed targets are not charged.</p>
+<h2 id="limits-and-notes">Limits and notes</h2>
+<ul>
+<li>Google paginates to roughly <strong>1,000 ads per query</strong>. Split large advertisers by format, surface or date range to get more.</li>
+<li>Google keeps about <strong>12 months</strong> of ad history.</li>
+<li>A domain search returns every advertiser whose ads link to that domain, not only the domain owner. That can include resellers, affiliates and demo/test ads (<code>example.com</code> yields real ads from unrelated advertisers). Use <code>advertisers</code> mode to see who they are, or <code>advertiserIds</code> to pin one account.</li>
+<li>Brand-name queries are resolved through Google's own suggestion index; the largest exact/prefix match is used first. Use <code>advertiserIds</code> for precision.</li>
+<li>Ad-text (keyword) search is only available for political ads in Google's data and is not exposed here.</li>
+<li>Google rate-limits by IP. Keep the default Apify proxy on for anything beyond a few hundred ads; the actor rotates sessions on every rate-limit response and backs off, so runs complete instead of failing.</li>
+<li>If Google blocks every request (bot-check page or HTTP 429 after retries), the run fails with a clear error and nothing is charged. Enable Apify Proxy (residential) or raise <code>requestDelaySeconds</code>. If only some targets are blocked, the run succeeds and those targets get a row with an <code>error</code> field.</li>
+<li>Rows whose detail lookup failed (<code>details_error</code>) are charged at the base ad rate, not the enriched rate.</li>
+<li>Monitor state is per <code>monitorStoreName</code> (a named key-value store in your account). Do not run two monitor runs against the same store at the same time; use one store per watchlist or schedule.</li>
+</ul>
+<h2 id="use-as-an-mcp-tool-from-code">Use as an MCP tool / from code</h2>
+<p>The actor is callable from any MCP client through Apify's MCP server, and from code with the Apify API. Agent pattern: keep a watchlist, call with <code>onlyNewAds: true</code> on a schedule, and act only on the rows that come back.</p>
+<pre><code class="language-bash">curl -X POST &quot;https://api.apify.com/v2/acts/&lt;username&gt;~google-ads-transparency-center/run-sync-get-dataset-items?token=$APIFY_TOKEN&quot; \
+  -H 'Content-Type: application/json' \
+  -d '{&quot;domains&quot;: [&quot;allbirds.com&quot;], &quot;mode&quot;: &quot;advertisers&quot;, &quot;region&quot;: &quot;US&quot;}'
+</code></pre>
+<h2 id="legal">Legal</h2>
+<p>This actor only reads data that Google publishes for public inspection in the Ads Transparency Center. Use it in
+line with Google's terms and applicable law; you are responsible for how you use the output.</p>
+<h2 id="support">Support</h2>
+<p>Open an issue on the actor page with the run ID and input. If Google changes the Transparency Center's data format, affected fields go null rather than failing the run; report which field and we will patch it. If the actor saved you time, a review helps other people find it.</p>
+<footer>Built and published automatically from <a href="https://github.com/brenton-keller">github.com/brenton-keller</a>. Actors run on <a href="https://apify.com/brenton8907">Apify</a>; data reports come from the public Apify Store API. Updated 2026-09-09.</footer></main></body></html>
