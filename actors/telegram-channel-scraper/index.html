@@ -35,7 +35,7 @@ run = client.actor(&quot;brenton8907/telegram-channel-scraper&quot;).call(run_in
   &quot;changesOnly&quot;: false,
   &quot;monitorStoreName&quot;: &quot;telegram-channel-monitor&quot;
 })
-for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+for item in client.dataset(run.default_dataset_id).iterate_items():
     print(item)</code></pre>
 <h2 id="mcp">Use it as an MCP tool (Claude, Cursor, any MCP client)</h2>
 <p>The actor is listed in the <a href="https://registry.modelcontextprotocol.io/v0/servers?search=telegram-channel-scraper">official MCP registry</a> as <code>io.github.brenton-keller/telegram-channel-scraper</code> and served by Apify's hosted MCP server:</p>
@@ -63,7 +63,7 @@ for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
   &quot;includeChannelInfo&quot;: false
 }
 </code></pre>
-<p>Every row has <code>matched_keyword</code>, so you know which term found it. Combine with <code>sinceDate</code> to search only recent posts. Search is per channel (Telegram has no public cross-channel search); give the actor the channel list you want covered.</p>
+<p>Every row has <code>matched_keyword</code>, so you know which term found it. The actor reads keyword result streams round-robin, splitting <code>maxMessagesPerChannel</code> fairly across terms instead of letting a high-volume first keyword fill the whole cap. Set the cap at least as high as the number of terms. Combine with <code>sinceDate</code> to search only recent posts. Search is per channel (Telegram has no public cross-channel search); give the actor the channel list you want covered.</p>
 <h2 id="channel-monitor-schedule-it-get-new-posts-in-slack-or-email">Channel monitor: schedule it, get new posts in Slack or email</h2>
 <p>Turn any set of channels into an alert feed. Three steps, no code:</p>
 <ol>

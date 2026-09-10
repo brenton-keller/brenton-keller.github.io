@@ -34,7 +34,7 @@ run = client.actor(&quot;brenton8907/product-hunt-data&quot;).call(run_input={
   ],
   &quot;minVotes&quot;: 0
 })
-for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+for item in client.dataset(run.default_dataset_id).iterate_items():
     print(item)</code></pre>
 <h2 id="mcp">Use it as an MCP tool (Claude, Cursor, any MCP client)</h2>
 <p>The actor is listed in the <a href="https://registry.modelcontextprotocol.io/v0/servers?search=product-hunt-data">official MCP registry</a> as <code>io.github.brenton-keller/product-hunt-data</code> and served by Apify's hosted MCP server:</p>
