@@ -14,20 +14,20 @@ pre{background:rgba(127,127,127,.12);padding:12px;overflow-x:auto;font-size:13px
 .muted{color:var(--muted);font-size:14px}.btn{display:inline-block;padding:8px 14px;border:1px solid var(--acc);border-radius:6px;text-decoration:none;margin:4px 6px 4px 0}
 footer{margin-top:48px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
 </style></head><body><main><nav><a href="/">Home</a> / <a href="/#actors">Actors</a> / <a href="/actors/pdf-text-table-ocr-extractor/">PDF Text Extractor: tables, OCR, Markdown, JSON per page</a></nav><h1>PDF Text Extractor: tables, OCR, Markdown, JSON per page</h1>
-<p>Turn PDF URLs into clean data: per-page text, tables as real rows (CSV/Excel-ready, with page numbers and Markdown), document metadata, and OCR for scanned pages with confidence scores. Chain from any dataset of URLs. Pay per page, no per-file fee.</p>
+<p>Extract source-aware per-page text, conservative tables as CSV/Excel-ready rows, metadata, and OCR for scanned PDF pages with confidence scores. Text spacing and reading order depend on the PDF&#x27;s embedded text layer. Pay per page, no per-file fee.</p>
 <p><a class="btn" href="https://apify.com/brenton8907/pdf-text-table-ocr-extractor">Run on Apify</a> <a class="btn" href="https://apify.com/brenton8907/pdf-text-table-ocr-extractor#pricing">Pricing</a> <a class="btn" href="https://apify.com/brenton8907/pdf-text-table-ocr-extractor/api">API docs</a></p>
 <p class="muted">Categories: AI, DEVELOPER_TOOLS, AUTOMATION. Pay per result, no subscription; Apify's free plan includes $5 of monthly usage.</p>
 <h2 id="run">Run it from the command line</h2>
 <pre><code>curl -sS -X POST &quot;https://api.apify.com/v2/acts/brenton8907~pdf-text-table-ocr-extractor/run-sync-get-dataset-items?token=$APIFY_TOKEN&quot; \
   -H &#x27;Content-Type: application/json&#x27; \
-  -d &#x27;{&quot;startUrls&quot;: [{&quot;url&quot;: &quot;https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf&quot;}], &quot;urlField&quot;: &quot;url&quot;, &quot;outputMode&quot;: &quot;pages&quot;, &quot;maxPagesPerDocument&quot;: 0, &quot;extractText&quot;: true, &quot;extractTables&quot;: true}&#x27;</code></pre>
+  -d &#x27;{&quot;startUrls&quot;: [{&quot;url&quot;: &quot;https://www.irs.gov/pub/irs-pdf/fw9.pdf&quot;}], &quot;urlField&quot;: &quot;url&quot;, &quot;outputMode&quot;: &quot;pages&quot;, &quot;maxPagesPerDocument&quot;: 0, &quot;extractText&quot;: true, &quot;extractTables&quot;: true}&#x27;</code></pre>
 <h2 id="python">Run it from Python</h2>
 <pre><code>from apify_client import ApifyClient
 client = ApifyClient(&quot;YOUR_APIFY_TOKEN&quot;)
 run = client.actor(&quot;brenton8907/pdf-text-table-ocr-extractor&quot;).call(run_input={
   &quot;startUrls&quot;: [
     {
-      &quot;url&quot;: &quot;https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf&quot;
+      &quot;url&quot;: &quot;https://www.irs.gov/pub/irs-pdf/fw9.pdf&quot;
     }
   ],
   &quot;urlField&quot;: &quot;url&quot;,
@@ -53,12 +53,12 @@ for item in client.dataset(run.default_dataset_id).iterate_items():
 <h2 id="pricing">Pricing (pay per event)</h2>
 <table><tr><th>event</th><th>what</th><th>price</th><th>details</th></tr><tr><td><code>page-record</code></td><td>Page processed (text layer)</td><td>$0.0005</td><td>One PDF page extracted from its text layer: text, tables, metadata.</td></tr><tr><td><code>ocr-page-record</code></td><td>Page processed (OCR)</td><td>$0.0060</td><td>One scanned PDF page rendered and read with OCR (Tesseract), with confidence score.</td></tr></table>
 <h2 id="docs">Documentation</h2>
-<p>Turn any list of <strong>PDF URLs</strong> into clean, structured data: <strong>per-page text</strong>, <strong>tables as real rows</strong> (with page numbers, detected headers and a Markdown rendering), <strong>document metadata</strong>, and <strong>OCR for scanned pages</strong> with a confidence score. Batch hundreds of files, or chain the actor after a crawler by pointing it at a dataset of URLs. Pure compute: no target website, no proxies, nothing that breaks when a site changes.</p>
-<p>Why this one and not the others: most PDF actors give you text only, or tables only, or OCR only. This actor does all three in one run, bills <strong>per page with no per-file or per-run fee</strong>, and ships tables in a shape you can open in Excel or feed to an LLM without post-processing.</p>
+<p>Turn publicly reachable <strong>PDF URLs</strong> into structured, source-aware data: <strong>per-page embedded text</strong>, <strong>tables as real rows</strong> (with page numbers, detected headers and a Markdown rendering), <strong>document metadata</strong>, and <strong>OCR for scanned pages</strong> with a confidence score. Batch hundreds of files, or chain the actor after a crawler by pointing it at a dataset of URLs. Pure compute: no target website or proxy dependency.</p>
+<p>Why this one and not the others: most PDF actors give you text only, or tables only, or OCR only. This actor does all three in one run, bills <strong>per page with no per-file or per-run fee</strong>, and ships detected tables in a shape you can open in Excel. Text-layer spacing and reading order remain source-dependent; inspect representative output before building an unattended downstream workflow.</p>
 <h2 id="what-it-does">What it does</h2>
 <ul>
 <li>Downloads each PDF (size cap, retries, redirects followed) and checks it really is a PDF; HTML login walls and landing pages come back as a clear error row instead of a failed run.</li>
-<li>Extracts <strong>text page by page</strong> from the PDF text layer (reading order, or layout-preserving with <code>keepLayout</code>).</li>
+<li>Extracts <strong>text page by page</strong> from the PDF's embedded text layer. Spacing is tuned for tightly kerned documents; reading order and character mapping still depend on how the source PDF was authored. <code>keepLayout</code> preserves horizontal positioning when that is more useful than reading order.</li>
 <li>Detects <strong>tables</strong> on every page with pdfplumber: ruled tables first, borderless tables by text alignment as a fallback, with a filter that rejects prose masquerading as a grid. Each table comes with <code>header</code>, <code>rows</code>, <code>markdown</code>, <code>bbox</code>, <code>row_count</code>, <code>col_count</code>.</li>
 <li>Runs <strong>OCR</strong> (Tesseract) on pages that have no text layer, so scanned PDFs and mixed documents just work. Every OCR page carries <code>ocr_confidence</code> (0 to 100) so you can route low-confidence pages for review.</li>
 <li>Returns <strong>metadata</strong>: title, author, subject, keywords, creator, producer, created/modified timestamps (ISO 8601), page count, page size and rotation.</li>
@@ -67,11 +67,11 @@ for item in client.dataset(run.default_dataset_id).iterate_items():
 </ul>
 <h2 id="who-its-for">Who it's for</h2>
 <ul>
-<li><strong>RAG and LLM pipelines</strong>: per-page text with page numbers for citations, tables as Markdown so models read them correctly.</li>
+<li><strong>Document search and citation workflows</strong>: page-numbered extracted text and source metadata, with representative PDFs reviewed before indexing.</li>
 <li><strong>Finance, procurement and research teams</strong>: pull the tables out of reports, invoices and filings straight into Excel.</li>
 <li><strong>Document automation</strong> (n8n, Make, Zapier, Clay): one HTTP call turns a PDF link into JSON fields.</li>
 <li><strong>Crawler post-processing</strong>: crawl a site, collect the PDF links, hand the dataset to this actor.</li>
-<li><strong>AI agents</strong>: a single MCP tool that reads any PDF an agent encounters, including scans.</li>
+<li><strong>AI agents</strong>: one MCP tool for publicly reachable PDFs, using the embedded text layer when present and OCR for scanned pages.</li>
 </ul>
 <h2 id="input-examples">Input examples</h2>
 <p><strong>A few PDFs, one row per page (default):</strong></p>
@@ -237,12 +237,14 @@ for item in client.dataset(run.default_dataset_id).iterate_items():
 <li><strong>Scanned PDFs</strong>: <code>ocr: "auto"</code> (default) only OCRs pages with no usable text layer, so mixed documents are billed at the cheap rate for their text pages. Use <code>ocr: "always"</code> when a PDF has a bad embedded text layer (e.g. from a poor OCR pass) and you want a fresh read.</li>
 <li><strong>Borderless tables</strong>: <code>tableStrategy: "auto"</code> looks for ruled tables first and falls back to text alignment. If a page shows tables that were missed, try <code>"text"</code>; if prose is being picked up as tables, use <code>"lines"</code>.</li>
 <li><strong>Forms and multi-column layouts</strong>: <code>keepLayout: true</code> keeps horizontal positions with spaces so columns stay aligned in the text.</li>
+<li><strong>Text quality</strong>: embedded PDF text is not semantic document structure. Custom font encodings, columns, ligatures and unusual positioning can affect character mapping, spaces or reading order. Test representative files; try <code>keepLayout: true</code>, or <code>ocr: "always"</code> when the embedded layer is poor.</li>
 <li><strong>Large files</strong>: <code>maxFileSizeMb</code> defaults to 50. Raise it (and the run memory) for scanned books.</li>
 <li><strong>Chaining</strong>: point <code>inputDatasetId</code> at the output of any crawler and set <code>urlField</code> to the field holding the PDF link (dot paths like <code>file.url</code> work).</li>
 </ul>
 <h2 id="limits-and-notes">Limits and notes</h2>
 <ul>
 <li>Tables are detected on the text layer only. OCR pages return text, not tables.</li>
+<li>Text-layer output is source-dependent. The actor corrects common tight-kerning spacing, but cannot guarantee natural reading order or perfect characters for every PDF encoding and layout.</li>
 <li>Table detection is heuristic. Ruled tables are reliable; borderless tables depend on consistent column alignment. LaTeX-style tables with only horizontal rules are often not detected.</li>
 <li>OCR languages installed: <code>eng</code>, <code>deu</code>, <code>fra</code>, <code>spa</code>, <code>ita</code>, <code>por</code>, <code>nld</code>. Ask on the Issues tab for others.</li>
 <li>Password protection: one <code>password</code> applies to every file in the run.</li>
@@ -251,7 +253,7 @@ for item in client.dataset(run.default_dataset_id).iterate_items():
 <li>You are responsible for having the right to process the documents you submit.</li>
 </ul>
 <h2 id="use-from-an-ai-agent-mcp">Use from an AI agent (MCP)</h2>
-<p>Every Apify actor is available as a tool through the <a href="https://mcp.apify.com">Apify MCP server</a>. Add it to Claude, Cursor or any MCP client and call this actor with the JSON input above. Suggested pattern: <code>outputMode: "documents"</code> with <code>maxPagesPerDocument</code> set, so the agent gets one object per PDF with the text and every table as Markdown.</p>
+<p>Every Apify actor is available as a tool through the <a href="https://mcp.apify.com">Apify MCP server</a>. Add it to Claude, Cursor or any MCP client and call this actor with the JSON input above. Suggested pattern: start with <code>outputMode: "pages"</code>, inspect <code>extraction_method</code>, <code>ocr_confidence</code> and a text sample, then use <code>documents</code> mode after representative source files pass your quality check.</p>
 <h2 id="support">Support</h2>
 <p>Open an issue on the actor page with the run ID and the PDF URL. If a file parses in your PDF viewer but fails here, attach it to the issue and it will be looked at.</p>
 <footer>Built and published automatically from <a href="https://github.com/brenton-keller">github.com/brenton-keller</a>. Actors run on <a href="https://apify.com/brenton8907">Apify</a>; data reports come from the public Apify Store API. Updated 2026-09-09.</footer></main></body></html>
