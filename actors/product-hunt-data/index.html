@@ -70,7 +70,7 @@ for item in client.dataset(run.default_dataset_id).iterate_items():
 <li>AI agents that want a scheduled, changes-only feed of new launches in a niche.</li>
 </ul>
 <h2 id="input-examples">Input examples</h2>
-<p><strong>Today's leaderboard (default):</strong></p>
+<p><strong>Today's Product Hunt leaderboard (US Pacific day, default):</strong></p>
 <pre><code class="language-json">{ &quot;days&quot;: 1, &quot;order&quot;: &quot;ranking&quot; }
 </code></pre>
 <p><strong>Last 7 days of AI launches with at least 100 votes:</strong></p>
@@ -198,10 +198,10 @@ for item in client.dataset(run.default_dataset_id).iterate_items():
 <p>Rows are billed by what they contain: a post whose comments call failed is billed at the base rate. The first run in monitor mode charges every row, because every post is new to the store. Set <strong>Maximum total charge</strong> on the run to cap spend; the actor stops cleanly at the cap.</p>
 <h2 id="limits-and-notes">Limits and notes</h2>
 <ul>
-<li>Product Hunt's API allows 6,250 complexity points per 15 minutes per token. A page of 20 posts with makers and topics costs a few hundred points, so roughly 300 to 600 posts per 15-minute window. The actor reads the rate-limit headers and waits for the window to reset (up to <code>maxWaitSecs</code>, default 15 minutes) instead of failing. For large backfills, pass your own token (<code>accessToken</code>) to get your own quota.</li>
+<li>Product Hunt's API allows 6,250 complexity points per 15 minutes per token. A page of 20 posts with makers and topics costs a few hundred points, so roughly 300 to 600 posts per 15-minute window. One-shot/backfill runs read the rate-limit headers and wait up to <code>maxWaitSecs</code>; monitor runs fail within 5 seconds when the token is exhausted rather than burning scheduled-run compute. For large backfills, pass your own token (<code>accessToken</code>) to get your own quota.</li>
 <li>The API filters by one topic server-side; additional topics are matched client-side against each post's topics.</li>
 <li>The API defaults <code>postedAfter</code> to one month ago; the actor always sends explicit bounds, so older date ranges work.</li>
-<li><code>website_resolved</code> follows Product Hunt's <code>/r/...</code> redirect. producthunt.com blocks datacenter IPs, so the redirect (a few KB per post) goes through Apify Proxy; the default is the residential group, configurable with <code>proxyConfiguration</code>. The API calls themselves never use a proxy. A small share of products still resolve to null.</li>
+<li><code>website_resolved</code> follows Product Hunt's <code>/r/...</code> redirect only until it reaches the external product domain; it does not fetch the product site. producthunt.com blocks datacenter IPs, so this small redirect request goes through a rotating Apify residential proxy, configurable with <code>proxyConfiguration</code>. The API calls themselves never use a proxy. A failed Product Hunt redirect remains null.</li>
 <li>Monitor state is per <code>monitorStoreName</code>. Do not run two monitor runs against the same store at the same time.</li>
 <li>Data comes from Product Hunt's official API under its terms; do not use it to spam makers.</li>
 </ul>
@@ -209,4 +209,4 @@ for item in client.dataset(run.default_dataset_id).iterate_items():
 <p>Every Apify actor is available as a tool through the <a href="https://mcp.apify.com">Apify MCP server</a>. Suggested agent pattern: schedule a run with <code>changesOnly: true</code> and a topic, then act only on the rows returned.</p>
 <h2 id="support">Support</h2>
 <p>Open an issue on the actor page with the run ID and input.</p>
-<footer>Built and published automatically from <a href="https://github.com/brenton-keller">github.com/brenton-keller</a>. Actors run on <a href="https://apify.com/brenton8907">Apify</a>; data reports come from the public Apify Store API. Updated 2026-09-09.</footer></main></body></html>
+<footer>Built and published automatically from <a href="https://github.com/brenton-keller">github.com/brenton-keller</a>. Actors run on <a href="https://apify.com/brenton8907">Apify</a>; data reports come from the public Apify Store API. Updated 2026-09-10.</footer></main></body></html>

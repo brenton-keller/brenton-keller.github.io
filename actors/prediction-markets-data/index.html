@@ -20,7 +20,7 @@ footer{margin-top:48px;font-size:13px;color:var(--muted);border-top:1px solid va
 <h2 id="run">Run it from the command line</h2>
 <pre><code>curl -sS -X POST &quot;https://api.apify.com/v2/acts/brenton8907~prediction-markets-data/run-sync-get-dataset-items?token=$APIFY_TOKEN&quot; \
   -H &#x27;Content-Type: application/json&#x27; \
-  -d &#x27;{&quot;mode&quot;: &quot;markets&quot;, &quot;sources&quot;: [&quot;kalshi&quot;, &quot;polymarket&quot;], &quot;status&quot;: &quot;open&quot;, &quot;searchQueries&quot;: [&quot;Fed&quot;, &quot;interest rate&quot;], &quot;weatherPreset&quot;: false, &quot;minVolume24h&quot;: 0}&#x27;</code></pre>
+  -d &#x27;{&quot;mode&quot;: &quot;markets&quot;, &quot;sources&quot;: [&quot;kalshi&quot;, &quot;polymarket&quot;], &quot;status&quot;: &quot;open&quot;, &quot;searchQueries&quot;: [&quot;Fed&quot;, &quot;interest rate&quot;], &quot;weatherPreset&quot;: false, &quot;minVolume24h&quot;: 0, &quot;maxItems&quot;: 25}&#x27;</code></pre>
 <h2 id="python">Run it from Python</h2>
 <pre><code>from apify_client import ApifyClient
 client = ApifyClient(&quot;YOUR_APIFY_TOKEN&quot;)
@@ -36,7 +36,8 @@ run = client.actor(&quot;brenton8907/prediction-markets-data&quot;).call(run_inp
     &quot;interest rate&quot;
   ],
   &quot;weatherPreset&quot;: false,
-  &quot;minVolume24h&quot;: 0
+  &quot;minVolume24h&quot;: 0,
+  &quot;maxItems&quot;: 25
 })
 for item in client.dataset(run.default_dataset_id).iterate_items():
     print(item)</code></pre>
@@ -84,11 +85,11 @@ for item in client.dataset(run.default_dataset_id).iterate_items():
 <p><strong>All weather brackets for three cities, biggest gaps first:</strong></p>
 <pre><code class="language-json">{ &quot;mode&quot;: &quot;spread&quot;, &quot;weatherPreset&quot;: true, &quot;cities&quot;: [&quot;NYC&quot;, &quot;Chicago&quot;, &quot;Miami&quot;] }
 </code></pre>
-<p><strong>Spread monitor, scheduled every 15 minutes, alert when a gap moves 3+ points or a new pair appears:</strong></p>
+<p><strong>Spread monitor, scheduled every 15 minutes, alert when a positive executable net edge moves 3+ points or a new positive edge appears:</strong></p>
 <pre><code class="language-json">{ &quot;mode&quot;: &quot;spread&quot;, &quot;weatherPreset&quot;: true, &quot;changesOnly&quot;: true, &quot;minPriceMovePts&quot;: 3, &quot;monitorStoreName&quot;: &quot;weather-spreads&quot; }
 </code></pre>
 <p>Add an Apify integration (Slack, email, webhook) on the actor's Integrations tab and you have an alert feed without any extra code.</p>
-<p>Read the rules before trading a gap: the two venues do not always settle on the same source. Miami daily highs, for example, can close at 99% on different brackets because Kalshi and Polymarket read different weather stations. <code>kalshi_settlement_station</code>, <code>kalshi_rules</code> and <code>polymarket_rules</code> are on every row for that check. Rows are sorted by absolute spread, then net edge; <code>minSpreadPts</code> drops small gaps; <code>minMatchScore</code> (default 60) loosens or tightens auto pairing. Spread rows are billed as spread records (see Pricing).</p>
+<p>Read the rules before trading a gap: the two venues do not always settle on the same source. Miami daily highs, for example, can close at 99% on different brackets because Kalshi and Polymarket read different weather stations. <code>kalshi_settlement_station</code>, <code>kalshi_rules</code> and <code>polymarket_rules</code> are on every row for that check. Rows are sorted by absolute spread, then net edge; <code>minSpreadPts</code> drops small gaps; <code>minMatchScore</code> (default 60) loosens or tightens auto pairing. Changes-only spread monitoring rejects non-positive edges, below-threshold matches and contracts whose stated close time has passed, and tracks movement in executable net edge rather than midpoint spread. Spread rows are billed as spread records (see Pricing).</p>
 <h2 id="who-its-for">Who it's for</h2>
 <ul>
 <li>Traders and quant researchers comparing prices across venues: spread mode gives the matched pairs, the gap and the executable edge, ready to schedule.</li>
@@ -224,7 +225,7 @@ for item in client.dataset(run.default_dataset_id).iterate_items():
 </tr>
 <tr>
 <td><code>is_new</code>, <code>previous_yes_price</code>, <code>previous_seen_at</code>, <code>price_move_pts</code></td>
-<td>Monitor mode only (spread mode: <code>previous_spread_pts</code>, <code>spread_move_pts</code>)</td>
+<td>Monitor mode only (spread mode: <code>previous_net_edge_pts</code>, <code>net_edge_move_pts</code>)</td>
 </tr>
 <tr>
 <td><code>spread_pts</code>, <code>arb_edge_pts</code>, <code>arb_direction</code>, <code>kalshi_fee_est_pts</code>, <code>net_edge_pts</code>, <code>match_score</code>, <code>match_method</code>, <code>kalshi_*</code>, <code>polymarket_*</code></td>
@@ -279,7 +280,7 @@ for item in client.dataset(run.default_dataset_id).iterate_items():
 <p>Set <strong>Maximum total charge</strong> on the run to cap spend; the actor stops cleanly at the cap.</p>
 <h2 id="limits-and-notes">Limits and notes</h2>
 <ul>
-<li>Kalshi exposes tens of thousands of markets. A keyword search with no category, series or ticker filter scans the whole board (roughly 100+ requests, 20 to 30 seconds). Use <code>kalshiCategories</code>, <code>kalshiSeriesTickers</code>, or the weather preset to make runs fast.</li>
+<li>Kalshi exposes tens of thousands of markets. Markets mode may scan the full board for an unscoped keyword. Spread mode first matches the smaller event indexes and fetches only candidate events, avoiding the old 119k-market full-board scan. Use <code>kalshiCategories</code>, <code>kalshiSeriesTickers</code>, or the weather preset to make runs faster.</li>
 <li><code>settledLookbackDays</code> is capped at 365. Kalshi settlement history is fetched per series; Polymarket via closed markets.</li>
 <li>Volume units differ by venue: Kalshi <code>volume</code> and <code>volume_24h</code> are contracts, Polymarket's are USD. Sorting both venues by volume in one run compares different units; filter by <code>source</code> first if that matters.</li>
 <li><code>kalshiCategories</code> values are the exact strings Kalshi uses (dropdown in the UI): Politics, Elections, Economics, Financials, Companies, Crypto, Commodities, Climate and Weather, Science and Technology, Health, World, Sports, Entertainment, Mentions, Social, Transportation, Exotics.</li>
@@ -294,4 +295,4 @@ for item in client.dataset(run.default_dataset_id).iterate_items():
 <p>Every Apify actor is available as a tool through the <a href="https://mcp.apify.com">Apify MCP server</a>. Add it to Claude, Cursor, or any MCP client and call this actor by name with the JSON input above. Suggested agent pattern: run once with <code>changesOnly: true</code> on a schedule, then act only on the rows returned.</p>
 <h2 id="support">Support</h2>
 <p>Open an issue on the actor page with the run ID and input. Both exchanges' APIs are versioned; if a field disappears upstream, the actor keeps the row and nulls the field rather than failing the run.</p>
-<footer>Built and published automatically from <a href="https://github.com/brenton-keller">github.com/brenton-keller</a>. Actors run on <a href="https://apify.com/brenton8907">Apify</a>; data reports come from the public Apify Store API. Updated 2026-09-09.</footer></main></body></html>
+<footer>Built and published automatically from <a href="https://github.com/brenton-keller">github.com/brenton-keller</a>. Actors run on <a href="https://apify.com/brenton8907">Apify</a>; data reports come from the public Apify Store API. Updated 2026-09-10.</footer></main></body></html>
