@@ -1,0 +1,52 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Google Ads advertiser check: domain to advertiser accounts</title><meta name="description" content="Check whether domains run Google Ads and identify public advertiser accounts. Copy a verified API recipe and inspect a free 2,000-domain W38 dataset."><link rel="canonical" href="https://brenton-keller.github.io/recipes/google-ads-advertiser-check/">
+<meta property="og:title" content="Google Ads advertiser check: domain to advertiser accounts"><meta property="og:description" content="Check whether domains run Google Ads and identify public advertiser accounts. Copy a verified API recipe and inspect a free 2,000-domain W38 dataset."><meta property="og:url" content="https://brenton-keller.github.io/recipes/google-ads-advertiser-check/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Google Ads advertiser check: domain to advertiser accounts", "description": "Check whether domains run Google Ads and identify public advertiser accounts. Copy a verified API recipe and inspect a free 2,000-domain W38 dataset.", "url": "https://brenton-keller.github.io/recipes/google-ads-advertiser-check/", "step": [{"@type": "HowToStep", "name": "Provide domains", "text": "Add public domains and select advertisers mode."}, {"@type": "HowToStep", "name": "Run the Actor", "text": "Call the Actor from Apify Console or the API."}, {"@type": "HowToStep", "name": "Review every match", "text": "Check advertiser identity, verification, country, and creative-count range."}]}</script><style>
+:root{--fg:#1a1a1a;--muted:#5a5a5a;--bg:#fff;--line:#e5e5e5;--acc:#0b57d0}
+@media(prefers-color-scheme:dark){:root{--fg:#e8e8e8;--muted:#a0a0a0;--bg:#111;--line:#333;--acc:#8ab4f8}}
+body{font:16px/1.55 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;color:var(--fg);background:var(--bg);margin:0}
+main{max-width:860px;margin:0 auto;padding:24px 20px 60px}
+nav{font-size:14px;color:var(--muted);margin-bottom:24px}nav a{color:var(--muted)}
+a{color:var(--acc)}h1{font-size:30px;line-height:1.2;margin:.2em 0}h2{margin-top:1.6em;border-bottom:1px solid var(--line);padding-bottom:.2em}
+table{border-collapse:collapse;width:100%;font-size:14px;display:block;overflow-x:auto}th,td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}
+pre{background:rgba(127,127,127,.12);padding:12px;overflow-x:auto;font-size:13px;border-radius:6px}code{font-size:.92em}
+.card{border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin:12px 0}.card h3{margin:0 0 6px}
+.muted{color:var(--muted);font-size:14px}.btn{display:inline-block;padding:8px 14px;border:1px solid var(--acc);border-radius:6px;text-decoration:none;margin:4px 6px 4px 0}
+footer{margin-top:48px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+</style></head><body><main><nav><a href="/">Home</a> / <a href="/actors/google-ads-transparency-center/">Google Ads Actor</a> / <a href="/recipes/google-ads-advertiser-check/">Advertiser check</a></nav><h1>Check whether a domain runs Google Ads</h1>
+<p>Use <strong>advertiser-check mode</strong> to turn a domain list into public Google Ads activity signals: whether Google returns advertisers for the domain, the matched advertiser accounts, verification and billing-country fields, and Google's approximate creative-count ranges.</p>
+<p><a class="btn" href="https://apify.com/brenton8907/google-ads-transparency-center">Run the advertiser check</a> <a class="btn" href="https://github.com/brenton-keller/google-ads-ecommerce-weekly">Download the free W38 dataset</a> <a class="btn" href="/actors/google-ads-transparency-center/">API and MCP docs</a></p>
+<h2>Copy-paste input</h2>
+<pre><code>{
+  &quot;domains&quot;: [
+    &quot;ebay.com&quot;,
+    &quot;samsung.com&quot;,
+    &quot;amazonalexa.com&quot;
+  ],
+  &quot;mode&quot;: &quot;advertisers&quot;,
+  &quot;region&quot;: &quot;ANYWHERE&quot;,
+  &quot;maxAdvertisersPerQuery&quot;: 3,
+  &quot;proxyConfiguration&quot;: {
+    &quot;useApifyProxy&quot;: true
+  }
+}</code></pre>
+<p><code>maxAdvertisersPerQuery</code> is a cap, not a claim that one domain has one advertiser. Domains can be used by a brand, affiliates, resellers, or unrelated advertisers; keep multiple matches when account identity matters.</p>
+<h2>Verified result</h2>
+<p>This exact input ran successfully on build <code>0.1.6</code> on 2026-09-14: <strong>3 domains → 5 rows in 21 seconds, 0 error rows</strong>. The values below are a dated observation and can change as Google's public data changes.</p>
+<table><tr><th>domain</th><th>advertising?</th><th>matched advertiser</th><th>accounts on domain</th><th>creative range for this match</th></tr><tr><td><code>ebay.com</code></td><td>yes</td><td>eBay Inc.</td><td>1</td><td>400,000–500,000</td></tr><tr><td><code>samsung.com</code></td><td>yes</td><td>SAMSUNG ELECTRONICS H K COMPANY LIMITED</td><td>23</td><td>1,000–2,000</td></tr><tr><td><code>samsung.com</code></td><td>yes</td><td>SPACE SA</td><td>23</td><td>2,000–3,000</td></tr><tr><td><code>samsung.com</code></td><td>yes</td><td>Samsung India Electronics Private Limited</td><td>23</td><td>7,000–8,000</td></tr><tr><td><code>amazonalexa.com</code></td><td>no</td><td>—</td><td>0</td><td>0</td></tr></table>
+<p>At the published pay-per-event rate, five advertiser rows are <strong>$0.010</strong>, plus normal Apify platform usage. The verification run used $0.00064 of platform resources; owner-run accounting is not evidence of a customer's final bill.</p>
+<h2>Run the same check from the API</h2>
+<pre><code>curl -sS -X POST &quot;https://api.apify.com/v2/acts/brenton8907~google-ads-transparency-center/run-sync-get-dataset-items?token=$APIFY_TOKEN&quot; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;domains&quot;: [&quot;ebay.com&quot;, &quot;samsung.com&quot;, &quot;amazonalexa.com&quot;], &quot;mode&quot;: &quot;advertisers&quot;, &quot;region&quot;: &quot;ANYWHERE&quot;, &quot;maxAdvertisersPerQuery&quot;: 3, &quot;proxyConfiguration&quot;: {&quot;useApifyProxy&quot;: true}}&#x27;</code></pre>
+<p>The synchronous endpoint returns JSON rows. For large lists, start an asynchronous Actor run and export its default dataset as JSON or CSV.</p>
+<h2>Proof at 2,000-domain scale</h2>
+<p>The public <a href="https://github.com/brenton-keller/google-ads-ecommerce-weekly">Google Ads e-commerce weekly dataset</a> uses this same mode. Its 2026-W38 snapshot checked 2,000 storefront domains: <strong>1,502 had advertising matches, 2,266 advertiser accounts were returned, 63 were marked unverified, and 0 domains had lookup errors</strong>. The repository includes CSV/JSON snapshots, seed domains, schema, and a CC0-1.0 license.</p>
+<h2>What this result does—and does not—mean</h2>
+<ul>
+<li>A positive row means Google's public Transparency Center returned that advertiser for ads linking to the domain in the selected region.</li>
+<li>A matched advertiser is not necessarily the domain owner. Inspect <code>legal_name</code>, <code>country</code>, <code>unverified</code>, and all returned matches.</li>
+<li>Creative counts are Google's published ranges, not exact spend, impressions, or campaign counts.</li>
+<li>A negative row is an auditable no-match observation at run time, not proof that the company has never advertised.</li>
+</ul>
+<footer>Built and published automatically from <a href="https://github.com/brenton-keller">github.com/brenton-keller</a>. Actors run on <a href="https://apify.com/brenton8907">Apify</a>; data reports come from the public Apify Store API. Updated 2026-09-14.</footer></main></body></html>
