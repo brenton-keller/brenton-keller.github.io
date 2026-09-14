@@ -72,11 +72,12 @@ for item in client.dataset(run.default_dataset_id).iterate_items():
 <p>Set <code>"mode": "spread"</code> and the actor pairs the same question on both exchanges and prices the gap. One row per pair:</p>
 <ul>
 <li><code>kalshi_yes_price</code>, <code>polymarket_yes_price</code>, <code>spread_pts</code> (Kalshi minus Polymarket, in probability points)</li>
-<li><code>arb_edge_pts</code>: the executable edge before fees, from the books: buy YES at the cheaper venue's ask and buy NO at the other venue (1 minus its YES bid); both legs together pay $1 at settlement, so edge = bid minus ask. <code>arb_direction</code> says which way (<code>yes_kalshi_no_polymarket</code> or <code>yes_polymarket_no_kalshi</code>); null when there is no positive edge</li>
+<li><code>settlement_status</code>, <code>settlement_reasons</code>, both venues' detected settlement authorities, and <code>close_time_delta_hours</code>: the compatibility receipt behind every candidate</li>
+<li><code>arb_edge_pts</code>: the executable edge before fees, from the books: buy YES at the cheaper venue's ask and buy NO at the other venue (1 minus its YES bid). It is populated only when both rule texts name a common settlement authority and close times are within six hours. <code>arb_direction</code> says which way (<code>yes_kalshi_no_polymarket</code> or <code>yes_polymarket_no_kalshi</code>); null when compatibility is unverified, incompatible, or there is no positive edge</li>
 <li><code>kalshi_fee_est_pts</code> (Kalshi taker fee, 7% x P x (1-P) rounded up to the cent) and <code>net_edge_pts</code> = edge minus that fee</li>
 <li><code>match_score</code> (0-1) and <code>match_method</code> (<code>auto</code> or <code>explicit</code>), both venues' links, volumes, close times, settlement rules</li>
 </ul>
-<p>Pairing is deliberately conservative. Events are paired when their titles agree after normalisation (NYC = New York City, Sep = September, years dropped) and their dates do not conflict; markets inside a paired event are matched by bracket ("80-81", "79 or below", "80 or higher"), by 1:1 events, or by outcome label. Anything uncertain is left out. For questions the matcher cannot pair, pass them yourself:</p>
+<p>Pairing is deliberately conservative. Events are paired when their titles agree after normalisation (NYC = New York City, Sep = September) and their dates, years, and directions do not conflict; markets inside a paired event are matched by bracket ("80-81", "79 or below", "80 or higher"), by 1:1 events, or by outcome label. Auto-pairs with an explicit settlement-authority conflict or more than six hours between close times are excluded. Candidates whose authority cannot be verified may remain useful as divergence research, but all edge, fee, and direction fields are null. Explicit pairs bypass title matching, never the settlement safety gate. For questions the matcher cannot pair, pass them yourself:</p>
 <pre><code class="language-json">{
   &quot;mode&quot;: &quot;spread&quot;,
   &quot;pairs&quot;: [&quot;KXHIGHNY-26SEP08-T80=will-the-highest-temperature-in-new-york-city-be-between-80-81f-on-september-8&quot;]
@@ -89,10 +90,10 @@ for item in client.dataset(run.default_dataset_id).iterate_items():
 <pre><code class="language-json">{ &quot;mode&quot;: &quot;spread&quot;, &quot;weatherPreset&quot;: true, &quot;changesOnly&quot;: true, &quot;minPriceMovePts&quot;: 3, &quot;monitorStoreName&quot;: &quot;weather-spreads&quot; }
 </code></pre>
 <p>Add an Apify integration (Slack, email, webhook) on the actor's Integrations tab and you have an alert feed without any extra code.</p>
-<p>Read the rules before trading a gap: the two venues do not always settle on the same source. Miami daily highs, for example, can close at 99% on different brackets because Kalshi and Polymarket read different weather stations. <code>kalshi_settlement_station</code>, <code>kalshi_rules</code> and <code>polymarket_rules</code> are on every row for that check. Rows are sorted by absolute spread, then net edge; <code>minSpreadPts</code> drops small gaps; <code>minMatchScore</code> (default 60) loosens or tightens auto pairing. Changes-only spread monitoring rejects non-positive edges, below-threshold matches and contracts whose stated close time has passed, and tracks movement in executable net edge rather than midpoint spread. Spread rows are billed as spread records (see Pricing).</p>
+<p>Read the full rules before trading a gap. The machine gate catches explicitly different named authorities (for example The Weather Company vs NOAA) and close times more than six hours apart; it cannot prove that every remaining clause, station, rounding rule, or exceptional-resolution procedure is identical. <code>kalshi_settlement_station</code>, both rule excerpts, <code>settlement_status</code>, <code>settlement_reasons</code>, detected authorities, and <code>close_time_delta_hours</code> are included for audit. Rows are sorted by absolute spread, then verified net edge; <code>minSpreadPts</code> drops small gaps; <code>minMatchScore</code> (high-precision default 80) loosens or tightens auto pairing. Changes-only spread monitoring accepts only verified compatible positive edges with two live legs and tracks net-edge movement rather than midpoint spread. Spread rows are billed as spread records (see Pricing).</p>
 <h2 id="who-its-for">Who it's for</h2>
 <ul>
-<li>Traders and quant researchers comparing prices across venues: spread mode gives the matched pairs, the gap and the executable edge, ready to schedule.</li>
+<li>Traders and quant researchers comparing prices across venues: spread mode gives conservative matched candidates, compatibility evidence, and verified edge fields, ready to schedule for research and alerting.</li>
 <li>Weather-market traders who need every temperature bracket for a city with orderbook depth, in one call, reliably.</li>
 <li>Analysts and journalists tracking probability moves on elections, Fed decisions, earnings, sports and crypto.</li>
 <li>AI agents and alerting workflows that want a scheduled "what changed" feed instead of re-reading the whole board.</li>
@@ -228,8 +229,8 @@ for item in client.dataset(run.default_dataset_id).iterate_items():
 <td>Monitor mode only (spread mode: <code>previous_net_edge_pts</code>, <code>net_edge_move_pts</code>)</td>
 </tr>
 <tr>
-<td><code>spread_pts</code>, <code>arb_edge_pts</code>, <code>arb_direction</code>, <code>kalshi_fee_est_pts</code>, <code>net_edge_pts</code>, <code>match_score</code>, <code>match_method</code>, <code>kalshi_*</code>, <code>polymarket_*</code></td>
-<td>Spread mode only; see the spread section</td>
+<td><code>spread_pts</code>, <code>settlement_status</code>, <code>settlement_reasons</code>, <code>close_time_delta_hours</code>, <code>arb_edge_pts</code>, <code>arb_direction</code>, <code>kalshi_fee_est_pts</code>, <code>net_edge_pts</code>, <code>match_score</code>, <code>match_method</code>, <code>kalshi_*</code>, <code>polymarket_*</code></td>
+<td>Spread mode only; edge fields require verified settlement compatibility; see the spread section</td>
 </tr>
 <tr>
 <td><code>enrichment_error</code></td>
@@ -295,4 +296,4 @@ for item in client.dataset(run.default_dataset_id).iterate_items():
 <p>Every Apify actor is available as a tool through the <a href="https://mcp.apify.com">Apify MCP server</a>. Add it to Claude, Cursor, or any MCP client and call this actor by name with the JSON input above. Suggested agent pattern: run once with <code>changesOnly: true</code> on a schedule, then act only on the rows returned.</p>
 <h2 id="support">Support</h2>
 <p>Open an issue on the actor page with the run ID and input. Both exchanges' APIs are versioned; if a field disappears upstream, the actor keeps the row and nulls the field rather than failing the run.</p>
-<footer>Built and published automatically from <a href="https://github.com/brenton-keller">github.com/brenton-keller</a>. Actors run on <a href="https://apify.com/brenton8907">Apify</a>; data reports come from the public Apify Store API. Updated 2026-09-10.</footer></main></body></html>
+<footer>Built and published automatically from <a href="https://github.com/brenton-keller">github.com/brenton-keller</a>. Actors run on <a href="https://apify.com/brenton8907">Apify</a>; data reports come from the public Apify Store API. Updated 2026-09-14.</footer></main></body></html>

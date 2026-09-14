@@ -1,0 +1,1583 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Apify Store Intelligence, week of 2026-09-14</title><meta name="description" content="Weekly analysis of every Apify Store actor with measurable usage: demand by category, broken actors with real demand and no healthy competitor, movers and pricing. Free, data and CSVs included."><link rel="canonical" href="https://brenton-keller.github.io/store-intelligence/2026-09-14/">
+<meta property="og:title" content="Apify Store Intelligence, week of 2026-09-14"><meta property="og:description" content="Weekly analysis of every Apify Store actor with measurable usage: demand by category, broken actors with real demand and no healthy competitor, movers and pricing. Free, data and CSVs included."><meta property="og:url" content="https://brenton-keller.github.io/store-intelligence/2026-09-14/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "Apify Store Intelligence, week of 2026-09-14", "description": "Weekly analysis of every Apify Store actor with measurable usage: demand by category, broken actors with real demand and no healthy competitor, movers and pricing. Free, data and CSVs included.", "url": "https://brenton-keller.github.io/store-intelligence/2026-09-14/", "license": "https://creativecommons.org/licenses/by/4.0/", "creator": {"@type": "Person", "name": "Brenton Keller"}, "temporalCoverage": "2026-09-14", "distribution": [{"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://brenton-keller.github.io/store-intelligence/2026-09-14/actors.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://brenton-keller.github.io/store-intelligence/2026-09-14/categories.csv"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://brenton-keller.github.io/store-intelligence/2026-09-14/opportunities.csv"}]}</script><style>
+:root{--fg:#1a1a1a;--muted:#5a5a5a;--bg:#fff;--line:#e5e5e5;--acc:#0b57d0}
+@media(prefers-color-scheme:dark){:root{--fg:#e8e8e8;--muted:#a0a0a0;--bg:#111;--line:#333;--acc:#8ab4f8}}
+body{font:16px/1.55 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;color:var(--fg);background:var(--bg);margin:0}
+main{max-width:860px;margin:0 auto;padding:24px 20px 60px}
+nav{font-size:14px;color:var(--muted);margin-bottom:24px}nav a{color:var(--muted)}
+a{color:var(--acc)}h1{font-size:30px;line-height:1.2;margin:.2em 0}h2{margin-top:1.6em;border-bottom:1px solid var(--line);padding-bottom:.2em}
+table{border-collapse:collapse;width:100%;font-size:14px;display:block;overflow-x:auto}th,td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}
+pre{background:rgba(127,127,127,.12);padding:12px;overflow-x:auto;font-size:13px;border-radius:6px}code{font-size:.92em}
+.card{border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin:12px 0}.card h3{margin:0 0 6px}
+.muted{color:var(--muted);font-size:14px}.btn{display:inline-block;padding:8px 14px;border:1px solid var(--acc);border-radius:6px;text-decoration:none;margin:4px 6px 4px 0}
+footer{margin-top:48px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+</style></head><body><main><nav><a href="/">Home</a> / <a href="/store-intelligence/">Store Intelligence</a> / <a href="/store-intelligence/2026-09-14/">2026-09-14</a></nav><h1>Apify Store Intelligence, week of 2026-09-14</h1>
+<p class="muted">Free weekly report. Downloads: <a class="btn" href="/store-intelligence/2026-09-14/actors.csv">actors.csv (3703 KB)</a> <a class="btn" href="/store-intelligence/2026-09-14/categories.csv">categories.csv (1 KB)</a> <a class="btn" href="/store-intelligence/2026-09-14/opportunities.csv">opportunities.csv (28 KB)</a> <a class="btn" href="/store-intelligence/2026-09-14/report.pdf">report.pdf (26 KB)</a></p>
+<p>Method: full sweep of the public Apify Store API in popularity order (see the <a href="/store-intelligence/">report index</a> for earlier weeks). "Broken" means 20+ monthly users and at least one of: 25%+ of runs failing, deprecated, rated 3 or lower, or no run in 30 days. A gap is OPEN only when no healthy competitor holds at least half the broken actor's users.</p>
+<p>Snapshot of 13,294 Store actors taken 2026-09-14T12:00:44+00:00 from the public Store API, ranked by popularity. Every actor with any measurable 30-day usage is included (the API stops serving pages past ~16k actors; everything beyond has 30-day users &lt;= 3). Deltas are against the 2026-09-08 snapshot.</p>
+<h2 id="1-the-store-in-numbers">1. The Store in numbers</h2>
+<table>
+<thead>
+<tr>
+<th>metric</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>actors scanned</td>
+<td>13,294</td>
+</tr>
+<tr>
+<td>actors with &gt;= 1 user in 30 days</td>
+<td>12,012</td>
+</tr>
+<tr>
+<td>actors with &gt;= 10 users in 30 days</td>
+<td>4,123</td>
+</tr>
+<tr>
+<td>actors with &gt;= 100 users in 30 days</td>
+<td>629</td>
+</tr>
+<tr>
+<td>sum of 30-day users (user-actor pairs)</td>
+<td>776,341</td>
+</tr>
+<tr>
+<td>median 30-day users per actor</td>
+<td>4.0</td>
+</tr>
+<tr>
+<td>share of 30-day users held by the top 1% of actors</td>
+<td>69.1%</td>
+</tr>
+<tr>
+<td>share held by the top 10%</td>
+<td>89.5%</td>
+</tr>
+<tr>
+<td>30-day users sitting on broken actors (section 3)</td>
+<td>17,715</td>
+</tr>
+<tr>
+<td>actors whitelisted for agentic payments (x402/Skyfire)</td>
+<td>10,557</td>
+</tr>
+<tr>
+<td>actors with &gt;= 10 users and no icon</td>
+<td>154</td>
+</tr>
+<tr>
+<td>pricing models</td>
+<td>PAY_PER_EVENT 12,933, FREE 361</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-demand-by-store-category">2. Demand by Store category</h2>
+<p>Sum of 30-day users across the category, its current leader, and whether that leader is healthy. A category is only a gap if the <em>leader</em> is failing, not just the also-rans.</p>
+<table>
+<thead>
+<tr>
+<th>category</th>
+<th>actors</th>
+<th>active (u30&gt;=10)</th>
+<th>u30 sum</th>
+<th>leader</th>
+<th>leader u30</th>
+<th>leader fail</th>
+<th>leader rating (n)</th>
+<th>median PPE price</th>
+<th>u30 on broken actors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SOCIAL_MEDIA</td>
+<td>3589</td>
+<td>1624</td>
+<td>445,384</td>
+<td><code>apify/instagram-scraper</code></td>
+<td>42528</td>
+<td>0%</td>
+<td>4.7 (594)</td>
+<td>$0.0030</td>
+<td>8486</td>
+</tr>
+<tr>
+<td>LEAD_GENERATION</td>
+<td>5279</td>
+<td>1825</td>
+<td>345,515</td>
+<td><code>compass/crawler-google-places</code></td>
+<td>36109</td>
+<td>3%</td>
+<td>4.7 (1816)</td>
+<td>$0.0023</td>
+<td>8923</td>
+</tr>
+<tr>
+<td>AUTOMATION</td>
+<td>5904</td>
+<td>1736</td>
+<td>219,429</td>
+<td><code>apify/web-fetch</code></td>
+<td>10141</td>
+<td>7%</td>
+<td>5 (3)</td>
+<td>$0.0020</td>
+<td>6869</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>1684</td>
+<td>547</td>
+<td>115,659</td>
+<td><code>apify/rag-web-browser</code></td>
+<td>30348</td>
+<td>2%</td>
+<td>4.71 (36)</td>
+<td>$0.0025</td>
+<td>928</td>
+</tr>
+<tr>
+<td>VIDEOS</td>
+<td>927</td>
+<td>382</td>
+<td>112,543</td>
+<td><code>clockworks/tiktok-scraper</code></td>
+<td>22397</td>
+<td>2%</td>
+<td>4.76 (371)</td>
+<td>$0.0027</td>
+<td>1835</td>
+</tr>
+<tr>
+<td>DEVELOPER_TOOLS</td>
+<td>4066</td>
+<td>1096</td>
+<td>107,970</td>
+<td><code>apify/website-content-crawler</code></td>
+<td>11074</td>
+<td>3%</td>
+<td>4.61 (233)</td>
+<td>$0.0025</td>
+<td>3264</td>
+</tr>
+<tr>
+<td>JOBS</td>
+<td>1336</td>
+<td>468</td>
+<td>74,292</td>
+<td><code>curious_coder/linkedin-jobs-scraper</code></td>
+<td>17920</td>
+<td>1%</td>
+<td>4.59 (142)</td>
+<td>$0.0020</td>
+<td>3282</td>
+</tr>
+<tr>
+<td>TRAVEL</td>
+<td>588</td>
+<td>169</td>
+<td>59,236</td>
+<td><code>compass/crawler-google-places</code></td>
+<td>36109</td>
+<td>3%</td>
+<td>4.7 (1816)</td>
+<td>$0.0020</td>
+<td>999</td>
+</tr>
+<tr>
+<td>ECOMMERCE</td>
+<td>2628</td>
+<td>673</td>
+<td>52,119</td>
+<td><code>curious_coder/facebook-ads-library-scraper</code></td>
+<td>5429</td>
+<td>0%</td>
+<td>4.77 (110)</td>
+<td>$0.0020</td>
+<td>1452</td>
+</tr>
+<tr>
+<td>SEO_TOOLS</td>
+<td>1050</td>
+<td>336</td>
+<td>43,061</td>
+<td><code>apify/google-search-scraper</code></td>
+<td>16736</td>
+<td>0%</td>
+<td>4.65 (219)</td>
+<td>$0.0020</td>
+<td>1893</td>
+</tr>
+<tr>
+<td>OPEN_SOURCE</td>
+<td>80</td>
+<td>30</td>
+<td>39,271</td>
+<td><code>apify/rag-web-browser</code></td>
+<td>30348</td>
+<td>2%</td>
+<td>4.71 (36)</td>
+<td>$0.0020</td>
+<td>768</td>
+</tr>
+<tr>
+<td>AGENTS</td>
+<td>915</td>
+<td>312</td>
+<td>23,081</td>
+<td><code>starvibe/youtube-video-transcript</code></td>
+<td>2174</td>
+<td>0%</td>
+<td>5 (23)</td>
+<td>$0.0020</td>
+<td>570</td>
+</tr>
+<tr>
+<td>OTHER</td>
+<td>1725</td>
+<td>388</td>
+<td>21,437</td>
+<td><code>sones/instagram-posts-scraper-lowcost</code></td>
+<td>1157</td>
+<td>6%</td>
+<td>4.83 (9)</td>
+<td>$0.0030</td>
+<td>1125</td>
+</tr>
+<tr>
+<td>NEWS</td>
+<td>538</td>
+<td>143</td>
+<td>18,813</td>
+<td><code>trudax/reddit-scraper-lite</code></td>
+<td>7354</td>
+<td>10%</td>
+<td>4.57 (39)</td>
+<td>$0.0022</td>
+<td>1408</td>
+</tr>
+<tr>
+<td>REAL_ESTATE</td>
+<td>1281</td>
+<td>282</td>
+<td>16,245</td>
+<td><code>maxcopell/zillow-detail-scraper</code></td>
+<td>992</td>
+<td>1%</td>
+<td>4.34 (18)</td>
+<td>$0.0020</td>
+<td>243</td>
+</tr>
+<tr>
+<td>MCP_SERVERS</td>
+<td>482</td>
+<td>198</td>
+<td>12,647</td>
+<td><code>memo23/naukri-scraper</code></td>
+<td>786</td>
+<td>0%</td>
+<td>4.73 (17)</td>
+<td>$0.0030</td>
+<td>99</td>
+</tr>
+<tr>
+<td>INTEGRATIONS</td>
+<td>801</td>
+<td>194</td>
+<td>11,203</td>
+<td><code>lukaskrivka/google-sheets</code></td>
+<td>752</td>
+<td>57%</td>
+<td>4.81 (7)</td>
+<td>$0.0030</td>
+<td>1271</td>
+</tr>
+<tr>
+<td>BUSINESS</td>
+<td>633</td>
+<td>148</td>
+<td>6,396</td>
+<td><code>automation-lab/trustpilot</code></td>
+<td>429</td>
+<td>0%</td>
+<td>5 (1)</td>
+<td>$0.0035</td>
+<td>124</td>
+</tr>
+<tr>
+<td>MARKETING</td>
+<td>370</td>
+<td>115</td>
+<td>5,563</td>
+<td><code>automation-lab/facebook-ads-library</code></td>
+<td>362</td>
+<td>2%</td>
+<td>4.46 (3)</td>
+<td>$0.0030</td>
+<td>247</td>
+</tr>
+<tr>
+<td>SPORTS</td>
+<td>50</td>
+<td>24</td>
+<td>782</td>
+<td><code>memo23/mlb-stats-scraper</code></td>
+<td>108</td>
+<td>1%</td>
+<td>5 (1)</td>
+<td>$0.0014</td>
+<td>0</td>
+</tr>
+<tr>
+<td>FOR_CREATORS</td>
+<td>28</td>
+<td>6</td>
+<td>218</td>
+<td><code>thenetaji/youtube-video-downloader</code></td>
+<td>58</td>
+<td>14%</td>
+<td>3.75 (16)</td>
+<td>$0.0030</td>
+<td>0</td>
+</tr>
+<tr>
+<td>EDUCATION</td>
+<td>20</td>
+<td>0</td>
+<td>35</td>
+<td><code>automation-lab/wikipedia-scraper</code></td>
+<td>8</td>
+<td>0%</td>
+<td>- (0)</td>
+<td>-</td>
+<td>0</td>
+</tr>
+<tr>
+<td>GAMES</td>
+<td>6</td>
+<td>1</td>
+<td>15</td>
+<td><code>cryptosignals/twitch-scraper</code></td>
+<td>11</td>
+<td>1%</td>
+<td>- (0)</td>
+<td>$0.010</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-broken-actors-with-real-demand-build-targets">3. Broken actors with real demand (build targets)</h2>
+<p>Actors with &gt;= 20 users in 30 days that fail &gt;= 25% of runs (with &gt;= 50 runs), carry a deprecation notice, or are rated &lt;= 3 by at least 3 reviewers. <code>gap</code> is OPEN when no healthy actor on the same topic has at least half the broken actor's users; <code>leader-healthy</code> means a working competitor already owns the topic. Score = 30-day users x severity.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>actor</th>
+<th>u30</th>
+<th>runs30</th>
+<th>why</th>
+<th>pricing</th>
+<th>gap</th>
+<th>healthiest peer (u30)</th>
+<th>score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>fantastic-jobs/advanced-linkedin-job-search-api</code></td>
+<td>1940</td>
+<td>105342</td>
+<td>rated 2.92 (20)</td>
+<td>PAY_PER_EVENT $0.0050</td>
+<td>OPEN</td>
+<td><code>curious_coder/linkedin-jobs-search-scraper</code> (112)</td>
+<td>582.0</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>lukaskrivka/google-sheets</code></td>
+<td>752</td>
+<td>74053</td>
+<td>57% of 74053 runs fail</td>
+<td>FREE</td>
+<td>OPEN</td>
+<td><code>sourabhbgp/google-sheets-export</code> (1)</td>
+<td>428.6</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>apify/google-trends-scraper</code></td>
+<td>1326</td>
+<td>21491</td>
+<td>27% of 21491 runs fail</td>
+<td>PAY_PER_EVENT $0.0030</td>
+<td>OPEN</td>
+<td><code>data_xplorer/google-trends-fast-scraper</code> (369)</td>
+<td>363.3</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>apimaestro/linkedin-company-employees-scraper-no-cookies</code></td>
+<td>1186</td>
+<td>254234</td>
+<td>rated 2.93 (19)</td>
+<td>PAY_PER_EVENT $0.010</td>
+<td>OPEN</td>
+<td><code>scrapesage/linkedin-company-employees-scraper</code> (10)</td>
+<td>357.0</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>apify/facebook-reels-scraper</code></td>
+<td>667</td>
+<td>187269</td>
+<td>rated 2.81 (18)</td>
+<td>PAY_PER_EVENT $0.0050</td>
+<td>OPEN</td>
+<td><code>social_developer/facebook-playcount-scraper</code> (100)</td>
+<td>200.8</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>zerobreak/google-hotels-scraper</code></td>
+<td>511</td>
+<td>61031</td>
+<td>35% of 61031 runs fail</td>
+<td>PAY_PER_EVENT $0.0050</td>
+<td>OPEN</td>
+<td><code>johnvc/google-hotels-search-scraper</code> (66)</td>
+<td>179.4</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>bigdavidson/kalshi-weather-markets</code></td>
+<td>112</td>
+<td>777</td>
+<td>93% of 777 runs fail</td>
+<td>PAY_PER_EVENT $0.0010</td>
+<td>OPEN</td>
+<td><code>nanare-sudo/kalshi-weather-markets</code> (8)</td>
+<td>104.5</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>agentify/claude-code</code></td>
+<td>86</td>
+<td>695</td>
+<td>100% of 695 runs fail</td>
+<td>FREE</td>
+<td>OPEN</td>
+<td>-</td>
+<td>85.7</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>dromb/coles-au-product-search-specials-stores-unofficial</code></td>
+<td>153</td>
+<td>5221</td>
+<td>37% of 5221 runs fail</td>
+<td>PAY_PER_EVENT $0.0010</td>
+<td>OPEN</td>
+<td>-</td>
+<td>56.8</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>zen-studio/trustpilot-review-scraper</code></td>
+<td>120</td>
+<td>4785</td>
+<td>41% of 4785 runs fail</td>
+<td>PAY_PER_EVENT $0.00001</td>
+<td>OPEN</td>
+<td><code>reviewly/trustpilot-review-scraper</code> (14)</td>
+<td>49.2</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>tri_angle/telegram-scraper</code></td>
+<td>162</td>
+<td>24760</td>
+<td>rated 2.81 (17)</td>
+<td>PAY_PER_EVENT $0.0050</td>
+<td>OPEN</td>
+<td><code>donjuan_mime/telegram-scraper</code> (2)</td>
+<td>48.6</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>tri_angle/yelp-review-scraper</code></td>
+<td>137</td>
+<td>248699</td>
+<td>rated 2.23 (3)</td>
+<td>PAY_PER_EVENT $0.0020</td>
+<td>OPEN</td>
+<td>-</td>
+<td>41.1</td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>crawlerbros/ufc-stats-scraper</code></td>
+<td>60</td>
+<td>236</td>
+<td>59% of 236 runs fail</td>
+<td>PAY_PER_EVENT $0.0050</td>
+<td>OPEN</td>
+<td><code>parseforge/ufc-stats-scraper</code> (6)</td>
+<td>35.3</td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>curious_coder/discord-data-scraper</code></td>
+<td>40</td>
+<td>64796</td>
+<td>78% of 64796 runs fail</td>
+<td>PAY_PER_EVENT $0.00050</td>
+<td>OPEN</td>
+<td>-</td>
+<td>31.0</td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>piotrv1001/alibaba-listings-scraper</code></td>
+<td>47</td>
+<td>4842</td>
+<td>62% of 4842 runs fail</td>
+<td>PAY_PER_EVENT $0.0030</td>
+<td>OPEN</td>
+<td>-</td>
+<td>29.0</td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>amr-mando/lead-finder</code></td>
+<td>91</td>
+<td>1208</td>
+<td>32% of 1208 runs fail</td>
+<td>PAY_PER_EVENT $0.00060</td>
+<td>OPEN</td>
+<td><code>unlimitedleadtestinbox/leads-scraper---1-1000-with-emails</code> (9)</td>
+<td>28.7</td>
+</tr>
+<tr>
+<td>17</td>
+<td><code>e-commerce/walmart-product-detail-scraper</code></td>
+<td>87</td>
+<td>6966</td>
+<td>rated 2.61 (9)</td>
+<td>PAY_PER_EVENT $0.0050</td>
+<td>OPEN</td>
+<td><code>burbn/walmart-product-search</code> (41)</td>
+<td>26.8</td>
+</tr>
+<tr>
+<td>18</td>
+<td><code>bigdavidson/metar-nws-weather-station-observations</code></td>
+<td>30</td>
+<td>204</td>
+<td>85% of 204 runs fail</td>
+<td>PAY_PER_EVENT $0.00050</td>
+<td>OPEN</td>
+<td>-</td>
+<td>25.6</td>
+</tr>
+<tr>
+<td>19</td>
+<td><code>xmiso_scrapers/easy-bulk-email-validator---verify-emails-from-1-7-1000-rows</code></td>
+<td>79</td>
+<td>7371</td>
+<td>rated 3.0 (14)</td>
+<td>PAY_PER_EVENT $0.0025</td>
+<td>OPEN</td>
+<td><code>scravitylab/easy-email-finder</code> (3)</td>
+<td>23.7</td>
+</tr>
+<tr>
+<td>20</td>
+<td><code>khadinakbar/phone-number-lookup-api</code></td>
+<td>76</td>
+<td>377</td>
+<td>rated 1.04 (3)</td>
+<td>PAY_PER_EVENT $0.025</td>
+<td>OPEN</td>
+<td><code>memo23/phone-enrichment</code> (25)</td>
+<td>22.8</td>
+</tr>
+<tr>
+<td>21</td>
+<td><code>saswave/mercadolibre-product-scraper</code></td>
+<td>26</td>
+<td>522</td>
+<td>51% of 522 runs fail; rated 2.71 (5)</td>
+<td>PAY_PER_EVENT $0.0010</td>
+<td>OPEN</td>
+<td><code>sian.agency/mercado-libre-product-scraper</code> (9)</td>
+<td>21.0</td>
+</tr>
+<tr>
+<td>22</td>
+<td><code>scrapeunblocker/scrapeunblocker</code></td>
+<td>64</td>
+<td>60769</td>
+<td>rated 2.93 (4)</td>
+<td>PAY_PER_EVENT $0.0015</td>
+<td>OPEN</td>
+<td>-</td>
+<td>20.5</td>
+</tr>
+<tr>
+<td>23</td>
+<td><code>piotrv1001/1688-listings-scraper</code></td>
+<td>35</td>
+<td>1014</td>
+<td>57% of 1014 runs fail</td>
+<td>PAY_PER_EVENT $0.0010</td>
+<td>OPEN</td>
+<td>-</td>
+<td>19.8</td>
+</tr>
+<tr>
+<td>24</td>
+<td><code>caprolok/linkedin-employees-scraper</code></td>
+<td>57</td>
+<td>946</td>
+<td>rated 1.05 (23)</td>
+<td>PAY_PER_EVENT $0.0010</td>
+<td>OPEN</td>
+<td><code>themineworks/linkedin-employees</code> (15)</td>
+<td>19.0</td>
+</tr>
+<tr>
+<td>25</td>
+<td><code>sashaebashu/likee-scraper</code></td>
+<td>61</td>
+<td>1481</td>
+<td>rated 1.74 (4)</td>
+<td>PAY_PER_EVENT $0.015</td>
+<td>OPEN</td>
+<td>-</td>
+<td>18.4</td>
+</tr>
+<tr>
+<td>26</td>
+<td><code>pratikdani/crunchbase-companies-scraper</code></td>
+<td>59</td>
+<td>22220</td>
+<td>rated 1.49 (4)</td>
+<td>PAY_PER_EVENT $0.015</td>
+<td>OPEN</td>
+<td>-</td>
+<td>17.8</td>
+</tr>
+<tr>
+<td>27</td>
+<td><code>tri_angle/fast-zoopla-properties-scraper</code></td>
+<td>27</td>
+<td>1679</td>
+<td>62% of 1679 runs fail</td>
+<td>PAY_PER_EVENT $0.0010</td>
+<td>OPEN</td>
+<td><code>hello.datawizards/zoopla-search-properties-bulk-scraper-pro</code> (3)</td>
+<td>16.7</td>
+</tr>
+<tr>
+<td>28</td>
+<td><code>automation-lab/trustpilot-scraper</code></td>
+<td>38</td>
+<td>2291</td>
+<td>42% of 2291 runs fail</td>
+<td>PAY_PER_EVENT $0.0034</td>
+<td>OPEN</td>
+<td><code>coder_zoro/Trustpilot-Scraper-Pro</code> (8)</td>
+<td>16.0</td>
+</tr>
+<tr>
+<td>29</td>
+<td><code>logical_scrapers/x-twitter-user-profile-tweets-scraper</code></td>
+<td>57</td>
+<td>173</td>
+<td>27% of 173 runs fail</td>
+<td>PAY_PER_EVENT $0.0010</td>
+<td>OPEN</td>
+<td>-</td>
+<td>15.2</td>
+</tr>
+<tr>
+<td>30</td>
+<td><code>trudax/yellow-pages-us-scraper</code></td>
+<td>33</td>
+<td>275</td>
+<td>46% of 275 runs fail</td>
+<td>PAY_PER_EVENT $0.0030</td>
+<td>OPEN</td>
+<td><code>abotapi/yellow-pages-au-scraper</code> (15)</td>
+<td>15.0</td>
+</tr>
+<tr>
+<td>31</td>
+<td><code>piotrv1001/company-career-page-scraper</code></td>
+<td>37</td>
+<td>1779</td>
+<td>38% of 1779 runs fail</td>
+<td>PAY_PER_EVENT $0.0030</td>
+<td>OPEN</td>
+<td><code>fabro.dev/company-career-page-jobs</code> (18)</td>
+<td>14.0</td>
+</tr>
+<tr>
+<td>32</td>
+<td><code>trev0n/otodom-scraper</code></td>
+<td>38</td>
+<td>1214</td>
+<td>34% of 1214 runs fail</td>
+<td>PAY_PER_EVENT $0.0020</td>
+<td>OPEN</td>
+<td><code>abotapi/otodom-pl-scraper</code> (5)</td>
+<td>12.9</td>
+</tr>
+<tr>
+<td>33</td>
+<td><code>pratikdani/crunchbase-companies-bulk-scraper-no-cookies</code></td>
+<td>42</td>
+<td>3578</td>
+<td>rated 1 (3)</td>
+<td>PAY_PER_EVENT $0.015</td>
+<td>OPEN</td>
+<td>-</td>
+<td>12.6</td>
+</tr>
+<tr>
+<td>34</td>
+<td><code>lofomachines/tiktok-transcription-ai</code></td>
+<td>33</td>
+<td>412</td>
+<td>37% of 412 runs fail</td>
+<td>PAY_PER_EVENT $0.0030</td>
+<td>OPEN</td>
+<td>-</td>
+<td>12.3</td>
+</tr>
+<tr>
+<td>35</td>
+<td><code>azzouzana/fotocasa-es-search-results-scraper-by-search-url-ppr</code></td>
+<td>39</td>
+<td>3543</td>
+<td>rated 1.61 (3)</td>
+<td>PAY_PER_EVENT $0.0010</td>
+<td>OPEN</td>
+<td>-</td>
+<td>11.7</td>
+</tr>
+<tr>
+<td>36</td>
+<td><code>apify/local-lead-generation-agent</code></td>
+<td>36</td>
+<td>1254</td>
+<td>30% of 1254 runs fail</td>
+<td>PAY_PER_EVENT $0.030</td>
+<td>OPEN</td>
+<td><code>apivault_labs/local-business-lead-finder-pro</code> (0)</td>
+<td>11.0</td>
+</tr>
+<tr>
+<td>37</td>
+<td><code>johnvc/naver-search-api</code></td>
+<td>31</td>
+<td>632</td>
+<td>34% of 632 runs fail</td>
+<td>PAY_PER_EVENT $0.00001</td>
+<td>OPEN</td>
+<td>-</td>
+<td>10.6</td>
+</tr>
+<tr>
+<td>38</td>
+<td><code>bestscrapers/fresh-linkedin-profile-data</code></td>
+<td>35</td>
+<td>47815</td>
+<td>rated 1.33 (5)</td>
+<td>PAY_PER_EVENT $0.030</td>
+<td>OPEN</td>
+<td>-</td>
+<td>10.5</td>
+</tr>
+<tr>
+<td>39</td>
+<td><code>maximedupre/trendyol-scraper</code></td>
+<td>24</td>
+<td>2044</td>
+<td>43% of 2044 runs fail</td>
+<td>PAY_PER_EVENT $0.00060</td>
+<td>OPEN</td>
+<td><code>solidcode/trendyol-scraper</code> (7)</td>
+<td>10.4</td>
+</tr>
+<tr>
+<td>40</td>
+<td><code>viralanalyzer/brazil-real-estate-scraper</code></td>
+<td>32</td>
+<td>523</td>
+<td>31% of 523 runs fail</td>
+<td>PAY_PER_EVENT $0.0080</td>
+<td>OPEN</td>
+<td><code>jungle_synthesizer/brazil-vivareal-zap-imoveis-scraper</code> (8)</td>
+<td>9.9</td>
+</tr>
+<tr>
+<td>41</td>
+<td><code>memo23/instagram-fake-followers-checker</code></td>
+<td>26</td>
+<td>175</td>
+<td>36% of 175 runs fail</td>
+<td>PAY_PER_EVENT $0.0050</td>
+<td>OPEN</td>
+<td>-</td>
+<td>9.4</td>
+</tr>
+<tr>
+<td>42</td>
+<td><code>clearpath/email-validation-api</code></td>
+<td>23</td>
+<td>138</td>
+<td>41% of 138 runs fail</td>
+<td>PAY_PER_EVENT $0.0080</td>
+<td>OPEN</td>
+<td>-</td>
+<td>9.3</td>
+</tr>
+<tr>
+<td>43</td>
+<td><code>saswave/pagesjaunes-scraper</code></td>
+<td>29</td>
+<td>985</td>
+<td>31% of 985 runs fail</td>
+<td>PAY_PER_EVENT $0.0015</td>
+<td>OPEN</td>
+<td>-</td>
+<td>9.1</td>
+</tr>
+<tr>
+<td>44</td>
+<td><code>memo23/trulia-scraper</code></td>
+<td>20</td>
+<td>400</td>
+<td>45% of 400 runs fail</td>
+<td>PAY_PER_EVENT $0.00010</td>
+<td>OPEN</td>
+<td>-</td>
+<td>9.0</td>
+</tr>
+<tr>
+<td>45</td>
+<td><code>igolaizola/tiktok-scraper</code></td>
+<td>23</td>
+<td>6702</td>
+<td>35% of 6702 runs fail</td>
+<td>PAY_PER_EVENT $0.00030</td>
+<td>OPEN</td>
+<td>-</td>
+<td>8.1</td>
+</tr>
+<tr>
+<td>46</td>
+<td><code>eliai/audio-transcriber-whisper</code></td>
+<td>28</td>
+<td>99</td>
+<td>27% of 99 runs fail</td>
+<td>PAY_PER_EVENT $0.030</td>
+<td>OPEN</td>
+<td><code>donjuan_mime/audio-video-to-text</code> (0)</td>
+<td>7.6</td>
+</tr>
+<tr>
+<td>47</td>
+<td><code>crawlerbros/traffic-generator</code></td>
+<td>20</td>
+<td>268</td>
+<td>30% of 268 runs fail</td>
+<td>PAY_PER_EVENT $0.0020</td>
+<td>OPEN</td>
+<td>-</td>
+<td>6.0</td>
+</tr>
+<tr>
+<td>48</td>
+<td><code>saswave/mercadolibre-reviews-scraper</code></td>
+<td>22</td>
+<td>238</td>
+<td>26% of 238 runs fail</td>
+<td>PAY_PER_EVENT $0.0010</td>
+<td>OPEN</td>
+<td><code>easyapi/mercadolibre-reviews-scraper</code> (3)</td>
+<td>5.7</td>
+</tr>
+<tr>
+<td>49</td>
+<td><code>cryptosignals/twitter-scraper</code></td>
+<td>21</td>
+<td>863</td>
+<td>26% of 863 runs fail</td>
+<td>PAY_PER_EVENT $0.0050</td>
+<td>OPEN</td>
+<td>-</td>
+<td>5.5</td>
+</tr>
+<tr>
+<td>50</td>
+<td><code>automation-lab/facebook-public-profile-scraper</code></td>
+<td>468</td>
+<td>5387</td>
+<td>70% of 5387 runs fail</td>
+<td>PAY_PER_EVENT $0.0046</td>
+<td>leader-healthy</td>
+<td><code>memo23/facebook-public-group-posts-scraper</code> (441)</td>
+<td>328.1</td>
+</tr>
+<tr>
+<td>51</td>
+<td><code>apify/instagram-api-scraper</code></td>
+<td>1042</td>
+<td>860204</td>
+<td>rated 3.0 (34)</td>
+<td>PAY_PER_EVENT $0.0013</td>
+<td>leader-healthy</td>
+<td><code>apify/instagram-scraper</code> (42528)</td>
+<td>313.6</td>
+</tr>
+<tr>
+<td>52</td>
+<td><code>solidcode/ads-transparency-scraper</code></td>
+<td>520</td>
+<td>234967</td>
+<td>rated 1.93 (4)</td>
+<td>PAY_PER_EVENT $0.0015</td>
+<td>leader-healthy</td>
+<td><code>scrapesage/google-ads-transparency-scraper</code> (513)</td>
+<td>156.0</td>
+</tr>
+<tr>
+<td>53</td>
+<td><code>afanasenko/instagram-profile-scraper</code></td>
+<td>478</td>
+<td>4982</td>
+<td>rated 2.54 (10)</td>
+<td>PAY_PER_EVENT $0.010</td>
+<td>leader-healthy</td>
+<td><code>apify/instagram-profile-scraper</code> (26606)</td>
+<td>152.5</td>
+</tr>
+<tr>
+<td>54</td>
+<td><code>epctex/youtube-video-downloader</code></td>
+<td>396</td>
+<td>77908</td>
+<td>rated 2.22 (26)</td>
+<td>PAY_PER_EVENT $0.00015</td>
+<td>leader-healthy</td>
+<td><code>starvibe/youtube-video-transcript</code> (2174)</td>
+<td>136.2</td>
+</tr>
+<tr>
+<td>55</td>
+<td><code>sian.agency/instagram-ai-transcript-extractor</code></td>
+<td>305</td>
+<td>19765</td>
+<td>rated 2.27 (12)</td>
+<td>PAY_PER_EVENT $0.0030</td>
+<td>leader-healthy</td>
+<td><code>apple_yang/instagram-transcripts-scraper</code> (623)</td>
+<td>92.4</td>
+</tr>
+<tr>
+<td>56</td>
+<td><code>automation-lab/instagram-scraper</code></td>
+<td>111</td>
+<td>6264</td>
+<td>76% of 6264 runs fail</td>
+<td>PAY_PER_EVENT $0.0010</td>
+<td>leader-healthy</td>
+<td><code>apify/instagram-scraper</code> (42528)</td>
+<td>83.8</td>
+</tr>
+<tr>
+<td>57</td>
+<td><code>clearpath/email-finder-api</code></td>
+<td>260</td>
+<td>14310</td>
+<td>rated 2.02 (4)</td>
+<td>PAY_PER_EVENT $0.0080</td>
+<td>leader-healthy</td>
+<td><code>bounceverify/bounceverify-email-verifier</code> (697)</td>
+<td>81.6</td>
+</tr>
+<tr>
+<td>58</td>
+<td><code>gio21/google-jobs-scraper</code></td>
+<td>195</td>
+<td>1584</td>
+<td>rated 2.44 (4)</td>
+<td>PAY_PER_EVENT $0.0030</td>
+<td>leader-healthy</td>
+<td><code>johnvc/Google-Jobs-Scraper</code> (332)</td>
+<td>79.9</td>
+</tr>
+<tr>
+<td>59</td>
+<td><code>devscrapper/whatsapp-number-validator</code></td>
+<td>258</td>
+<td>87419</td>
+<td>30% of 87419 runs fail</td>
+<td>PAY_PER_EVENT $0.0010</td>
+<td>leader-healthy</td>
+<td><code>eduair94/whatsapp-data-lookup</code> (242)</td>
+<td>78.2</td>
+</tr>
+<tr>
+<td>60</td>
+<td><code>x_guru/Leads-Scraper-apollo-zoominfo</code></td>
+<td>260</td>
+<td>77638</td>
+<td>rated 1.98 (31)</td>
+<td>PAY_PER_EVENT $0.0010</td>
+<td>leader-healthy</td>
+<td><code>code_crafter/leads-finder</code> (2227)</td>
+<td>78.0</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-demand-without-social-proof-review-gaps">4. Demand without social proof (review gaps)</h2>
+<p>Actors with &gt;= 100 users in 30 days and zero reviews. A competing actor with a handful of honest reviews and the same head terms in its title out-ranks these.</p>
+<table>
+<thead>
+<tr>
+<th>actor</th>
+<th>u30</th>
+<th>users (all time)</th>
+<th>fail</th>
+<th>pricing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>zen-studio/rednote-comments-scraper</code></td>
+<td>2164</td>
+<td>5,460</td>
+<td>0%</td>
+<td>PAY_PER_EVENT $0.00001</td>
+</tr>
+<tr>
+<td><code>valig/naukri-jobs-scraper</code></td>
+<td>1620</td>
+<td>6,820</td>
+<td>0%</td>
+<td>PAY_PER_EVENT $0.00040</td>
+</tr>
+<tr>
+<td><code>nexgendata/wappalyzer-replacement</code></td>
+<td>1220</td>
+<td>1,451</td>
+<td>0%</td>
+<td>PAY_PER_EVENT $0.100</td>
+</tr>
+<tr>
+<td><code>grow_media/youtube-channel-video-scraper</code></td>
+<td>1010</td>
+<td>5,007</td>
+<td>0%</td>
+<td>PAY_PER_EVENT $0.0010</td>
+</tr>
+<tr>
+<td><code>chronometrica/facebook-comments-scraper</code></td>
+<td>777</td>
+<td>876</td>
+<td>0%</td>
+<td>PAY_PER_EVENT $0.0022</td>
+</tr>
+<tr>
+<td><code>dev00/synthid-remover</code></td>
+<td>546</td>
+<td>1,074</td>
+<td>3%</td>
+<td>PAY_PER_EVENT $0.020</td>
+</tr>
+<tr>
+<td><code>danitn11/pisa-sr-image-upscaler</code></td>
+<td>540</td>
+<td>1,049</td>
+<td>0%</td>
+<td>PAY_PER_EVENT $0.00001</td>
+</tr>
+<tr>
+<td><code>instagram-scraper/instagram-related-profiles</code></td>
+<td>503</td>
+<td>866</td>
+<td>0%</td>
+<td>PAY_PER_EVENT $0.00080</td>
+</tr>
+<tr>
+<td><code>clearpath/reddit-post-comments-bulk-scraper</code></td>
+<td>474</td>
+<td>1,322</td>
+<td>0%</td>
+<td>PAY_PER_EVENT $0.00001</td>
+</tr>
+<tr>
+<td><code>zen-studio/rednote-note-detail-scraper</code></td>
+<td>472</td>
+<td>1,088</td>
+<td>1%</td>
+<td>PAY_PER_EVENT $0.00001</td>
+</tr>
+<tr>
+<td><code>automation-lab/facebook-public-profile-scraper</code></td>
+<td>468</td>
+<td>523</td>
+<td>70%</td>
+<td>PAY_PER_EVENT $0.0046</td>
+</tr>
+<tr>
+<td><code>moving_beacon-owner1/my-actor-73</code></td>
+<td>433</td>
+<td>548</td>
+<td>0%</td>
+<td>PAY_PER_EVENT $0.010</td>
+</tr>
+<tr>
+<td><code>aitorsm/keyword-volume</code></td>
+<td>413</td>
+<td>839</td>
+<td>0%</td>
+<td>PAY_PER_EVENT $0.012</td>
+</tr>
+<tr>
+<td><code>codepoetry/youtube-transcript-ai-scraper</code></td>
+<td>406</td>
+<td>1,668</td>
+<td>2%</td>
+<td>PAY_PER_EVENT $0.0010</td>
+</tr>
+<tr>
+<td><code>khadinakbar/tiktok-profile-scraper</code></td>
+<td>378</td>
+<td>1,007</td>
+<td>0%</td>
+<td>PAY_PER_EVENT $0.0030</td>
+</tr>
+<tr>
+<td><code>burbn/trustpilot-search-scraper</code></td>
+<td>355</td>
+<td>399</td>
+<td>0%</td>
+<td>PAY_PER_EVENT $0.020</td>
+</tr>
+<tr>
+<td><code>lurkapi/youtube-channel-videos-stats-scraper</code></td>
+<td>315</td>
+<td>874</td>
+<td>0%</td>
+<td>PAY_PER_EVENT $0.00025</td>
+</tr>
+<tr>
+<td><code>s-r/backlinks-checker</code></td>
+<td>315</td>
+<td>469</td>
+<td>0%</td>
+<td>PAY_PER_EVENT $0.010</td>
+</tr>
+<tr>
+<td><code>yumitori/etsy-listings-scraper</code></td>
+<td>283</td>
+<td>936</td>
+<td>1%</td>
+<td>PAY_PER_EVENT $0.0080</td>
+</tr>
+<tr>
+<td><code>santamaria-automations/booking-com-scraper</code></td>
+<td>262</td>
+<td>925</td>
+<td>0%</td>
+<td>PAY_PER_EVENT $0.0030</td>
+</tr>
+<tr>
+<td><code>clearpath/reddit-subreddit-posts-scraper</code></td>
+<td>254</td>
+<td>688</td>
+<td>0%</td>
+<td>PAY_PER_EVENT $0.00001</td>
+</tr>
+<tr>
+<td><code>kaix/google-flights-scraper</code></td>
+<td>251</td>
+<td>500</td>
+<td>6%</td>
+<td>PAY_PER_EVENT $0.00006</td>
+</tr>
+<tr>
+<td><code>coladeu/apollo-people-leads-scraper</code></td>
+<td>249</td>
+<td>2,496</td>
+<td>10%</td>
+<td>PAY_PER_EVENT $0.0060</td>
+</tr>
+<tr>
+<td><code>moving_beacon-owner1/medium-scraper</code></td>
+<td>249</td>
+<td>350</td>
+<td>0%</td>
+<td>PAY_PER_EVENT $0.010</td>
+</tr>
+<tr>
+<td><code>scrapesage/google-maps-scraper</code></td>
+<td>244</td>
+<td>515</td>
+<td>2%</td>
+<td>PAY_PER_EVENT $0.0040</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-pricing-benchmarks">5. Pricing benchmarks</h2>
+<p>Pay-per-event actors with &gt;= 10 users in 30 days: 4,029. Price of the primary (per-result/per-page) event: p25 $0.0010, median $0.0025, p75 $0.0050. Per-category medians are in section 2.</p>
+<h2 id="6-movers-since-2026-09-08">6. Movers since 2026-09-08</h2>
+<table>
+<thead>
+<tr>
+<th>actor</th>
+<th>u30 now</th>
+<th>u30 before</th>
+<th>delta</th>
+<th>fail now</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apify/web-fetch</code></td>
+<td>10141</td>
+<td>7065</td>
+<td>+3076</td>
+<td>7%</td>
+</tr>
+<tr>
+<td><code>apify/playwright-scraper</code></td>
+<td>2609</td>
+<td>1244</td>
+<td>+1365</td>
+<td>3%</td>
+</tr>
+<tr>
+<td><code>apify/instagram-reel-scraper</code></td>
+<td>13055</td>
+<td>11795</td>
+<td>+1260</td>
+<td>0%</td>
+</tr>
+<tr>
+<td><code>clockworks/tiktok-scraper</code></td>
+<td>22397</td>
+<td>21222</td>
+<td>+1175</td>
+<td>2%</td>
+</tr>
+<tr>
+<td><code>curious_coder/linkedin-jobs-scraper</code></td>
+<td>17920</td>
+<td>16983</td>
+<td>+937</td>
+<td>1%</td>
+</tr>
+<tr>
+<td><code>apify/instagram-profile-scraper</code></td>
+<td>26606</td>
+<td>25809</td>
+<td>+797</td>
+<td>0%</td>
+</tr>
+<tr>
+<td><code>zen-studio/rednote-comments-scraper</code></td>
+<td>2164</td>
+<td>1374</td>
+<td>+790</td>
+<td>0%</td>
+</tr>
+<tr>
+<td><code>apimaestro/linkedin-company-employees-scraper-no-cookies</code></td>
+<td>1186</td>
+<td>1880</td>
+<td>-694</td>
+<td>0%</td>
+</tr>
+<tr>
+<td><code>cheap_scraper/linkedin-job-scraper</code></td>
+<td>4477</td>
+<td>5145</td>
+<td>-668</td>
+<td>1%</td>
+</tr>
+<tr>
+<td><code>clockworks/free-tiktok-scraper</code></td>
+<td>3368</td>
+<td>2737</td>
+<td>+631</td>
+<td>1%</td>
+</tr>
+<tr>
+<td><code>harvestapi/linkedin-company</code></td>
+<td>5630</td>
+<td>5006</td>
+<td>+624</td>
+<td>0%</td>
+</tr>
+<tr>
+<td><code>sones/instagram-posts-scraper-lowcost</code></td>
+<td>1157</td>
+<td>560</td>
+<td>+597</td>
+<td>6%</td>
+</tr>
+<tr>
+<td><code>dev00/synthid-remover</code></td>
+<td>546</td>
+<td>6</td>
+<td>+540</td>
+<td>3%</td>
+</tr>
+<tr>
+<td><code>danitn11/pisa-sr-image-upscaler</code></td>
+<td>540</td>
+<td>1</td>
+<td>+539</td>
+<td>0%</td>
+</tr>
+<tr>
+<td><code>streamers/youtube-shorts-scraper</code></td>
+<td>3294</td>
+<td>2758</td>
+<td>+536</td>
+<td>1%</td>
+</tr>
+<tr>
+<td><code>apify/instagram-scraper</code></td>
+<td>42528</td>
+<td>42052</td>
+<td>+476</td>
+<td>0%</td>
+</tr>
+<tr>
+<td><code>apify/facebook-posts-scraper</code></td>
+<td>13337</td>
+<td>12873</td>
+<td>+464</td>
+<td>0%</td>
+</tr>
+<tr>
+<td><code>apify/website-content-crawler</code></td>
+<td>11074</td>
+<td>10659</td>
+<td>+415</td>
+<td>3%</td>
+</tr>
+<tr>
+<td><code>zen-studio/1688-wholesale-scraper</code></td>
+<td>693</td>
+<td>341</td>
+<td>+352</td>
+<td>1%</td>
+</tr>
+<tr>
+<td><code>harvestapi/linkedin-profile-posts</code></td>
+<td>8566</td>
+<td>8249</td>
+<td>+317</td>
+<td>0%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="new-entrants-with-5-users">New entrants with &gt;= 5 users</h3>
+<table>
+<thead>
+<tr>
+<th>actor</th>
+<th>u30</th>
+<th>pricing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code_crafter/leads-finder</code></td>
+<td>2227</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>codetr/linkedin-public-search-lead-extractor</code></td>
+<td>226</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>anshumanatrey/holehe-email-osint</code></td>
+<td>89</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>scrapesage/woolworths-scraper</code></td>
+<td>84</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>autofacts/shopify</code></td>
+<td>39</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>publicsignallabs/instagram-likers-scraper</code></td>
+<td>38</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>thirdwatch/justdial-business-scraper</code></td>
+<td>34</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>trudax/yellow-pages-us-scraper</code></td>
+<td>33</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>oday/mawsool-email-linkedin-lookup</code></td>
+<td>31</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>thirdwatch/linkedin-post-search-scraper</code></td>
+<td>31</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>lurkapi/tiktok-scraper-all-in-one</code></td>
+<td>25</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>oday/mawsool-linkedin-profile-finder</code></td>
+<td>24</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>battery/naver-plusstore-product-search</code></td>
+<td>22</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>dami_studio/google-maps-reviews-scraper</code></td>
+<td>22</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>memo23/fastpeoplesearch-scraper</code></td>
+<td>22</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>thirdwatch/adzuna-jobs-scraper</code></td>
+<td>21</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>pequod-labs/google-maps-local-leads</code></td>
+<td>20</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>thenetaji/tiktok-profile-scraper</code></td>
+<td>20</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>memo23/vk-posts-comments-scraper</code></td>
+<td>19</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>devcake/fiverr-gigs-scraper</code></td>
+<td>19</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-agentic-payments">7. Agentic payments</h2>
+<p>10,557 actors are whitelisted for agentic payments (AI agents can run and pay without an Apify account). Top by 30-day users:</p>
+<table>
+<thead>
+<tr>
+<th>actor</th>
+<th>u30</th>
+<th>pricing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apify/instagram-scraper</code></td>
+<td>42528</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>compass/crawler-google-places</code></td>
+<td>36109</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>apify/instagram-profile-scraper</code></td>
+<td>26606</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>clockworks/tiktok-scraper</code></td>
+<td>22397</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>curious_coder/linkedin-jobs-scraper</code></td>
+<td>17920</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>apify/google-search-scraper</code></td>
+<td>16736</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>apify/facebook-posts-scraper</code></td>
+<td>13337</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>apify/instagram-reel-scraper</code></td>
+<td>13055</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>apify/instagram-post-scraper</code></td>
+<td>11666</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+<tr>
+<td><code>streamers/youtube-scraper</code></td>
+<td>9972</td>
+<td>PAY_PER_EVENT</td>
+</tr>
+</tbody>
+</table>
+<h2 id="method-and-definitions">Method and definitions</h2>
+<ul>
+<li>Source: <code>GET https://api.apify.com/v2/store</code> paged 1,000 at a time in popularity order until the API returns an empty page. No login, no scraping of HTML.</li>
+<li>u30 / u7 / users: the Store's <code>totalUsers30Days</code>, <code>totalUsers7Days</code>, <code>totalUsers</code>. runs30 and fail% come from <code>publicActorRunStats30Days</code> (FAILED + TIMED-OUT over TOTAL).</li>
+<li>Topic peers: actors sharing the first two significant words of the title (generic words like scraper/extractor/api are ignored).</li>
+<li>Primary PPE price: the cheapest non-start event at the FREE tier, which is what a new user pays per result or page.</li>
+<li>CSVs shipped with this report: <code>actors.csv</code> (every scanned actor), <code>opportunities.csv</code> (section 3, unlimited), <code>categories.csv</code> (section 2).</li>
+</ul>
+<footer>Built and published automatically from <a href="https://github.com/brenton-keller">github.com/brenton-keller</a>. Actors run on <a href="https://apify.com/brenton8907">Apify</a>; data reports come from the public Apify Store API. Updated 2026-09-14.</footer></main></body></html>

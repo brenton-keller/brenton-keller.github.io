@@ -1,7 +1,7 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Telegram Channel Scraper &amp; Keyword Search: posts, views</title><meta name="description" content="Scrape public Telegram channels, no login: keyword search, posts, views, reactions, media URLs, subscriber counts. Schedule it for new-post alerts."><link rel="canonical" href="https://brenton-keller.github.io/actors/telegram-channel-scraper/">
-<meta property="og:title" content="Telegram Channel Scraper &amp; Keyword Search: posts, views"><meta property="og:description" content="Scrape public Telegram channels, no login: keyword search, posts, views, reactions, media URLs, subscriber counts. Schedule it for new-post alerts."><meta property="og:url" content="https://brenton-keller.github.io/actors/telegram-channel-scraper/">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Telegram Channel Scraper & Keyword Search: posts, views, media", "description": "Scrape public Telegram channels, no login: keyword search, posts, views, reactions, media URLs, subscriber counts. Schedule it for new-post alerts.", "url": "https://apify.com/brenton8907/telegram-channel-scraper", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web", "author": {"@type": "Person", "name": "Brenton Keller"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Pay per event on Apify; free tier available"}}</script><style>
+<title>Telegram Channel Scraper &amp; Keyword Search: messages, views</title><meta name="description" content="Search public Telegram channels by keyword; scrape messages, views, reactions, media, links and subscribers; monitor new posts. No login. $1/1K messages."><link rel="canonical" href="https://brenton-keller.github.io/actors/telegram-channel-scraper/">
+<meta property="og:title" content="Telegram Channel Scraper &amp; Keyword Search: messages, views"><meta property="og:description" content="Search public Telegram channels by keyword; scrape messages, views, reactions, media, links and subscribers; monitor new posts. No login. $1/1K messages."><meta property="og:url" content="https://brenton-keller.github.io/actors/telegram-channel-scraper/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Telegram Channel Scraper & Keyword Search: messages, views", "description": "Search public Telegram channels by keyword; scrape messages, views, reactions, media, links and subscribers; monitor new posts. No login. $1/1K messages.", "url": "https://apify.com/brenton8907/telegram-channel-scraper", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web", "author": {"@type": "Person", "name": "Brenton Keller"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Pay per event on Apify; free tier available"}}</script><style>
 :root{--fg:#1a1a1a;--muted:#5a5a5a;--bg:#fff;--line:#e5e5e5;--acc:#0b57d0}
 @media(prefers-color-scheme:dark){:root{--fg:#e8e8e8;--muted:#a0a0a0;--bg:#111;--line:#333;--acc:#8ab4f8}}
 body{font:16px/1.55 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;color:var(--fg);background:var(--bg);margin:0}
@@ -13,8 +13,8 @@ pre{background:rgba(127,127,127,.12);padding:12px;overflow-x:auto;font-size:13px
 .card{border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin:12px 0}.card h3{margin:0 0 6px}
 .muted{color:var(--muted);font-size:14px}.btn{display:inline-block;padding:8px 14px;border:1px solid var(--acc);border-radius:6px;text-decoration:none;margin:4px 6px 4px 0}
 footer{margin-top:48px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
-</style></head><body><main><nav><a href="/">Home</a> / <a href="/#actors">Actors</a> / <a href="/actors/telegram-channel-scraper/">Telegram Channel Scraper &amp; Keyword Search: posts, views, media</a></nav><h1>Telegram Channel Scraper &amp; Keyword Search: posts, views, media</h1>
-<p>Scrape any public Telegram channel with no login or API key: messages with text, dates, views, reactions, media URLs, forwards, polls and link previews, plus subscriber counts. Keyword search inside channels, date windows, and a changes-only monitor for scheduled Slack/email alerts. Pay per message.</p>
+</style></head><body><main><nav><a href="/">Home</a> / <a href="/#actors">Actors</a> / <a href="/actors/telegram-channel-scraper/">Telegram Channel Scraper &amp; Keyword Search: messages, views</a></nav><h1>Telegram Channel Scraper &amp; Keyword Search: messages, views</h1>
+<p>Search and monitor public Telegram channels—not just scrape them. Get keyword-matched messages, views, reactions, media and subscribers for $1 per 1,000 messages on Free, with no login or API key. Per-channel diagnostic errors explain unavailable inputs; changes-only mode powers alerts.</p>
 <p><a class="btn" href="https://apify.com/brenton8907/telegram-channel-scraper">Run on Apify</a> <a class="btn" href="https://apify.com/brenton8907/telegram-channel-scraper#pricing">Pricing</a> <a class="btn" href="https://apify.com/brenton8907/telegram-channel-scraper/api">API docs</a></p>
 <p class="muted">Categories: SOCIAL_MEDIA, NEWS, AGENTS. Pay per result, no subscription; Apify's free plan includes $5 of monthly usage.</p>
 <h2 id="run">Run it from the command line</h2>
@@ -52,8 +52,56 @@ for item in client.dataset(run.default_dataset_id).iterate_items():
 <h2 id="pricing">Pricing (pay per event)</h2>
 <table><tr><th>event</th><th>what</th><th>price</th><th>details</th></tr><tr><td><code>message-record</code></td><td>Message</td><td>$0.0010</td><td>One channel post: text, date, views, reactions, media URLs, forwards, replies, poll, link preview, hashtags, mentions.</td></tr><tr><td><code>channel-record</code></td><td>Channel info</td><td>$0.0020</td><td>One channel row: title, description, subscriber count, photo/video/file/link counts, avatar URL.</td></tr></table>
 <h2 id="docs">Documentation</h2>
-<p>Scrape any <strong>public Telegram channel</strong> without a login, a phone number, or API keys, and <strong>search channels by keyword</strong> using Telegram's own in-channel search. Reads Telegram's own public web preview (<code>t.me/s/&lt;channel&gt;</code>), so it needs no browser, no proxies and no session, and it does not break when the Telegram app changes. Returns the full post history as flat rows, plus one channel-info row with the subscriber count. Includes a <strong>changes-only monitor mode</strong> so a scheduled run gives you only what was posted since last time.</p>
-<p><strong>Try it free:</strong> every Apify account includes free monthly usage; 1,000 messages cost $1, so a first run costs nothing.</p>
+<p><strong>Search and monitor public Telegram channels—not just scrape them.</strong> Get keyword-matched messages, views, reactions, media and subscriber counts for <strong>$1 per 1,000 messages on the Free tier</strong>, with no login, phone number or API key. The actor uses Telegram's public web preview (<code>t.me/s/&lt;channel&gt;</code>), returns flat analysis-ready rows, and can emit only new matching posts on each scheduled run.</p>
+<p><strong>Try it with included Apify usage:</strong> the default 200-message run costs at most $0.204 including two channel rows. Error rows are free.</p>
+<h2 id="why-choose-this-telegram-scraper">Why choose this Telegram scraper</h2>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>What this actor provides</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Find only relevant posts</td>
+<td>Telegram's server-side <strong>keyword search</strong>, with <code>matched_keyword</code> on every result</td>
+</tr>
+<tr>
+<td>Watch for new posts</td>
+<td>Stateful <strong>changes-only monitor</strong> for schedules, Slack, email, n8n, Make or Zapier</td>
+</tr>
+<tr>
+<td>Avoid unexplained empty output</td>
+<td>Per-channel diagnostic error rows; an unavailable channel does not stop valid channels</td>
+</tr>
+<tr>
+<td>Analyze engagement and content</td>
+<td>Views, reactions, subscribers, forwards, replies, polls, media, links, hashtags and mentions</td>
+</tr>
+<tr>
+<td>Control scope and cost</td>
+<td>Date/message-ID windows, per-channel caps, maximum charge; error rows are free</td>
+</tr>
+<tr>
+<td>Run without credentials</td>
+<td>Public channels with no Telegram login, session, phone number, bot token or API key</td>
+</tr>
+</tbody>
+</table>
+<p>At current Apify Store pricing (checked 2026-09-10), the category's generic
+incumbent lists <strong>$5 per 1,000 results on Free</strong>; this actor lists <strong>$1 per
+1,000 messages on Free</strong>. Plan-specific rates vary, so compare the live Pricing
+tabs for current paid-tier rates.</p>
+<h3 id="mixed-success-stays-useful">Mixed success stays useful</h3>
+<p>If one channel is missing or private, valid channels still return messages and
+the bad input gets a clear, uncharged row instead of turning the whole run into
+an unexplained empty dataset:</p>
+<pre><code class="language-json">[
+  { &quot;channel&quot;: &quot;durov&quot;, &quot;message_id&quot;: 432, &quot;text&quot;: &quot;...&quot;, &quot;views&quot;: 120000, &quot;url&quot;: &quot;https://t.me/durov/432&quot; },
+  { &quot;channel&quot;: &quot;private_or_missing&quot;, &quot;error&quot;: &quot;@private_or_missing: no public preview (private channel, preview disabled, a user/bot handle, or it does not exist)&quot; }
+]
+</code></pre>
 <h2 id="keyword-search-across-channels">Keyword search across channels</h2>
 <p>Search many channels for the terms you care about without downloading their full history. The actor uses Telegram's in-channel search (<code>t.me/s/&lt;channel&gt;?q=</code>), one request per keyword per page of 20 results, so 20 channels × 3 keywords is about 60 requests and you pay only for the posts that match.</p>
 <pre><code class="language-json">{
@@ -234,6 +282,23 @@ for item in client.dataset(run.default_dataset_id).iterate_items():
 </ul>
 <h2 id="use-from-an-ai-agent-mcp">Use from an AI agent (MCP)</h2>
 <p>Every Apify actor is available as a tool through the <a href="https://mcp.apify.com">Apify MCP server</a>. Add it to Claude, Cursor, or any MCP client and call this actor by name with the JSON input above. Suggested agent pattern: keep a watchlist, run with <code>changesOnly: true</code> on a schedule, and act only on the rows returned.</p>
+<h2 id="telegram-scraper-faq">Telegram scraper FAQ</h2>
+<h3 id="how-do-i-search-telegram-channel-messages-by-keyword">How do I search Telegram channel messages by keyword?</h3>
+<p>Add one or more terms to <code>keywords</code>. The actor uses Telegram's server-side
+in-channel search for each public channel, shares the result cap fairly across
+terms, and writes the term that found each post to <code>matched_keyword</code>.</p>
+<h3 id="how-do-i-monitor-a-telegram-channel-for-new-posts">How do I monitor a Telegram channel for new posts?</h3>
+<p>Set <code>changesOnly: true</code>, choose a stable <code>monitorStoreName</code>, save the input as
+an Apify task, and schedule it. The first run establishes the baseline; later
+runs return only newer posts. Add <code>keywords</code> when only matching new posts
+should trigger your workflow.</p>
+<h3 id="can-i-scrape-a-telegram-channel-without-login-or-an-api-key">Can I scrape a Telegram channel without login or an API key?</h3>
+<p>Yes, when the channel has a public <code>t.me/s/&lt;channel&gt;</code> preview. No Telegram
+login, phone number, API ID/hash, bot token or saved session is required.</p>
+<h3 id="can-this-scrape-telegram-groups-or-private-channels">Can this scrape Telegram groups or private channels?</h3>
+<p>No. Telegram does not expose those messages in the public channel preview.
+Groups, supergroups, private channels, users, bots and invite links return a
+diagnostic error row and are not charged.</p>
 <h2 id="support">Support</h2>
 <p>Open an issue on the actor page with the run ID and input. If Telegram changes its preview markup, affected fields go null rather than failing the run; report which field and we will patch it. If the actor saved you time, a review helps other people find it.</p>
-<footer>Built and published automatically from <a href="https://github.com/brenton-keller">github.com/brenton-keller</a>. Actors run on <a href="https://apify.com/brenton8907">Apify</a>; data reports come from the public Apify Store API. Updated 2026-09-10.</footer></main></body></html>
+<footer>Built and published automatically from <a href="https://github.com/brenton-keller">github.com/brenton-keller</a>. Actors run on <a href="https://apify.com/brenton8907">Apify</a>; data reports come from the public Apify Store API. Updated 2026-09-14.</footer></main></body></html>

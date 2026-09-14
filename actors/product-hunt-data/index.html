@@ -55,7 +55,7 @@ for item in client.dataset(run.default_dataset_id).iterate_items():
 <h2 id="what-it-does">What it does</h2>
 <ul>
 <li><strong>Launches by date</strong>: every featured post for a day, a range of days, or the last N days, ordered by leaderboard rank, votes, or time.</li>
-<li><strong>Topic feeds</strong>: filter launches by topic slug (artificial-intelligence, developer-tools, saas, productivity, ...). List all topics with mode "Topics".</li>
+<li><strong>Topic feeds</strong>: filter launches by one or more topic slugs (artificial-intelligence, developer-tools, saas, productivity, ...). Multiple topics use OR semantics: all requested feeds are merged and deduplicated. List all topics with mode "Topics".</li>
 <li><strong>Specific posts</strong>: by Product Hunt URL or slug, or find a product's launch by its website URL.</li>
 <li><strong>Full post details</strong> in one row: votes, comments count, daily/weekly/monthly rank, tagline, description, topics, makers (with Twitter and websites), hunter, thumbnail and media, product links, reviews rating.</li>
 <li><strong>Resolved product website</strong>: Product Hunt's redirect link is followed to the real URL with tracking parameters stripped.</li>
@@ -199,7 +199,7 @@ for item in client.dataset(run.default_dataset_id).iterate_items():
 <h2 id="limits-and-notes">Limits and notes</h2>
 <ul>
 <li>Product Hunt's API allows 6,250 complexity points per 15 minutes per token. A page of 20 posts with makers and topics costs a few hundred points, so roughly 300 to 600 posts per 15-minute window. One-shot/backfill runs read the rate-limit headers and wait up to <code>maxWaitSecs</code>; monitor runs fail within 5 seconds when the token is exhausted rather than burning scheduled-run compute. For large backfills, pass your own token (<code>accessToken</code>) to get your own quota.</li>
-<li>The API filters by one topic server-side; additional topics are matched client-side against each post's topics.</li>
+<li>The API accepts one topic per request. Multi-topic inputs query every requested feed, merge by post ID, then apply the requested sort and global <code>maxItems</code> cap.</li>
 <li>The API defaults <code>postedAfter</code> to one month ago; the actor always sends explicit bounds, so older date ranges work.</li>
 <li><code>website_resolved</code> follows Product Hunt's <code>/r/...</code> redirect only until it reaches the external product domain; it does not fetch the product site. producthunt.com blocks datacenter IPs, so this small redirect request goes through a rotating Apify residential proxy, configurable with <code>proxyConfiguration</code>. The API calls themselves never use a proxy. A failed Product Hunt redirect remains null.</li>
 <li>Monitor state is per <code>monitorStoreName</code>. Do not run two monitor runs against the same store at the same time.</li>
@@ -209,4 +209,4 @@ for item in client.dataset(run.default_dataset_id).iterate_items():
 <p>Every Apify actor is available as a tool through the <a href="https://mcp.apify.com">Apify MCP server</a>. Suggested agent pattern: schedule a run with <code>changesOnly: true</code> and a topic, then act only on the rows returned.</p>
 <h2 id="support">Support</h2>
 <p>Open an issue on the actor page with the run ID and input.</p>
-<footer>Built and published automatically from <a href="https://github.com/brenton-keller">github.com/brenton-keller</a>. Actors run on <a href="https://apify.com/brenton8907">Apify</a>; data reports come from the public Apify Store API. Updated 2026-09-10.</footer></main></body></html>
+<footer>Built and published automatically from <a href="https://github.com/brenton-keller">github.com/brenton-keller</a>. Actors run on <a href="https://apify.com/brenton8907">Apify</a>; data reports come from the public Apify Store API. Updated 2026-09-14.</footer></main></body></html>
