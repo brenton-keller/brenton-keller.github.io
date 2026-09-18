@@ -20,19 +20,19 @@ footer{margin-top:48px;font-size:13px;color:var(--muted);border-top:1px solid va
 <h2 id="run">Run it from the command line</h2>
 <pre><code>curl -sS -X POST &quot;https://api.apify.com/v2/acts/brenton8907~google-ads-transparency-center/run-sync-get-dataset-items?token=$APIFY_TOKEN&quot; \
   -H &#x27;Content-Type: application/json&#x27; \
-  -d &#x27;{&quot;domains&quot;: [&quot;nike.com&quot;], &quot;mode&quot;: &quot;ads&quot;, &quot;region&quot;: &quot;ANYWHERE&quot;, &quot;format&quot;: &quot;ALL&quot;, &quot;surface&quot;: &quot;ALL&quot;, &quot;maxAdsPerQuery&quot;: 200}&#x27;</code></pre>
+  -d &#x27;{&quot;domains&quot;: [&quot;allbirds.com&quot;], &quot;mode&quot;: &quot;ads&quot;, &quot;region&quot;: &quot;US&quot;, &quot;format&quot;: &quot;ALL&quot;, &quot;surface&quot;: &quot;ALL&quot;, &quot;maxAdsPerQuery&quot;: 20}&#x27;</code></pre>
 <h2 id="python">Run it from Python</h2>
 <pre><code>from apify_client import ApifyClient
 client = ApifyClient(&quot;YOUR_APIFY_TOKEN&quot;)
 run = client.actor(&quot;brenton8907/google-ads-transparency-center&quot;).call(run_input={
   &quot;domains&quot;: [
-    &quot;nike.com&quot;
+    &quot;allbirds.com&quot;
   ],
   &quot;mode&quot;: &quot;ads&quot;,
-  &quot;region&quot;: &quot;ANYWHERE&quot;,
+  &quot;region&quot;: &quot;US&quot;,
   &quot;format&quot;: &quot;ALL&quot;,
   &quot;surface&quot;: &quot;ALL&quot;,
-  &quot;maxAdsPerQuery&quot;: 200
+  &quot;maxAdsPerQuery&quot;: 20
 })
 for item in client.dataset(run.default_dataset_id).iterate_items():
     print(item)</code></pre>
@@ -49,7 +49,7 @@ for item in client.dataset(run.default_dataset_id).iterate_items():
   }
 }</code></pre>
 <h2 id="pricing">Pricing (pay per event)</h2>
-<table><tr><th>event</th><th>what</th><th>price</th><th>details</th></tr><tr><td><code>ad-record</code></td><td>Ad creative</td><td>$0.0010</td><td>One ad creative row: advertiser, format, preview URL, first/last shown, days shown, impression and spend ranges, matched domain.</td></tr><tr><td><code>enriched-ad-record</code></td><td>Enriched ad creative</td><td>$0.0040</td><td>One ad creative row with full details attached: per-country impression ranges, surfaces, targeting, category. One extra request per ad.</td></tr><tr><td><code>advertiser-record</code></td><td>Advertiser check</td><td>$0.0020</td><td>One advertiser summary row (advertiser-check mode): advertiser IDs matched for a domain or brand, creative count range, verification status. One request per query.</td></tr></table>
+<table><tr><th>event</th><th>what</th><th>price</th><th>details</th></tr><tr><td><code>ad-record</code></td><td>Ad creative</td><td>$0.0010</td><td>One ad creative row: advertiser name and ID, ad format, creative preview URL, first and last shown dates, days shown, and the matched landing domain. Impression and spend ranges are not returned by this endpoint; see the enriched event.</td></tr><tr><td><code>enriched-ad-record</code></td><td>Enriched ad creative</td><td>$0.0040</td><td>One ad creative row plus its detail record: the list of countries the ad ran in (fills on 100% of rows) and every creative rendering variation (83.6%). Per-country impression ranges and surfaces are included where Google publishes them, which is EU-served and political ads only (~13% of rows). One extra request per ad.</td></tr><tr><td><code>advertiser-record</code></td><td>Advertiser check</td><td>$0.0020</td><td>One advertiser summary row (advertiser-check mode): an advertiser matched for a domain or brand, with its own creative-count range for that domain, billing country and verification status. Costs one domain search plus two lookups per advertiser found; a domain with no ads returns a single row and costs one search plus one index check that tells a real &#x27;no&#x27; from a filter miss.</td></tr></table>
 <h2 id="docs">Documentation</h2>
 <p>Pull every ad an advertiser is running on Google (Search, YouTube, Shopping, Maps, Play) from the
 <a href="https://adstransparency.google.com">Ads Transparency Center</a>, as clean JSON/CSV. Search by <strong>domain</strong>,
@@ -61,26 +61,67 @@ for thousands of domains at a fraction of a cent each.</p>
 fingerprint, paces itself under Google's rate limits and rotates proxies automatically, so runs finish
 fast and don't fail halfway.</p>
 <p><strong>Try it free:</strong> every Apify account includes free monthly usage, and 1,000 ads cost $1, so checking a competitor is free.</p>
+<h2 id="start-here-a-bounded-useful-first-run">Start here: a bounded, useful first run</h2>
+<p>The Store form is prefilled for one US competitor, 20 ads, and full details. That keeps the first run bounded while showing the richest output: creative previews and every rendering variation, dates, and the countries each ad ran in. At the published event price, 20 enriched rows cost at most <strong>$0.08</strong>, plus normal Apify platform usage; fewer rows cost less.</p>
+<p>A note on what a US-only brand will and will not show: impression ranges and surfaces are published by Google
+only for EU-served and political ads, so a purely domestic advertiser returns <code>null</code> for both. Point the run at
+an EU-serving brand if those are what you came for.</p>
+<!-- recipe:first-run-enriched -->
+
+<pre><code class="language-json">{
+  &quot;domains&quot;: [
+    &quot;allbirds.com&quot;
+  ],
+  &quot;mode&quot;: &quot;ads&quot;,
+  &quot;region&quot;: &quot;US&quot;,
+  &quot;includeDetails&quot;: true,
+  &quot;maxAdsPerQuery&quot;: 20
+}
+</code></pre>
+<p>Replace <code>allbirds.com</code> with one competitor domain and click <strong>Start</strong>. The cap is per query. Domain search means “ads link to this domain,” not “the domain owner bought every ad”; inspect <code>advertiser_name</code> and use its <code>advertiser_id</code> for a precise recurring watchlist.</p>
 <h2 id="competitor-ads-monitor-schedule-it-track-googles-result-window">Competitor ads monitor: schedule it, track Google's result window</h2>
-<p>This is the highest-value way to use the actor: a daily run that returns <strong>only the ads you have not seen before</strong>, delivered to Slack or email. Three steps, no code:</p>
+<p>Use a daily run to return <strong>only creative IDs the watchlist has not observed before</strong>, delivered to Slack or email. Prefer advertiser IDs over domains once you identify the right accounts: they avoid reseller/affiliate ads that happen to link to the same domain. Three steps, no code:</p>
 <ol>
-<li><strong>Create a task</strong> from this actor with the input below (one line per competitor domain or advertiser ID). Run it once; the first run seeds the list of known ads.</li>
-<li><strong>Schedule it</strong>: in the task, open <em>Schedule</em> (or Console → Schedules) and pick daily or hourly. Each run costs only creative IDs not previously observed in the capped result window; a quiet day costs a few requests and no results.</li>
+<li><strong>Create a task</strong> from this actor with the input below. Replace the advertiser IDs and give the watchlist a unique <code>monitorStoreName</code>. Run it once; that first run seeds the list, so do not treat its returned rows as changes.</li>
+<li><strong>Schedule it</strong>: in the task, open <em>Schedule</em> (or Console → Schedules) and pick daily. Each run charges only creative IDs not previously observed in the capped result window; a quiet day costs a few requests and no result-event charges.</li>
 <li><strong>Alerts</strong>: in the task's <em>Integrations</em> tab add <strong>Slack</strong> or <strong>Gmail</strong> on "run succeeded". Use the run's status message as the notification text; in monitor mode it reports newly observed result-window ads or that none were observed. Slack message template (Handlebars):</li>
 </ol>
 <p><code>*Google Ads monitor:* {{resource.statusMessage}}
    &lt;https://console.apify.com/storage/datasets/{{resource.defaultDatasetId}}|Open the newly observed ads&gt;</code></p>
 <p>For "only notify when there is something new", route the run through <strong>n8n / Make / Zapier</strong> (Apify triggers exist for all three) and filter on the dataset item count.</p>
+<!-- recipe:daily-competitor-monitor -->
+
 <pre><code class="language-json">{
-  &quot;domains&quot;: [&quot;nike.com&quot;, &quot;adidas.com&quot;, &quot;onrunning.com&quot;],
+  &quot;advertiserIds&quot;: [
+    &quot;AR18378488041124659201&quot;,
+    &quot;AR16735076323512287233&quot;
+  ],
+  &quot;mode&quot;: &quot;ads&quot;,
+  &quot;region&quot;: &quot;US&quot;,
   &quot;onlyNewAds&quot;: true,
-  &quot;monitorStoreName&quot;: &quot;running-shoes-competitors&quot;,
-  &quot;includeDetails&quot;: true,
-  &quot;maxAdsPerQuery&quot;: 200
+  &quot;monitorStoreName&quot;: &quot;footwear-competitors-daily&quot;,
+  &quot;includeDetails&quot;: false,
+  &quot;maxAdsPerQuery&quot;: 20
 }
 </code></pre>
 <p>Each newly observed row carries <code>is_new: true</code>, <code>first_seen_by_monitor</code>, the creative preview URL, format, first/last shown and (with <code>includeDetails</code>) served countries and surfaces. <strong>This means newly observed, not necessarily newly launched.</strong> Google's capped top-N result window can reorder between runs, so a creative first shown months or years ago can enter the window and appear for the first time. Use <code>first_shown</code> to identify likely launches; narrow by advertiser ID, region, format, surface or date to make the window more stable. Use one <code>monitorStoreName</code> per watchlist.</p>
 <p>What it costs at scale: 50 newly observed ads/day with details = 50 × $0.004 = <strong>$0.20/day, ~$6/month</strong>; without details, $1.50/month. Result-window reordering can increase this count on broad or heavily capped queries.</p>
+<h2 id="weekly-advertiser-check-a-low-cost-retention-workflow">Weekly advertiser check: a low-cost retention workflow</h2>
+<p>Use <code>advertisers</code> mode when the recurring question is simpler: <em>which watched domains have Google ads, under which observed advertiser accounts, and roughly how many creatives?</em> Create a Task with this input, run it once, then schedule it weekly. Keep each week's dataset or export it as CSV to compare snapshots.</p>
+<!-- recipe:weekly-advertiser-check -->
+
+<pre><code class="language-json">{
+  &quot;domains&quot;: [
+    &quot;allbirds.com&quot;,
+    &quot;warbyparker.com&quot;,
+    &quot;bombas.com&quot;
+  ],
+  &quot;mode&quot;: &quot;advertisers&quot;,
+  &quot;region&quot;: &quot;US&quot;,
+  &quot;maxAdvertisersPerQuery&quot;: 3
+}
+</code></pre>
+<p>Every domain gets an answer: one or more advertiser rows, or one <code>is_advertising: false</code> row. Treat it as observed Transparency Center activity, not ownership or spend. A domain can include affiliates/resellers, creative counts are Google ranges, and absence in one region does not prove global inactivity.</p>
 <h2 id="what-it-does">What it does</h2>
 <table>
 <thead>
@@ -174,18 +215,78 @@ fast and don't fail halfway.</p>
 </code></pre>
 <p>With <code>includeDetails: true</code> each row also gets:</p>
 <pre><code class="language-json">&quot;details&quot;: {
-  &quot;served_countries&quot;: [&quot;US&quot;, &quot;GB&quot;, &quot;DE&quot;, &quot;FR&quot;, &quot;CA&quot;],
   &quot;country_reach&quot;: [{ &quot;country&quot;: &quot;US&quot;, &quot;first_served&quot;: &quot;2026-07-22&quot;, &quot;last_served&quot;: &quot;2026-09-01&quot;, &quot;impressions&quot;: null, &quot;surfaces&quot;: [] }],
   &quot;eu_reach&quot;: { &quot;impressions&quot;: { &quot;low&quot;: 10000, &quot;high&quot;: 50000 }, &quot;first_served&quot;: &quot;2026-07-21&quot;, &quot;last_served&quot;: &quot;2026-09-01&quot; },
   &quot;variations&quot;: [ { &quot;script_url&quot;: &quot;…&quot;, &quot;image_url&quot;: &quot;…&quot; } ],
-  &quot;targeting&quot;: { &quot;categories&quot;: { &quot;demographics&quot;: {&quot;included&quot;: true}, &quot;geography&quot;: {&quot;included&quot;: true} } },
-  &quot;category&quot;: { &quot;gcb_category_id&quot;: 10021, &quot;vertical&quot;: 1 },
-  &quot;customer_name&quot;: &quot;Nike Retail BV&quot;,
+  &quot;targeting&quot;: { &quot;categories&quot;: { &quot;1&quot;: {&quot;1&quot;: true, &quot;2&quot;: false} } },
+  &quot;category&quot;: { &quot;gcb_category_id&quot;: 10021 },
   &quot;contains_synthetic_media&quot;: false
 },
 &quot;countries&quot;: [&quot;US&quot;, &quot;GB&quot;, &quot;DE&quot;, &quot;FR&quot;, &quot;CA&quot;],
 &quot;surfaces&quot;: [&quot;SEARCH&quot;, &quot;YOUTUBE&quot;]
 </code></pre>
+<p><strong>How often each detail field is actually populated.</strong> Measured over 225 enriched rows across 9 US/EU
+retail domains, so treat the thin numbers as indicative rather than exact:</p>
+<table>
+<thead>
+<tr>
+<th>field</th>
+<th>fill</th>
+<th>what you get</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>country_reach</code> / <code>countries</code></td>
+<td><strong>100%</strong></td>
+<td>The real reason to enable details — basic mode gives 0%. But 87% of ads list exactly one country.</td>
+</tr>
+<tr>
+<td><code>variations</code> (more than one rendering)</td>
+<td><strong>84%</strong></td>
+<td>Every rendering of the creative, where basic mode exposes a single <code>preview_url</code>.</td>
+</tr>
+<tr>
+<td><code>customer_name</code></td>
+<td>72%</td>
+<td>Was byte-identical to <code>advertiser_name</code> in every populated sample, so it is <strong>now dropped</strong> when it duplicates that column and kept only when it genuinely differs.</td>
+</tr>
+<tr>
+<td><code>targeting</code></td>
+<td>18%</td>
+<td><strong>Not usable as shipped.</strong> <code>age</code>/<code>gender</code>/<code>geo</code> are always <code>null</code> and are no longer emitted; what remains is <code>categories</code>, which comes back as undecoded protobuf keys, as shown above.</td>
+</tr>
+<tr>
+<td><code>category.gcb_category_id</code></td>
+<td>16%</td>
+<td>A bare numeric ID. The readable <code>google_product_category</code> fills on 1% of rows and <code>vertical</code> on none.</td>
+</tr>
+<tr>
+<td><code>eu_reach</code></td>
+<td>14%</td>
+<td>EU-served ads only.</td>
+</tr>
+<tr>
+<td><code>country_reach[].impressions</code>, <code>surfaces</code></td>
+<td>13%</td>
+<td>EU-served and political ads only — see below.</td>
+</tr>
+<tr>
+<td><code>served_countries</code>, <code>us_reach</code>, <code>details.first_shown</code>, <code>details.days_shown</code></td>
+<td><strong>0%</strong></td>
+<td>Google does not return these; <code>first_shown</code> and <code>days_shown</code> are already at the top level at 100%.</td>
+</tr>
+</tbody>
+</table>
+<p>Fields Google never populates are <strong>omitted from <code>details</code> rather than emitted as nulls</strong>, so a key's presence
+means it carries data. If Google starts returning any of them, they pass straight through again.</p>
+<p>If you are researching a <strong>US-only</strong> brand, expect zero impression data and a one-element country list —
+<code>allbirds.com</code>, <code>bombas.com</code> and <code>casper.com</code> all returned 0% impressions. EU-serving advertisers do much
+better (56% of Nike's ads carried impressions). Enable details for <strong>country coverage and creative
+variations</strong>; do not buy it for targeting or category.</p>
+<p><code>preview_url</code> is <strong>not</strong> a stable key: Google randomises two query parameters on every response, so the same
+ad yields a different <code>preview_url</code> run over run (43% of rows in a back-to-back comparison). Use
+<code>creative_id</code> to dedupe or diff.</p>
 <p>Impression and spend ranges are only published by Google for EU-served ads and political ads; elsewhere they are <code>null</code>. Where they exist they are lifted to the top level as <code>impressions_low</code> / <code>impressions_high</code> (global) and <code>eu_impressions_low</code> / <code>eu_impressions_high</code> (EU reach from the details block), so CSV exports and the Overview table show them without digging into <code>details</code>.
 <code>matched_total</code> is Google's estimate of how many ads match the whole query (useful even when you cap <code>maxAdsPerQuery</code>).</p>
 <h3 id="advertisers-mode"><code>advertisers</code> mode</h3>
@@ -205,8 +306,20 @@ fast and don't fail halfway.</p>
 }
 </code></pre>
 <p>Domains with no ads return one row with <code>is_advertising: false</code>, so every input gets exactly one answer.</p>
+<p>A zero-result row also tells you whether to believe it. When Google's index knows the domain or brand even
+though no creative matched, the row carries a <code>hint</code> naming what to retry with (see <em>Limits and notes</em> for why
+this happens and what it costs):</p>
+<pre><code class="language-json">{
+  &quot;query&quot;: &quot;hims.com&quot;,
+  &quot;is_advertising&quot;: false,
+  &quot;creatives_count_low&quot;: 0,
+  &quot;hint&quot;: &quot;No ads matched domain hims.com, but Google's index knows this domain and the advertiser 'Hims, Inc.' (AR09131126584697159681). Display/image-only ads often expose no landing domain and are invisible to a domain search, so this may be a filter miss rather than a \&quot;no\&quot; -- to check, retry with queries: [\&quot;hims\&quot;] or advertiserIds: [\&quot;AR09131126584697159681\&quot;].&quot;
+}
+</code></pre>
+<p>The field is absent when the "no" is solid: <code>sqlite.org</code> returns no <code>hint</code>, <code>hims.com</code> returns the one above.
+Filter your export on the presence of <code>hint</code> to pull exactly the rows worth a second look.</p>
 <h3 id="advertiser-check-rows-for-a-domain">Advertiser-check rows for a domain</h3>
-<p>Each advertiser row for a domain carries <strong>its own</strong> ad count for that domain (<code>creatives_count_low</code> / <code>creatives_count_high</code>), the advertiser's billing <code>country</code>, <code>legal_name</code> and <code>unverified</code> flag from its Transparency Center profile, and the domain-wide total in <code>domain_creatives_count_low</code> / <code>domain_creatives_count_high</code>. This distinguishes the domain owner (Nike, Inc.: 7,000–8,000 ads on nike.com) from resellers and affiliates that also link to the domain (an agency with 500–600). Costs 2 extra requests per advertiser row; <code>maxAdvertisersPerQuery</code> caps it.</p>
+<p>Each advertiser row for a domain carries the advertiser's <strong>billing <code>country</code></strong> from its Transparency Center profile — the single most useful field for telling the domain owner apart from affiliates and resellers — plus <strong>its own</strong> ad count for that domain (<code>creatives_count_low</code> / <code>creatives_count_high</code>), the <code>unverified</code> flag, and the domain-wide total in <code>domain_creatives_count_low</code> / <code>domain_creatives_count_high</code>. (<code>legal_name</code> is also returned, but in our samples it was always identical to <code>advertiser_name</code>.) This distinguishes the domain owner from resellers and affiliates that also link to the domain: a <code>nike.com</code> check returns Nike Retail BV at 90,000–100,000 creatives, Nike, Inc. at 8,000–9,000 and a Singapore branch at 1,000–2,000, against a domain-wide 100,000–200,000. Costs 2 extra requests per advertiser row; <code>maxAdvertisersPerQuery</code> caps it. Candidates are ranked by how many of the domain's sampled ads each advertiser owns before that cap is applied, so truncating drops the smallest affiliates rather than the owner, and the returned rows are ordered by each advertiser's true ad count for the domain. Google's own ordering is by most recent ad, which put a one-ad affiliate ahead of the owner on ~20% of domains in a narrow region (<code>casper.com</code> and <code>awaytravel.com</code> under <code>region: DE</code> both did); ranking by sample share fixes both of those cases. It is still a heuristic on a 40-ad sample — use <code>country</code> and the creative counts to confirm the owner, and keep <code>maxAdvertisersPerQuery</code> above 1 when the domain may have several legitimate advertisers.</p>
 <h2 id="pricing">Pricing</h2>
 <p>Pay per result, no subscription:</p>
 <table>
@@ -231,17 +344,34 @@ fast and don't fail halfway.</p>
 </tr>
 </tbody>
 </table>
-<p>Plus normal Apify platform usage (a few cents per thousand ads; the actor runs in 256 MB and makes one request
-per 40 ads). Failed targets are not charged.</p>
+<p><strong>No per-run start fee.</strong> 10 of the 12 competing Ads Transparency actors we surveyed charge one, from $0.00005
+to $0.20 per run. That matters most for the scheduled-monitor pattern, where you pay for a small number of rows
+many times over.</p>
+<p>Plus normal Apify platform usage — measured at about <strong>$0.05 per 1,000 rows</strong>; the actor runs in 256 MB and
+makes one request per 40 ads.</p>
+<p><strong>What counts as a billable row.</strong> Rows carrying data are charged, including rows with <code>is_advertising: false</code>
+— a verified "this domain has no ads in Google's index" is a result you asked for. <strong>Failed targets are not
+charged:</strong> a target that errored or was blocked mid-run still gets a row with an <code>error</code> field so the failure
+is auditable, but that row is written to the dataset with no charge event attached and costs you nothing. A
+run where <em>every</em> target is blocked fails outright and charges nothing at all. The run's status message
+reports how many error rows went out free.</p>
+<p><strong>In <code>advertisers</code> mode the unit you buy is a row, but the unit you think in is a domain — and they are not the
+same.</strong> A domain that advertises returns up to <code>maxAdvertisersPerQuery</code> rows; a domain with no ads returns
+exactly one. Measured over a 100-domain run: <strong>1.63 rows per domain, so budget about $0.0033 per domain
+checked, not $0.002</strong> (a 20-domain run with a higher share of non-advertisers came in at 1.35). Set
+<code>maxAdvertisersPerQuery: 1</code> to pin it to exactly one row and $0.002 per domain, at the cost of missing
+co-advertisers — the single row you keep is now the advertiser with the largest share of the domain's sampled
+ads, which is the owner in every case we have measured, but it is a sample-based heuristic, not a guarantee.</p>
 <h2 id="limits-and-notes">Limits and notes</h2>
 <ul>
 <li>Google paginates to roughly <strong>1,000 ads per query</strong>. Split large advertisers by format, surface or date range to get more.</li>
 <li>Google keeps about <strong>12 months</strong> of ad history.</li>
-<li>A domain search returns every advertiser whose ads link to that domain, not only the domain owner. That can include resellers, affiliates and demo/test ads (<code>example.com</code> yields real ads from unrelated advertisers). Use <code>advertisers</code> mode to see who they are, or <code>advertiserIds</code> to pin one account.</li>
+<li>A domain search returns every advertiser whose ads link to that domain, not only the domain owner. That can include resellers, affiliates and demo/test ads (<code>example.com</code> yields real ads from unrelated advertisers). Use <code>advertisers</code> mode to see who they are, or <code>advertiserIds</code> to pin one account. The reverse also happens: a third party linking to a domain makes that domain look like an advertiser (<code>irs.gov</code> and <code>weather.gov</code> both return <code>is_advertising: true</code>), so read the result as "ads point at this domain", not "this company buys ads".</li>
+<li><code>is_advertising: false</code> means <em>no creative in Google's index is associated with that domain</em>, which is not the same as "this company runs no Google ads". Display/image-only advertisers frequently expose no landing domain, so they are invisible to a domain query: <code>hims.com</code> returns <code>false</code> while the advertiser "Hims, Inc." is live with current image creatives. <strong>The actor now checks this for you:</strong> when a domain matches nothing, it makes one extra suggestion lookup, and if Google's index knows the domain or a matching advertiser you get a <code>hint</code> field on the row and the same text in the run's status message, naming the advertiser ID to retry with. No hint means Google's index knows nothing either, so the empty result is a genuine "no". The lookup costs one request and only happens on the empty path; it is skipped in <code>onlyNewAds</code> monitor runs, where an empty result is the normal outcome.</li>
 <li>Brand-name queries are resolved through Google's own suggestion index; the largest exact/prefix match is used first. Use <code>advertiserIds</code> for precision.</li>
 <li>Ad-text (keyword) search is only available for political ads in Google's data and is not exposed here.</li>
 <li>Google rate-limits by IP. Keep the default Apify proxy on for anything beyond a few hundred ads; the actor rotates sessions on every rate-limit response and backs off, so runs complete instead of failing.</li>
-<li>If Google blocks every request (bot-check page or HTTP 429 after retries), the run fails with a clear error and nothing is charged. Enable Apify Proxy (residential) or raise <code>requestDelaySeconds</code>. If only some targets are blocked, the run succeeds and those targets get a row with an <code>error</code> field.</li>
+<li>If Google blocks every request (bot-check page or HTTP 429 after retries), the run fails with a clear error and nothing is charged. Enable Apify Proxy (residential) or raise <code>requestDelaySeconds</code>. If only some targets are blocked, the run succeeds and those targets get a row with an <code>error</code> field — those rows are <strong>not</strong> charged.</li>
 <li>Rows whose detail lookup failed (<code>details_error</code>) are charged at the base ad rate, not the enriched rate.</li>
 <li>Monitor state is per <code>monitorStoreName</code> (a named key-value store in your account). Do not run two monitor runs against the same store at the same time; use one store per watchlist or schedule.</li>
 </ul>
@@ -256,4 +386,4 @@ per 40 ads). Failed targets are not charged.</p>
 line with Google's terms and applicable law; you are responsible for how you use the output.</p>
 <h2 id="support">Support</h2>
 <p>Open an issue on the actor page with the run ID and input. If Google changes the Transparency Center's data format, affected fields go null rather than failing the run; report which field and we will patch it. If the actor saved you time, a review helps other people find it.</p>
-<footer>Built and published automatically from <a href="https://github.com/brenton-keller">github.com/brenton-keller</a>. Actors run on <a href="https://apify.com/brenton8907">Apify</a>; data reports come from the public Apify Store API. Updated 2026-09-14.</footer></main></body></html>
+<footer>Built and published automatically from <a href="https://github.com/brenton-keller">github.com/brenton-keller</a>. Actors run on <a href="https://apify.com/brenton8907">Apify</a>; data reports come from the public Apify Store API. Updated 2026-09-18.</footer></main></body></html>

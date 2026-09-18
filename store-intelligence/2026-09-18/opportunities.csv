@@ -1,0 +1,142 @@
+actor,title,u30,users,runs30,fail_pct,rating,reviews,reason,model,price,topic,peers,healthy_peer,healthy_peer_u30,gap,score
+fantastic-jobs/advanced-linkedin-job-search-api,Advanced LinkedIn Job Search API,1871,14711,108855,0.0,2.92,20,rated 2.92 (20),PAY_PER_EVENT,0.005,advanced linkedin,1,curious_coder/linkedin-jobs-search-scraper,129,OPEN,561.3
+apify/google-trends-scraper,Google Trends Scraper,1400,13402,22259,26.8,3.68,32,27% of 22259 runs fail,PAY_PER_EVENT,0.003,google trends,41,data_xplorer/google-trends-fast-scraper,400,OPEN,375.2
+apimaestro/linkedin-company-employees-scraper-no-cookies,Company Employees Scraper for LinkedIn | No Cookies,1172,7643,253480,0.1,2.93,19,rated 2.93 (19),PAY_PER_EVENT,0.01,company employees,1,scrapesage/linkedin-company-employees-scraper,15,OPEN,352.8
+futurizerush/threads-replies-scraper,Threads Replies Scraper,257,1394,64288,21.3,1.79,2,notice UNDER_MAINTENANCE,PAY_PER_EVENT,0.0025,threads replies,4,automation-lab/threads-replies-scraper,56,OPEN,257.0
+apify/facebook-reels-scraper,Facebook Reels Scraper,700,7157,198090,0.1,2.81,18,rated 2.81 (18),PAY_PER_EVENT,0.005,facebook reels,11,social_developer/facebook-playcount-scraper,107,OPEN,210.7
+zerobreak/google-hotels-scraper,Google Hotels Scraper,509,556,65255,39.3,5.0,7,39% of 65255 runs fail,PAY_PER_EVENT,0.00499,google hotels,10,johnvc/google-hotels-search-scraper,64,OPEN,200.0
+dromb/coles-au-product-search-specials-stores-unofficial,Coles AU Product Search Scraper,281,318,7234,32.6,0,0,33% of 7234 runs fail,PAY_PER_EVENT,0.001,coles au,1,,0,OPEN,91.6
+agentify/claude-code,Claude code,83,6510,692,99.7,4.58,7,100% of 692 runs fail,FREE,,claude code,0,,0,OPEN,82.8
+bigdavidson/kalshi-weather-markets,Kalshi Weather Markets Data — KXHIGH & KXLOW,89,250,601,91.3,5,1,91% of 601 runs fail,PAY_PER_EVENT,0.001,kalshi weather,2,nanare-sudo/kalshi-weather-markets,9,OPEN,81.3
+zen-studio/trustpilot-review-scraper,"Trustpilot Review Scraper - Ratings, Replies & Filters",120,693,4754,40.8,5,1,41% of 4754 runs fail,PAY_PER_EVENT,1e-05,trustpilot review,5,reviewly/trustpilot-review-scraper,12,OPEN,49.0
+tri_angle/telegram-scraper,Telegram Scraper,162,4544,30684,0.0,2.81,17,rated 2.81 (17),PAY_PER_EVENT,0.005,telegram,1,donjuan_mime/telegram-scraper,2,OPEN,48.6
+sashaebashu/likee-scraper,Likee Scraper,147,263,1372,0.1,1.74,4,rated 1.74 (4),PAY_PER_EVENT,0.015,likee,0,,0,OPEN,44.2
+tri_angle/yelp-review-scraper,Yelp Review Scraper,145,1338,229278,0.0,2.23,3,rated 2.23 (3),PAY_PER_EVENT,0.002,yelp review,0,,0,OPEN,43.5
+neuralverge/neuralverge-phone-enrichment,"Reverse Phone Lookup — Name, Email & Location",126,342,38709,30.4,5.0,3,30% of 38709 runs fail,PAY_PER_EVENT,0.015,reverse phone,1,,0,OPEN,38.3
+curious_coder/discord-data-scraper,Discord Scraper - Members and Messages,44,1292,65846,78.0,4.96,7,78% of 65846 runs fail,PAY_PER_EVENT,0.0005,discord members,0,,0,OPEN,34.3
+peakydev/company-organization-scraper-apollo-linkedin,"🔥✅ Company Leads Scraper similar to Apollo, LinkedIn",81,839,218,34.4,4.88,28,34% of 218 runs fail,PAY_PER_EVENT,0.002,company leads,0,,0,OPEN,27.9
+xmiso_scrapers/eu-amazon-sellers-email-leads,300K+ Amazon Sellers Email Leads,78,1028,880,2.7,2.82,20,rated 2.82 (20),PAY_PER_EVENT,0.0129,300k amazon,0,,0,OPEN,25.5
+amr-mando/lead-finder,⭐ Leads Scraper $1.7/1000 with REAL Emails ✅ like Apollo,79,2632,783,32.2,3.74,37,32% of 783 runs fail,PAY_PER_EVENT,0.0006,leads 1000,1,unlimitedleadtestinbox/leads-scraper---1-1000-with-emails,9,OPEN,25.4
+e-commerce/walmart-product-detail-scraper,Walmart Product Detail Scraper,82,844,7408,0.8,2.61,9,rated 2.61 (9),PAY_PER_EVENT,0.005,walmart product,10,sian.agency/walmart-data-scraper,22,OPEN,25.3
+xmiso_scrapers/easy-bulk-email-validator---verify-emails-from-1-7-1000-rows,Easy Bulk Email Validator - Verify Emails From $1/1000 Rows,76,1379,6591,0.0,3.0,14,rated 3.0 (14),PAY_PER_EVENT,0.0025,easy email,1,scravitylab/easy-email-finder,3,OPEN,22.8
+caprolok/linkedin-employees-scraper,Linkedin Employees Scraper,64,4118,917,4.7,1.05,23,rated 1.05 (23),PAY_PER_EVENT,0.001,linkedin employees,3,themineworks/linkedin-employees,16,OPEN,22.2
+saswave/mercadolibre-product-scraper,Mercadolibre Product Scraper,28,409,403,45.4,2.71,5,45% of 403 runs fail; rated 2.71 (5),PAY_PER_EVENT,0.001,mercadolibre product,4,sian.agency/mercado-libre-product-scraper,8,OPEN,21.1
+crawlerbros/ufc-stats-scraper,UFC Stats Scraper,36,174,195,54.9,0,0,55% of 195 runs fail,PAY_PER_EVENT,0.005,ufc stats,1,parseforge/ufc-stats-scraper,2,OPEN,19.8
+pratikdani/crunchbase-companies-scraper,Crunchbase Companies Scraper,62,1109,22144,0.1,1.49,4,rated 1.49 (4),PAY_PER_EVENT,0.015,crunchbase companies,1,,0,OPEN,18.7
+bigdavidson/metar-nws-weather-station-observations,METAR & NWS Weather Station Observations API,22,61,198,84.8,0,0,85% of 198 runs fail,PAY_PER_EVENT,0.0005,metar nws,0,,0,OPEN,18.7
+tri_angle/fast-zoopla-properties-scraper,Fast Zoopla Properties Scraper,27,183,1695,61.4,4.85,4,61% of 1695 runs fail,PAY_PER_EVENT,0.001,zoopla properties,0,,0,OPEN,16.6
+automation-lab/trustpilot-scraper,Trustpilot Scraper,37,165,2258,42.3,5,1,42% of 2258 runs fail,PAY_PER_EVENT,0.00345,trustpilot,6,coder_zoro/Trustpilot-Scraper-Pro,8,OPEN,15.7
+piotrv1001/1688-listings-scraper,1688 Listings Scraper,37,238,948,39.5,5,1,40% of 948 runs fail,PAY_PER_EVENT,0.001,1688 listings,0,,0,OPEN,14.6
+pratikdani/crunchbase-companies-bulk-scraper-no-cookies,Crunchbase Companies Bulk Scraper ✅ No Cookies,45,582,3441,0.0,1,3,rated 1 (3),PAY_PER_EVENT,0.015,crunchbase companies,1,,0,OPEN,13.5
+lentic_clockss/stealth-web-scraper,Stealth Web Scraper,52,288,992,25.2,0,0,25% of 992 runs fail,PAY_PER_EVENT,0.005,stealth web,0,,0,OPEN,13.1
+instaprism/instagram-likers-scraper,Instagram Likers Scraper - Export Users Who Liked Any Post 2026,26,311,385,48.3,5,11,48% of 385 runs fail,PAY_PER_EVENT,0.0038,instagram likers,0,,0,OPEN,12.6
+apify/local-lead-generation-agent,Local Lead Generation Agent,40,1502,1263,30.3,4.33,3,30% of 1263 runs fail,PAY_PER_EVENT,0.03,local lead,2,apivault_labs/apify-actor-local-leads,18,OPEN,12.1
+maximedupre/trendyol-scraper,Trendyol Scraper: Products & Reviews,26,96,1809,45.7,0,0,46% of 1809 runs fail,PAY_PER_EVENT,0.0006,trendyol products,3,memo23/trendyol-scraper,11,OPEN,11.9
+curious_coder/crunchbase-scraper,Crunchbase Search Scraper,24,3384,322,47.8,4.0,15,48% of 322 runs fail,PAY_PER_EVENT,0.0025,crunchbase,2,parseforge/crunchbase-scraper,10,OPEN,11.5
+azzouzana/fotocasa-es-search-results-scraper-by-search-url-ppr,$0.7/1K 💙 Fotocasa.es Real Estate Scraper,38,208,3336,0.0,1.61,3,rated 1.61 (3),PAY_PER_EVENT,0.001,1k fotocasa,0,,0,OPEN,11.4
+johnvc/naver-search-api,"Naver Search API | Web, News, Image, Video, Shopping (Korea)",33,93,630,34.6,5,1,35% of 630 runs fail,PAY_PER_EVENT,1e-05,naver web,0,,0,OPEN,11.4
+bestscrapers/fresh-linkedin-profile-data,Fresh Linkedin Profile Data,36,788,51910,0.0,1.33,5,rated 1.33 (5),PAY_PER_EVENT,0.03,fresh linkedin,0,,0,OPEN,10.8
+lofomachines/tiktok-transcription-ai,TikTok Transcription AI - 1.5$ for 1000 Videos,32,189,423,33.8,0,0,34% of 423 runs fail,PAY_PER_EVENT,0.003,tiktok transcription,0,,0,OPEN,10.8
+omkar-cloud/g2-product-scraper,G2 Product Scraper,23,990,498,16.5,1.36,6,rated 1.36 (6),PAY_PER_EVENT,0.01,g2 product,3,automation-lab/g2-product-reviews-scraper,10,OPEN,10.7
+clearcheck.io/search-by-name,Search by Name,21,50,93,46.2,4.88,10,46% of 93 runs fail,PAY_PER_EVENT,0.2,name,0,,0,OPEN,9.7
+clearpath/email-validation-api,"Email List Validator & Cleaner - 99% Accuracy, Bulk API",22,250,129,41.1,5,1,41% of 129 runs fail,PAY_PER_EVENT,0.008,email list,0,,0,OPEN,9.0
+saswave/pagesjaunes-scraper,Pagesjaunes Scraper,27,552,1319,30.8,5,8,31% of 1319 runs fail,PAY_PER_EVENT,0.0015,pagesjaunes,0,,0,OPEN,8.3
+scrapeunblocker/scrapeunblocker,Scrapeunblocker,21,190,22472,8.5,2.93,4,rated 2.93 (4),PAY_PER_EVENT,0.0015,scrapeunblocker,0,,0,OPEN,8.1
+memo23/instagram-fake-followers-checker,Instagram Fake Followers Checker · Bot Detector · No Login,30,49,247,25.5,5,1,26% of 247 runs fail,PAY_PER_EVENT,0.005,instagram fake,1,,0,OPEN,7.7
+sian.agency/lowes-product-scraper,Lowe's Product Scraper,25,76,996,27.4,0,0,27% of 996 runs fail,PAY_PER_EVENT,0.01425,lowe product,0,,0,OPEN,6.8
+saswave/mercadolibre-reviews-scraper,Mercadolibre Reviews Scraper,25,134,301,26.2,5,2,26% of 301 runs fail,PAY_PER_EVENT,0.001,mercadolibre reviews,1,easyapi/mercadolibre-reviews-scraper,2,OPEN,6.6
+easyapi/facebook-hashtag-search-scraper,Facebook Hashtag Search Scraper,21,888,94,0.0,1.19,10,rated 1.19 (10),PAY_PER_EVENT,0.00299,facebook hashtag,2,easyapi/facebook-hashtag-videos-scraper,5,OPEN,6.3
+grizzlygriff/video-llm-analyzer,Video → LLM Analyzer,22,94,513,25.3,4,1,25% of 513 runs fail,PAY_PER_EVENT,0.002,video llm,0,,0,OPEN,5.6
+automation-lab/facebook-public-profile-scraper,Facebook Public Profiles Scraper,522,690,6742,60.6,0,0,61% of 6742 runs fail,PAY_PER_EVENT,0.0046,facebook public,2,memo23/facebook-public-group-posts-scraper,465,leader-healthy,316.3
+apify/instagram-api-scraper,Instagram API Scraper,1041,18808,920386,0.1,3.0,34,rated 3.0 (34),PAY_PER_EVENT,0.0013,instagram,20,apify/instagram-scraper,43265,leader-healthy,313.3
+clockworks/tiktok-trends-scraper,TikTok Trends Scraper,223,2983,19801,0.4,4.78,17,notice UNDER_MAINTENANCE,PAY_PER_EVENT,0.0037,tiktok trends,4,data_xplorer/tiktok-trends,278,leader-healthy,223.0
+zen-studio/shopee-product-reviews-scraper,Shopee Product Reviews Scraper: Full History & Filters,161,475,2909,10.6,4,1,notice UNDER_MAINTENANCE,PAY_PER_EVENT,1e-05,shopee product,5,zen-studio/shopee-product-scraper,197,leader-healthy,161.0
+solidcode/ads-transparency-scraper,Google Ads Transparency Scraper,530,1978,243547,0.0,1.93,4,rated 1.93 (4),PAY_PER_EVENT,0.0015,google ads,53,scrapesage/google-ads-transparency-scraper,588,leader-healthy,159.0
+afanasenko/instagram-profile-scraper,"Instagram Profile Scraper — Emails, Bio Links & Post Likers",490,3794,4851,1.3,2.54,10,rated 2.54 (10),PAY_PER_EVENT,0.01,instagram profile,76,apify/instagram-profile-scraper,27281,leader-healthy,153.4
+epctex/youtube-video-downloader,Youtube Video Downloader - No Platform Costs! No Proxy Costs!,375,4767,75731,3.0,2.22,26,rated 2.22 (26),PAY_PER_EVENT,0.00015,youtube video,60,starvibe/youtube-video-transcript,2242,leader-healthy,123.7
+sian.agency/instagram-ai-transcript-extractor,Instagram AI Transcript Extractor,282,3165,12076,0.4,2.27,12,rated 2.27 (12),PAY_PER_EVENT,0.003,instagram transcript,6,apple_yang/instagram-transcripts-scraper,643,leader-healthy,85.7
+clearpath/email-finder-api,Email Finder & Verifier - B2B Email Lookup API,273,2117,14101,1.2,2.02,4,rated 2.02 (4),PAY_PER_EVENT,0.008,email verifier,26,bounceverify/bounceverify-email-verifier,778,leader-healthy,85.2
+devscrapper/whatsapp-number-validator,WhatsApp Number Validator,283,2759,90249,29.9,5,5,30% of 90249 runs fail,PAY_PER_EVENT,0.001,whatsapp number,8,eduair94/whatsapp-data-lookup,236,leader-healthy,84.6
+automation-lab/instagram-scraper,Instagram Scraper,109,1075,6088,74.4,4.82,3,74% of 6088 runs fail,PAY_PER_EVENT,0.001,instagram,20,apify/instagram-scraper,43265,leader-healthy,81.1
+x_guru/Leads-Scraper-apollo-zoominfo,💎 Leads Scraper $1/1K With EMAILS | 300M base | Like Apollo,256,12296,82022,0.0,1.98,31,rated 1.98 (31),PAY_PER_EVENT,0.001,leads 1k,5,code_crafter/leads-finder,2250,leader-healthy,76.8
+dead00/instagram-followers-following-scraper-no-cookies,Instagram Followers / Following Scraper (No cookies🍪),91,241,3561,52.0,1,1,52% of 3561 runs fail,PAY_PER_EVENT,0.00029,instagram followers,40,scraping_solutions/instagram-scraper-followers-following-no-cookies,1680,leader-healthy,74.6
+gio21/google-jobs-scraper,Google Jobs Scraper,179,1230,1376,11.6,2.44,4,rated 2.44 (4),PAY_PER_EVENT,0.003,google jobs,16,orgupdate/google-jobs-scraper,171,leader-healthy,74.5
+tri_angle/yelp-scraper,Yelp Scraper,168,6956,13671,13.9,2.7,10,rated 2.7 (10),PAY_PER_EVENT,0.005,yelp,6,api-ninja/yelp-ultimate-scraper,140,leader-healthy,73.8
+datadoping/instagram-comments-and-replies-scraper,"Instagram Comments, Replies and Subscribers Scraper (No Cookie)",244,1244,82005,0.0,2.89,7,rated 2.89 (7),PAY_PER_EVENT,0.00155,instagram comments,19,apify/instagram-comment-scraper,4961,leader-healthy,73.2
+seemuapps/instagram-contact-scraper,Instagram Email & Phone Scraper,197,956,42323,2.2,2.29,3,rated 2.29 (3),PAY_PER_EVENT,0.0065,instagram email,9,devil_port369-owner/instagram-email-phone-scraper-pay-per-result,216,leader-healthy,63.4
+easyapi/facebook-groups-search-scraper,Facebook Groups Search Scraper,205,2030,1942,0.7,1.83,11,rated 1.83 (11),PAY_PER_EVENT,0.00299,facebook groups,8,apify/facebook-groups-scraper,5455,leader-healthy,62.9
+danek/facebook-pages-posts-ppr,Facebook Pages Posts PPR,189,1835,156605,0.1,2.29,8,rated 2.29 (8),PAY_PER_EVENT,0.00299,facebook pages,18,apify/facebook-pages-scraper,5106,leader-healthy,56.9
+george.the.developer/linkedin-company-employees-scraper,LinkedIn Company Employees Scraper With Decision Makers,80,2021,1833,38.8,1,1,39% of 1833 runs fail,PAY_PER_EVENT,0.025,linkedin company,86,harvestapi/linkedin-company-employees,5950,leader-healthy,55.0
+igolaizola/amazon-search,Amazon Product Search Scraper ($0.5/1K),71,327,1566,38.5,3,1,38% of 1566 runs fail,PAY_PER_EVENT,0.001,amazon product,54,junglee/Amazon-crawler,2022,leader-healthy,48.6
+devcake/alibaba-products-scraper,Alibaba Products Scraper,156,941,2912,0.0,2.94,3,rated 2.94 (3),PAY_PER_EVENT,0.0012,alibaba products,5,zen-studio/alibaba-scraper,141,leader-healthy,46.8
+snipercoder/email-finder-by-name-and-domain,"Email Finder by Name and Domain📧 $1/1K Emails, Super Cheap.",95,673,3755,49.2,5,3,49% of 3755 runs fail,PAY_PER_EVENT,0.001,email name,3,bovi/email-finder,49,leader-healthy,46.7
+zen-studio/g2-reviews-scraper,G2 Reviews Scraper Real-Time (2026),121,870,5761,7.6,2.69,4,rated 2.69 (4),PAY_PER_EVENT,0.00649,g2 reviews,9,automation-lab/g2-scraper,171,leader-healthy,45.5
+pratikdani/facebook-post-scraper,Facebook Post Scraper,132,880,7874,30.7,4.91,3,31% of 7874 runs fail,PAY_PER_EVENT,0.025,facebook post,15,powerai/facebook-post-search-scraper,235,leader-healthy,40.5
+powerai/linkedin-peoples-search-scraper,LinkedIn People Search Scraper,81,3946,1558,18.3,1,6,rated 1 (6),PAY_PER_EVENT,0.00999,linkedin people,12,memo23/linkedin-people-search,839,leader-healthy,39.1
+crawlerbros/linkedin-profile-scraper,Linkedin Profile Scraper,103,1463,1721,1.3,2.98,11,rated 2.98 (11),PAY_PER_EVENT,0.005,linkedin profile,91,harvestapi/linkedin-profile-scraper,9617,leader-healthy,32.2
+automation-lab/amazon-reviews-scraper,Amazon Reviews Scraper,82,998,1858,4.0,2.15,3,rated 2.15 (3),PAY_PER_EVENT,0.002,amazon reviews,16,junglee/amazon-reviews-scraper,1628,leader-healthy,27.9
+louisdeconinck/instagram-followers-scraper,🔔 Instagram Followers Scraper,92,2157,479,0.2,3.0,5,rated 3.0 (5),PAY_PER_EVENT,0.002,instagram followers,40,scraping_solutions/instagram-scraper-followers-following-no-cookies,1680,leader-healthy,27.8
+abotapi/ozon-ru-scraper,"Ozon.ru Scraper – Products, URLs, Keywords, Sellers & Reviews",49,156,710,56.6,0,0,57% of 710 runs fail,PAY_PER_EVENT,5e-05,ozon ru,4,zen-studio/ozon-scraper-pro,377,leader-healthy,27.7
+memo23/skyscanner-scraper,Skyscanner Flight Scraper API 💰$1/1k — Fares & Multi-City,90,346,11904,29.1,5,2,29% of 11904 runs fail,PAY_PER_EVENT,0.0001,skyscanner flight,3,makework36/flight-price-scraper,79,leader-healthy,26.2
+memo23/mercadolibre-scraper,"MercadoLibre Scraper — Products, Prices & Reviews",64,243,1394,40.4,5.0,2,40% of 1394 runs fail,PAY_PER_EVENT,0.001,mercadolibre products,3,sourabhbgp/mercadolibre-scraper,154,leader-healthy,25.9
+automation-lab/email-finder,Email Finder,65,246,449,39.9,0,0,40% of 449 runs fail,PAY_PER_EVENT,0.005,email,7,burbn/email-search-api,59,leader-healthy,25.9
+fatihtahta/bayt-jobs-scraper,Bayt Jobs Scraper | Fast & Reliable,40,174,226,63.3,5,1,63% of 226 runs fail,PAY_PER_EVENT,0.0005,bayt jobs,8,shahidirfan/Bayt-Jobs-Scraper,106,leader-healthy,25.3
+magicfingers/threads-scraper,Threads Scraper,43,272,175,56.0,0,0,56% of 175 runs fail,FREE,,threads,12,igview-owner/threads-search-scraper,424,leader-healthy,24.1
+iskander/google-keyword-search-volume-api,Google Keyword search volume - CPC,80,766,877,0.0,1.89,5,rated 1.89 (5),PAY_PER_EVENT,1.99,google keyword,12,s-r/google-keywords,106,leader-healthy,24.0
+maximedupre/twitter-scraper,Twitter Scraper,64,314,20293,37.4,5,1,37% of 20293 runs fail,PAY_PER_EVENT,0.0007,twitter,11,danek/twitter-scraper,572,leader-healthy,23.9
+snipercoder/bulk-decision-makers-email-finder,"Bulk Decision makers Email finder📧 💲$0.8/1K Emails, cheap.",76,977,8871,0.0,1.56,5,rated 1.56 (5),PAY_PER_EVENT,0.001,decision makers,3,snipercoder/decision-maker-email-finder,237,leader-healthy,22.8
+datavoyantlab/instagram-followers-scraper,Instagram Followers Scraper - No‑Login Follower Data API,68,1884,383,3.4,2.91,4,rated 2.91 (4),PAY_PER_EVENT,0.00069,instagram followers,40,scraping_solutions/instagram-scraper-followers-following-no-cookies,1680,leader-healthy,22.7
+webdatalabs/tiktok-shop-scraper,"TikTok Shop Scraper - Products, Sales & Sellers",41,379,272,25.0,1.15,2,25% of 272 runs fail,PAY_PER_EVENT,0.01,tiktok shop,50,pratikdani/tiktok-shop-scraper,388,leader-healthy,22.6
+khadinakbar/instagram-reels-scraper,"Instagram Reels Scraper — Profiles, Hashtags & Keywords",37,247,874,59.3,0,0,59% of 874 runs fail,PAY_PER_EVENT,0.0015,instagram reels,31,data-slayer/instagram-search-reels,699,leader-healthy,21.9
+piotrv1001/linkedin-company-jobs-scraper,LinkedIn Company Jobs Scraper,27,36,5413,76.6,0,0,77% of 5413 runs fail,PAY_PER_EVENT,0.0008,linkedin company,86,harvestapi/linkedin-company-employees,5950,leader-healthy,20.7
+vulnv/linkedin-profile-scraper,🚀 LinkedIn Profile Scraper ⚡ No Login Required,64,1168,1481,0.1,2.08,4,rated 2.08 (4),PAY_PER_EVENT,0.003,linkedin profile,91,harvestapi/linkedin-profile-scraper,9617,leader-healthy,19.3
+junglee/amazon-seller-scraper,Amazon Seller Scraper,54,1987,1955,5.3,1.78,7,rated 1.78 (7),PAY_PER_EVENT,0.005,amazon seller,10,memo23/amazon-sellers-scraper,58,leader-healthy,19.1
+datadoping/linkedin-company-posts-scraper,LinkedIn Company Posts Scraper – No Cookies,63,380,2490,0.0,2.86,3,rated 2.86 (3),PAY_PER_EVENT,0.00155,linkedin company,86,harvestapi/linkedin-company-employees,5950,leader-healthy,18.9
+khadinakbar/phone-number-lookup-api,"Phone Number Lookup API — Carrier, Line Type, Validation",62,658,330,0.0,1.04,3,rated 1.04 (3),PAY_PER_EVENT,0.025,phone number,13,ntriqpro/phoneinfoga-osint,34,leader-healthy,18.6
+clearpath/whatsapp-phone-number-validator-api,WhatsApp Number Validator - Bulk Check 10K per Run,55,957,410,32.0,3.49,2,32% of 410 runs fail,PAY_PER_EVENT,0.003,whatsapp number,8,eduair94/whatsapp-data-lookup,236,leader-healthy,17.6
+webdata_labs/google-maps-no-website-leads-scraper,Google Maps No-Website Leads | 💵$10/1K,49,188,525,3.6,1.96,3,rated 1.96 (3),PAY_PER_EVENT,0.015,google maps,220,compass/crawler-google-places,37207,leader-healthy,16.5
+vero-api/whatsapp-number-checker,WhatsApp Number Checker,20,118,21030,79.0,0,0,79% of 21030 runs fail,PAY_PER_EVENT,0.005,whatsapp number,8,eduair94/whatsapp-data-lookup,236,leader-healthy,15.8
+crawlerbros/indeed-jobs-scraper,Indeed Jobs Scraper,48,477,659,32.6,0,0,33% of 659 runs fail,PAY_PER_EVENT,0.002,indeed jobs,25,valig/indeed-jobs-scraper,3944,leader-healthy,15.6
+social_developer/instagram-reels-scraper,Instagram Reels Scraper,34,60,354,45.5,5,2,46% of 354 runs fail,PAY_PER_EVENT,0.004,instagram reels,31,data-slayer/instagram-search-reels,699,leader-healthy,15.5
+apidojo/tiktok-music-scraper,TikTok Music & Sound Scraper,44,410,1484,35.0,4.78,8,35% of 1484 runs fail,PAY_PER_EVENT,0.0003,tiktok music,4,memo23/tiktok-music-scraper,36,leader-healthy,15.4
+chitosibug3/social-media-email-scraper-2026,Social Media Email Scraper 2026,51,1073,251,0.0,1.53,4,rated 1.53 (4),PAY_PER_EVENT,1,social media,25,tri_angle/social-media-finder,208,leader-healthy,15.3
+gordian/email-extractor,Email Extractor,49,949,1144,1.0,1.12,3,rated 1.12 (3),PAY_PER_EVENT,0.005,email,7,burbn/email-search-api,59,leader-healthy,15.2
+poidata/google-maps-email-extractor,📩 Google Maps Email Extractor,45,2488,297,2.7,1.89,11,rated 1.89 (11),PAY_PER_EVENT,0.003,google maps,220,compass/crawler-google-places,37207,leader-healthy,14.7
+voyager/fast-booking-scraper,Fast Booking Scraper,42,1586,2946,5.1,2.93,9,rated 2.93 (9),PAY_PER_EVENT,0.002,booking,8,voyager/booking-scraper,801,leader-healthy,14.7
+instaprism/instagram-hashtag-posts,Instagram Hashtag Posts - Most Recent by Hashtag 2026,31,221,256,47.3,4.6,7,47% of 256 runs fail,PAY_PER_EVENT,0.0045,instagram hashtag,29,apify/instagram-hashtag-scraper,9206,leader-healthy,14.7
+api-ninja/linkedin-profile-posts-scraper,Linkedin Profile Posts Scraper,31,33,87,47.1,0,0,47% of 87 runs fail,PAY_PER_EVENT,0.01,linkedin profile,91,harvestapi/linkedin-profile-scraper,9617,leader-healthy,14.6
+leadsbrary/instagram-hashtag-stats,Instagram Hashtag Stats,23,120,3521,63.2,5,1,63% of 3521 runs fail,PAY_PER_EVENT,0.003,instagram hashtag,29,apify/instagram-hashtag-scraper,9206,leader-healthy,14.5
+easyapi/stepstone-jobs-scraper,StepStone Jobs Scraper 🎯,25,749,747,26.0,2.59,5,26% of 747 runs fail; rated 2.59 (5),PAY_PER_EVENT,0.003,stepstone jobs,5,valig/stepstone-jobs-scraper,104,leader-healthy,14.0
+thirdwatch/justdial-business-scraper,"JustDial Business Scraper - India Listings, Reviews, Phone",34,426,472,40.3,0,0,40% of 472 runs fail,PAY_PER_EVENT,0.002,justdial business,3,memo23/justdial-business-scraper,45,leader-healthy,13.7
+parseforge/instagram-profile-scraper,"Instagram Profile Scraper - Bio, Links & Counts",24,189,466,26.6,1.25,3,27% of 466 runs fail; rated 1.25 (3),PAY_PER_EVENT,0.0035,instagram profile,76,apify/instagram-profile-scraper,27281,leader-healthy,13.6
+lazyscraper/facebook-profile-scraper,Facebook Profile Scraper,44,1246,4831,0.0,2.58,8,rated 2.58 (8),PAY_PER_EVENT,0.006,facebook profile,11,cleansyntax/facebook-profile-posts-scraper,392,leader-healthy,13.2
+trudax/yellow-pages-us-scraper,Yellow Pages US Scraper,28,5025,265,46.4,3.8,3,46% of 265 runs fail,PAY_PER_EVENT,0.003,yellow pages,11,abotapi/yellow-pages-au-scraper,14,leader-healthy,13.0
+easyapi/facebook-group-members-scraper,Facebook Group Members Scraper 📊,43,836,128,0.0,2.09,7,rated 2.09 (7),PAY_PER_EVENT,0.00299,facebook group,14,whoareyouanas/facebook-group-scraper,164,leader-healthy,12.9
+shahidirfan/Foundit-Jobs-Scraper,Foundit Jobs Scraper,41,239,778,31.5,5.0,5,32% of 778 runs fail,PAY_PER_EVENT,0.001,foundit jobs,5,khadinakbar/foundit-jobs-scraper,49,leader-healthy,12.9
+igview-owner/google-jobs-scraper,Google Jobs Scraper,42,422,1655,0.1,1.27,3,rated 1.27 (3),PAY_PER_EVENT,0.02,google jobs,16,orgupdate/google-jobs-scraper,171,leader-healthy,12.6
+curious_coder/linkedin-profile-scraper,Linkedin profile scraper,32,5895,485,4.3,1.78,14,rated 1.78 (14),PAY_PER_EVENT,0.003,linkedin profile,91,harvestapi/linkedin-profile-scraper,9617,leader-healthy,11.0
+apify/example-code-runner-playwright,Example Code Runner (Playwright),37,2908,264,29.5,4.5,3,30% of 264 runs fail,FREE,,example code,3,apify/example-code-runner-python,38,leader-healthy,10.9
+exporter24/instagram-email-scraper,Instagram Email Scraper,34,546,7055,0.7,2.99,3,rated 2.99 (3),PAY_PER_EVENT,0.038,instagram email,9,devil_port369-owner/instagram-email-phone-scraper-pay-per-result,216,leader-healthy,10.4
+mina_safwat/facebook-post-scraper-ppr,Facebook Post Scraper (No Cookies),30,501,1286,33.1,5,1,33% of 1286 runs fail,PAY_PER_EVENT,0.009,facebook post,15,powerai/facebook-post-search-scraper,235,leader-healthy,9.9
+crowdpull/facebook-page-posts-scraper,Facebook Page Posts Scraper — No Login Required,20,257,141,48.9,5,1,49% of 141 runs fail,PAY_PER_EVENT,0.001,facebook page,41,thedoor/facebook-page-scraper,278,leader-healthy,9.8
+pratikdani/instagram-reels-scraper,Instagram Reels Scraper,32,809,14620,0.0,2.14,7,rated 2.14 (7),PAY_PER_EVENT,0.0033,instagram reels,31,data-slayer/instagram-search-reels,699,leader-healthy,9.6
+thewolves/trustpilot-reviews-scraper,Trustpilot Reviews Scraper API | $0.50/1K Reviews,29,357,726,1.5,2.43,9,rated 2.43 (9),PAY_PER_EVENT,0.0005,trustpilot reviews,21,automation-lab/trustpilot,453,leader-healthy,9.1
+storeinspect/shopify-store-search,Shopify Store Leads & Contacts API by StoreInspect,21,38,300,42.7,0,0,43% of 300 runs fail,PAY_PER_EVENT,0.001,shopify store,26,clearpath/shopify-store-leads,200,leader-healthy,9.0
+danek/instagram-followers-following-scraper,Instagram Followers and Following Scraper,35,51,84,25.0,0,0,25% of 84 runs fail,PAY_PER_EVENT,0.0003,instagram followers,40,scraping_solutions/instagram-scraper-followers-following-no-cookies,1680,leader-healthy,8.8
+pratikdani/twitter-posts-scraper,Twitter Posts Scraper,29,844,11171,0.0,1,3,rated 1 (3),PAY_PER_EVENT,0.025,twitter posts,2,scraper_one/x-posts-search,420,leader-healthy,8.7
+aticode/tiktok-transcript-scraper,TikTok Transcript Scraper · Pay Per Found Caption,20,59,1741,43.6,0,0,44% of 1741 runs fail,PAY_PER_EVENT,0.001,tiktok transcript,9,clockworks/tiktok-transcript-extractor,166,leader-healthy,8.7
+twoapi/skip-trace,Skip Trace,28,523,222,0.0,2.9,4,rated 2.9 (4),PAY_PER_EVENT,0.01,skip trace,7,one-api/skip-trace,761,leader-healthy,8.4
+piotrv1001/linkedin-decision-maker-finder,LinkedIn Decision Maker Finder,31,385,935,26.3,0,0,26% of 935 runs fail,PAY_PER_EVENT,0.01,linkedin decision,2,apt_marble/linkedin-decision-makers-scraper-ceos-founders-executives,31,leader-healthy,8.2
+easyapi/substack-posts-scraper,Substack Posts Scraper 📚,27,261,130,0.0,2.6,3,rated 2.6 (3),PAY_PER_EVENT,0.00499,substack posts,6,brilliant_gum/substack-insights-scraper,14,leader-healthy,8.1
+piotrv1001/aliexpress-product-details-scraper,AliExpress Product Details Scraper,20,29,189,39.7,0,0,40% of 189 runs fail,PAY_PER_EVENT,0.005,aliexpress product,11,zen-studio/aliexpress-scraper,43,leader-healthy,7.9
+easyapi/rednote-xiaohongshu-search-scraper,RedNote(Xiaohongshu) Search Scraper 🔍,22,1111,147,4.1,1.46,3,rated 1.46 (3),PAY_PER_EVENT,0.00499,rednote xiaohongshu,21,zen-studio/rednote-search-scraper,660,leader-healthy,7.5
+apt_marble/instagram-profile-posts-reels-scraper,"Instagram Profile, Posts & Reels Scraper",28,40,170,25.9,0,0,26% of 170 runs fail,PAY_PER_EVENT,0.0015,instagram profile,76,apify/instagram-profile-scraper,27281,leader-healthy,7.3
+seibs.co/tiktok-trending-products,"TikTok Trending Products - Product, Video & Price Feed",23,103,116,31.9,0,0,32% of 116 runs fail,PAY_PER_EVENT,0.005,tiktok trending,9,khadinakbar/tiktok-trending-hashtags-scraper,87,leader-healthy,7.3
+automation-lab/linkedin-post-scraper,LinkedIn Post Scraper,21,256,444,34.2,0,0,34% of 444 runs fail,PAY_PER_EVENT,0.005,linkedin post,37,harvestapi/linkedin-post-search,6361,leader-healthy,7.2
+easyapi/all-in-one-rednote-xiaohongshu-scraper,All-in-One RedNote(Xiaohongshu) Scraper 🔍,22,1542,247,2.0,2.94,5,rated 2.94 (5),PAY_PER_EVENT,0.00499,all one,8,zen-studio/software-review-scraper,86,leader-healthy,7.0
+thirdwatch/linkedin-post-search-scraper,LinkedIn Post Search - Keywords & Public Posts,26,72,378,26.5,0,0,26% of 378 runs fail,PAY_PER_EVENT,0.002,linkedin post,37,harvestapi/linkedin-post-search,6361,leader-healthy,6.9
+thecfmarketing/google-maps-businesses-without-website,Google Maps Businesses Without Website (No-Website Leads),24,71,177,27.7,0,0,28% of 177 runs fail,PAY_PER_EVENT,0.003,google maps,220,compass/crawler-google-places,37207,leader-healthy,6.6
+patient_discovery/instagram-likes,Scrape Instagram Likes by Post URL - No Login - cookieless,21,546,352,29.5,4,1,30% of 352 runs fail,PAY_PER_EVENT,0.0025,scrape instagram,2,patient_discovery/instagram-posts,21,leader-healthy,6.2
+abotapi/realestate-au-scraper,"Real Estate AU - Listings, Prices, Agents & History",21,335,2473,29.1,4.82,6,29% of 2473 runs fail,PAY_PER_EVENT,0.001,real estate,13,tri_angle/real-estate-aggregator,18,leader-healthy,6.1
+easyapi/instagram-email-scraper,Instagram Email Scraper,20,1365,106,0.0,1,4,rated 1 (4),PAY_PER_EVENT,0.00299,instagram email,9,devil_port369-owner/instagram-email-phone-scraper-pay-per-result,216,leader-healthy,6.0
+easyapi/tiktok-following-scraper,TikTok Following Scraper,23,564,178,25.8,4.04,2,26% of 178 runs fail,PAY_PER_EVENT,0.00299,tiktok following,3,scrape-creators/best-tiktok-following-scraper,72,leader-healthy,5.9
